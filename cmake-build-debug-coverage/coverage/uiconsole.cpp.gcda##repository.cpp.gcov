@@ -1,0 +1,97 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/repository.cpp
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\uiconsole.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\uiconsole.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 25.03.2022.
+        -:    3://
+        -:    4:#pragma once
+        -:    5:#include "repository.h"
+        -:    6:
+        -:    7:template<typename T>
+        -:    8:typename vector<T>::iterator Repository<T>::getIterator(T* pointer){ return elements.begin() + (pointer - elements.data()); }
+        -:    9:
+        -:   10:template<typename T>
+        -:   11:Repository<T>::Repository(const Repository<T> & repository) {
+        -:   12:    this->elements = repository.elements;
+        -:   13:}
+        -:   14:
+        -:   15:template<typename T>
+        -:   16:Repository<T>::Repository(const std::initializer_list<T>& list)
+        -:   17:{
+        -:   18:    for(const auto& elem : list)
+        -:   19:        elements.push_back(elem);
+        -:   20:}
+        -:   21:
+        -:   22:template<typename T>
+    #####:   23:int Repository<T>::size() const {
+    #####:   24:    return elements.size();
+        -:   25:}
+        -:   26:
+        -:   27:template<typename T>
+        -:   28:T& Repository<T>::operator[](const int& index)
+        -:   29:{
+        -:   30:    try{ return elements[index]; }
+        -:   31:    catch(...) { throw RepoException("Indexul "+std::to_string(index)+" este invalid!\n");}
+        -:   32:}
+        -:   33:
+        -:   34:template<typename T>
+        -:   35:void Repository<T>::add(const T & element) {
+        -:   36:    const T* it = find(element);
+        -:   37:    if(it != NULL) throw RepoException("Element duplicat!\n");
+        -:   38:    elements.push_back(element);
+        -:   39:}
+        -:   40:
+        -:   41:template<typename T>
+        -:   42:T* Repository<T>::find(const T & element, T* begin, T* end) {
+        -:   43:    if(begin == NULL) begin = this->begin();
+        -:   44:    if(end == NULL) end = this->end();
+        -:   45:    for(auto it=begin; it != end; ++it)
+        -:   46:        if(*it == element)
+        -:   47:            return it;
+        -:   48:    return NULL;
+        -:   49:}
+        -:   50:
+        -:   51:template<typename T> template<class UnaryPredicate>
+        -:   52:T* Repository<T>::find(UnaryPredicate fct, T* begin, T* end) {
+        -:   53:    if(begin == NULL) begin = this->begin();
+        -:   54:    if(end == NULL) end = this->end();
+        -:   55:    for(auto it=begin; it != end; ++it)
+        -:   56:        if(fct(*it))
+        -:   57:            return it;
+        -:   58:    return NULL;
+        -:   59:}
+        -:   60:
+        -:   61:template<typename T>
+        -:   62:void Repository<T>::remove(const T& element) {
+        -:   63:    T* it = find(element);
+        -:   64:    if(it == NULL) throw RepoException("Elementul inexistent!\n");
+        -:   65:
+        -:   66:    elements.erase(getIterator(it));
+        -:   67:}
+        -:   68:
+        -:   69:template<typename T> template<class UnaryPredicate>
+        -:   70:T Repository<T>::remove(UnaryPredicate fct) {
+        -:   71:    T* it = find(fct);
+        -:   72:    if(it == NULL) throw RepoException("Elementul inexistent!\n");
+        -:   73:    elements.erase(getIterator(it));
+        -:   74:    return *it;
+        -:   75:}
+        -:   76:
+        -:   77:template<typename T>
+    #####:   78:T* Repository<T>::begin() { return elements.begin().base();}
+        -:   79:
+        -:   80:template<typename T>
+    #####:   81:T* Repository<T>::end() {return elements.end().base(); }
+        -:   82:
+        -:   83:template<typename T>
+        -:   84:const T* Repository<T>::cbegin() const {return elements.cbegin().base();}
+        -:   85:
+        -:   86:template<typename T>
+        -:   87:const T* Repository<T>::cend() const { return elements.cend().base();}
+        -:   88:
+        -:   89:
+        -:   90:template<typename T> template<class Compare>
+        -:   91:void Repository<T>::sort(Compare compare) {
+        -:   92:    std::sort(elements.begin(), elements.end(), compare);
+        -:   93:}

@@ -1,0 +1,13 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/main.cpp
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\main.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "tests.h"
+        -:    2:#include "uiconsole.h"
+        -:    3:
+        1:    4:int main() {
+        1:    5:    test();
+        1:    6:    ConsoleUI console;
+        1:    7:    console.run();
+        1:    8:    return 0;
+        1:    9:}

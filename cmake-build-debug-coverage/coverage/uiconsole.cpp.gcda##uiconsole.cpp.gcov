@@ -1,0 +1,169 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/uiconsole.cpp
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\uiconsole.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\uiconsole.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 26.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "uiconsole.h"
+        -:    6:
+        1:    7:void ConsoleUI::printMenu(ostream & out) {
+        -:    8:    out<<"\tMeniu\n"
+        -:    9:         "1. Adaugare\n"
+        -:   10:         "2. Stergere\n"
+        -:   11:         "3. Modificare\n"
+        -:   12:         "4. Afisare\n"
+        -:   13:         "5. Cauta apartament\n"
+        -:   14:         "6. Filtrare\n"
+        -:   15:         "7. Sortare\n"
+        1:   16:         "8. Iesire\n";
+        1:   17:}
+        -:   18:
+    #####:   19:void ConsoleUI::readLocatar(istream & in, ostream& out, TypeApartament& apartament, TypeNume& nume, TypeSuprafata& suprafata, TypeTip& tip) {
+    #####:   20:    string strap, strsup;
+        -:   21:
+    #####:   22:    out<<"Introduceti apartamentul: ";
+    #####:   23:    in>>strap;
+    #####:   24:    try{ apartament = std::stoi(strap); }
+    =====:   25:    catch(...) { out<<"Apartament invalid!\n";  apartament=0;}
+        -:   26:
+    #####:   27:    out<<"Introduceti numele proprietarului: ";
+    #####:   28:    std::getline(in>>std::ws, nume); //in>>std::noskipws;
+        -:   29:
+    #####:   30:    out<<"Introduceti suprafata: ";
+    #####:   31:    in>>strsup;
+    #####:   32:    try{ suprafata = std::stoi(strsup); }
+    =====:   33:    catch(...) { out<<"Suprafata invalida!\n";  suprafata=0;}
+    #####:   34:    out<<"Introduceti tipul: "; in>>tip;
+    #####:   35:}
+        -:   36:
+    #####:   37:void ConsoleUI::writeLocatar(ostream & out, const Locatar& locatar) {
+    #####:   38:    out<<"Apartament: "<<locatar.getApartament()<<'\n';
+    #####:   39:    out<<"Nume Proprietar: "<<locatar.getNumeProprietar()<<'\n';
+    #####:   40:    out<<"Suprafata: "<<locatar.getSuprafata()<<'\n';
+    #####:   41:    out<<"Tip: "<<locatar.getTip()<<'\n';
+    #####:   42:}
+        -:   43:
+    #####:   44:void ConsoleUI::adauga(istream & in, ostream & out) {
+        -:   45:    TypeApartament apartament;
+    #####:   46:    TypeNume nume;
+    #####:   47:    TypeTip tip;
+        -:   48:    TypeSuprafata suprafata;
+    #####:   49:    readLocatar(in, out, apartament, nume, suprafata, tip);
+    #####:   50:    try{service.add(apartament, nume, suprafata, tip);}
+    =====:   51:    catch(MyException& me) { out<<me; return;}
+    #####:   52:    out<<"Operatie efectuata cu succes!\n";
+    #####:   53:}
+        -:   54:
+    #####:   55:void ConsoleUI::sterge(istream &in, ostream &out) {
+        -:   56:    TypeApartament apartament;
+    #####:   57:    TypeNume nume;
+    #####:   58:    TypeTip tip;
+        -:   59:    TypeSuprafata suprafata;
+    #####:   60:    readLocatar(in, out, apartament, nume, suprafata, tip);
+    #####:   61:    try{service.remove(apartament, nume, suprafata, tip);}
+    =====:   62:    catch(MyException& me) { out<<me; return;}
+    #####:   63:    out<<"Operatie efectuata cu succes!\n";
+    #####:   64:}
+        -:   65:
+    #####:   66:void ConsoleUI::modifica(istream & in, ostream & out) {
+        -:   67:    TypeApartament apartament1, apartament2;
+    #####:   68:    TypeNume nume1, nume2;
+    #####:   69:    TypeTip tip1, tip2;
+        -:   70:    TypeSuprafata suprafata1, suprafata2;
+    #####:   71:    readLocatar(in, out, apartament1, nume1, suprafata1, tip1);
+    #####:   72:    readLocatar(in, out, apartament2, nume2, suprafata2, tip2);
+    #####:   73:    try{ service.modify(apartament1, nume1, suprafata1, tip1,
+        -:   74:                        apartament2, nume2, suprafata2, tip2);}
+    =====:   75:    catch(MyException& me) { out<<me; return;}
+    #####:   76:    out<<"Operatie efectuata cu succes!\n";
+    #####:   77:}
+        -:   78:
+    #####:   79:void ConsoleUI::afisare(ostream & out) {
+    #####:   80:    if(service.end() - service.begin() == 0) out<<"Nu exista astfel de elemente!\n";
+    #####:   81:    for(const auto& elem : service)
+    #####:   82:        writeLocatar(out, elem);
+    #####:   83:}
+        -:   84:
+    #####:   85:void ConsoleUI::cautaApartament(istream & in, ostream & out) {
+        -:   86:    TypeApartament apartament;
+    #####:   87:    out<<"Introduceti numarul apartamentului: ";
+    #####:   88:    in >> apartament;
+    #####:   89:    Locatar locatar;
+    #####:   90:    try{ locatar = service.findApartament(apartament);}
+    =====:   91:    catch(MyException& me) { out<<me; return;}
+    #####:   92:    writeLocatar(out, locatar);
+    #####:   93:}
+        -:   94:
+    #####:   95:void ConsoleUI::filtrare(istream & in, ostream & out) {
+    #####:   96:    out<<"Introduceti filtrul(tip/suprafata): ";
+    #####:   97:    string cmd;
+    #####:   98:    in>>cmd;
+    #####:   99:    if(cmd == "tip"){
+    #####:  100:        TypeTip tip;
+    #####:  101:        out<<"Introduceti tipul: "; in >> tip;
+    #####:  102:        Repository<Locatar> rez;
+    #####:  103:        try{rez = service.filterTip(tip); }
+    =====:  104:        catch(MyException& me) { out<<me; return;}
+    #####:  105:        if(rez.size() == 0) out<<"Nu exista astfel de elenmente!\n";
+    #####:  106:        for(const auto& elem : rez)
+    #####:  107:            writeLocatar(out, elem);
+    #####:  108:    }
+    #####:  109:    else if(cmd == "suprafata"){
+        -:  110:        TypeSuprafata suprafata;
+    #####:  111:        out<<"Introduceti suprafata: "; in >>suprafata;
+    #####:  112:        Repository<Locatar> rez;
+    #####:  113:        try{rez = service.filterSuprafata(suprafata); }
+    =====:  114:        catch(MyException& me) { out<<me; return;}
+    #####:  115:        if(rez.size() == 0) out<<"Nu exista astfel de elenmente!\n";
+    #####:  116:        for(const auto& elem : rez)
+    #####:  117:            writeLocatar(out, elem);
+    #####:  118:    }
+    #####:  119:    else out<<"Filtru invalid!\n";
+    #####:  120:}
+        -:  121:
+    #####:  122:void ConsoleUI::sortare(istream & in, ostream & out) {
+        -:  123:    out<<"\tSortati dupa:\n"
+        -:  124:         "1. Nume proprietar\n"
+        -:  125:         "2. Suprafata\n"
+    #####:  126:         "3. Tip apartament si suprafata\n";
+    #####:  127:    string cmd; in>>cmd;
+    #####:  128:    if(cmd=="1") {
+    #####:  129:        service.sortNume();
+        -:  130:    }
+    #####:  131:    else if(cmd == "2"){
+    #####:  132:        service.sortSuprafata();
+        -:  133:    }
+    #####:  134:    else if(cmd == "3"){
+    #####:  135:        service.sortTipSuprafata();
+        -:  136:    }
+        -:  137:    else {
+    #####:  138:        out<<"Optiune invalida!\n";
+    #####:  139:        return;
+        -:  140:    }
+    #####:  141:    afisare(out);
+    #####:  142:}
+        -:  143:
+        1:  144:void ConsoleUI::run(istream & in, ostream & out) {
+        -:  145:    while (true){
+        1:  146:        system("cls");
+        1:  147:        printMenu(out);
+        1:  148:        out<<"\nIntroduceti comanda: ";
+        1:  149:        string cmd;
+        1:  150:        in>>cmd;
+       1*:  151:        if(cmd=="1") adauga(in, out);
+       1*:  152:        else if(cmd=="2") sterge(in, out);
+       1*:  153:        else if(cmd=="3") modifica(in, out);
+       1*:  154:        else if(cmd=="4") afisare(out);
+       1*:  155:        else if(cmd=="5") cautaApartament(in, out);
+       1*:  156:        else if(cmd=="6") filtrare(in, out);
+       1*:  157:        else if(cmd=="7") sortare(in, out);
+        1:  158:        else if(cmd=="8") break;
+    #####:  159:        else out<<"Comanda invalida!\n";
+    #####:  160:        system("pause");
+       1*:  161:    }
+        1:  162:}
+        -:  163:
+        -:  164:
+        -:  165:

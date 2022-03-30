@@ -1,0 +1,53 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/tests.h
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 25.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB6_TESTS_H
+        -:    6:#define LAB6_TESTS_H
+        -:    7:
+        -:    8:#include <cassert>
+        -:    9:#include <cstring>
+        -:   10:#include <strstream>
+        -:   11:#include "exceptions.h"
+        -:   12:#include "domain.h"
+        -:   13:#include "validator.h"
+        -:   14:#include "repository.h"
+        -:   15:#include "repository.cpp"
+        -:   16:#include "service.h"
+        -:   17:
+        -:   18:class ITest{
+        -:   19:protected:
+        2:   20:    virtual void ctors(){}
+        2:   21:    virtual void getters(){}
+        4:   22:    virtual void setters(){}
+        3:   23:    virtual void operators(){}
+        2:   24:    virtual void methods(){}
+        3:   25:    virtual void add(){}
+        3:   26:    virtual void find(){}
+        3:   27:    virtual void remove(){}
+        4:   28:    virtual void filter(){}
+        4:   29:    virtual void sort(){}
+        -:   30:
+        -:   31:public:
+        5:   32:    void run(){
+        5:   33:        ctors();
+        5:   34:        getters();
+        5:   35:        setters();
+        5:   36:        methods();
+        5:   37:        operators();
+        5:   38:        add();
+        5:   39:        find();
+        5:   40:        remove();
+        5:   41:        filter();
+        5:   42:        sort();
+        5:   43:    }
+        5:   44:    ITest()=default;
+        -:   45:};
+        -:   46:
+        -:   47:void test();
+        -:   48:
+        -:   49:#endif // LAB6_TESTS_H

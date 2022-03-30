@@ -1,0 +1,87 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/exceptions.h
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\service.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\service.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 25.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB6_EXCEPTIONS_H
+        -:    6:#define LAB6_EXCEPTIONS_H
+        -:    7:
+        -:    8:#include <exception>
+        -:    9:#include <string>
+        -:   10:#include <vector>
+        -:   11:using std::exception;
+        -:   12:using std::string;
+        -:   13:using std::ostream;
+        -:   14:using std::vector;
+        -:   15:
+        -:   16:class MyException : public std::exception
+        -:   17:{
+        -:   18:protected:
+        -:   19:    string msg;
+        -:   20:public:
+        -:   21:    MyException() { msg = "MyException!\n"; } ;
+    #####:   22:    MyException (const string& msg) : msg(msg) {}
+    #####:   23:    const char * what() const noexcept override { return msg.c_str(); }
+        -:   24:    friend ostream& operator<<(ostream& out, const MyException& ex) {out<<ex.msg; return out;}
+        -:   25:};
+        -:   26:
+        -:   27:class RepoException : public MyException { using MyException::MyException;};
+        -:   28:class ServiceException : public MyException { using MyException::MyException;};
+        -:   29:class InvalidFieldException : public MyException { using MyException::MyException;};
+        -:   30:
+        -:   31:class ValidatorException : public MyException {
+        -:   32:private:
+        -:   33:    string sep="\n";
+        -:   34:    vector<InvalidFieldException> errors;
+        -:   35:public:
+        -:   36:    //using MyException::MyException;
+        -:   37:    explicit ValidatorException()=default;
+        -:   38:    ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
+        -:   39:        msg = "";
+        -:   40:        for(const InvalidFieldException& ie : errors_)
+        -:   41:            msg += ie.what() + sep;
+        -:   42:    }
+        -:   43:    ValidatorException(const ValidatorException& ve)=default;
+        -:   44:    ValidatorException& operator=(const ValidatorException& ve) = default;
+        -:   45:    friend ValidatorException operator+(const ValidatorException& ve1, const ValidatorException& ve2)
+        -:   46:    {
+        -:   47:        ValidatorException ve;
+        -:   48:        ve.sep = ve1.sep;
+        -:   49:        ve.errors.insert(ve.errors.end(), ve1.errors.cbegin(), ve1.errors.cend());
+        -:   50:        ve.errors.insert(ve.errors.end(), ve2.errors.cbegin(), ve2.errors.cend());
+        -:   51:        ve.msg = "";
+        -:   52:        for(const InvalidFieldException& ie : ve.errors)
+        -:   53:            ve.msg += ie.what() + ve.sep;
+        -:   54:        return ve;
+        -:   55:    }
+        -:   56:    friend ValidatorException operator+(const ValidatorException& ve, const InvalidFieldException& ie)
+        -:   57:    {
+        -:   58:        vector<InvalidFieldException> vct{ie};
+        -:   59:        ValidatorException ve2(vct);
+        -:   60:        return ve + ve2;
+        -:   61:    }
+        -:   62:    friend ValidatorException operator+(const ValidatorException& ve, const string& msg)
+        -:   63:    {
+        -:   64:        return ve + InvalidFieldException(msg);
+        -:   65:    }
+        -:   66:    friend ValidatorException& operator+=(ValidatorException& ve1, const ValidatorException& ve2){
+        -:   67:        ve1 = ve1 + ve2;
+        -:   68:        return ve1;
+        -:   69:    }
+        -:   70:    friend ValidatorException& operator+=(ValidatorException& ve, const InvalidFieldException& ie)
+        -:   71:    {
+        -:   72:        ve = ve + ie;
+        -:   73:        return ve;
+        -:   74:    }
+        -:   75:    friend ValidatorException& operator+=(ValidatorException& ve, const string& msg)
+        -:   76:    {
+        -:   77:        ve = ve + InvalidFieldException(msg);
+        -:   78:        return ve;
+        -:   79:    }
+        -:   80:    explicit operator int() const {return (int)errors.size(); }
+        -:   81:};
+        -:   82:
+        -:   83:#endif //LAB6_EXCEPTIONS_H

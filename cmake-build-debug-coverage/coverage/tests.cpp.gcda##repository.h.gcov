@@ -1,0 +1,87 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/repository.h
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 25.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB6_REPOSITORY_H
+        -:    6:#define LAB6_REPOSITORY_H
+        -:    7:
+        -:    8:#include <type_traits>
+        -:    9:#include <vector>
+        -:   10:#include <algorithm>
+        -:   11:#include "exceptions.h"
+        -:   12:using std::vector;
+        -:   13:
+        -:   14:template<typename T>
+        -:   15:class Repository{
+        -:   16:private:
+        -:   17:    vector<T> elements;
+        -:   18:    typename vector<T>::iterator getIterator(T*);
+        -:   19:public:
+       6*:   20:    Repository() = default;
+------------------
+_ZN10RepositoryI7LocatarEC1Ev:
+    #####:   20:    Repository() = default;
+------------------
+_ZN10RepositoryIiEC1Ev:
+        6:   20:    Repository() = default;
+------------------
+        -:   21:    Repository(const Repository&);
+        -:   22:    Repository(const std::initializer_list<T>&);
+        -:   23:
+        -:   24:    // operator de atribuire
+        -:   25:    // Repository& operator=(const Repository&);
+        -:   26:
+        -:   27:    // indexator, returnez o referinta la obiect
+        -:   28:    // arunc RepoException daca pozitia este invalida
+        -:   29:    T& operator[](const int&);
+        -:   30:
+        -:   31:    // returneaza numarul de elemente continute
+        -:   32:    int size() const;
+        -:   33:
+        -:   34:    // adaug un element la finalul containerului
+        -:   35:    // arunc RepoException daca elementul se afla in container
+        -:   36:    void add(const T&);
+        -:   37:
+        -:   38:    // returnez o referinta catre primul element egal cu cel dat
+        -:   39:    // sau NULL altfel
+        -:   40:    // primul iterator indica pozitia de inceput
+        -:   41:    // al doilea indica pozitia de final
+        -:   42:    // implicit, cautarea de face pe tot containerul
+        -:   43:    T* find(const T&, T* = NULL, T* = NULL);
+        -:   44:
+        -:   45:    // returnez un iterator catre primul element care respecta proprietatea data
+        -:   46:    // daca elementul nu este gasit, returnez NULL
+        -:   47:    // primul iterator indica pozitia de inceput
+        -:   48:    // al doilea indica pozitia de final
+        -:   49:    // implicit, cautarea de face pe tot containerul
+        -:   50:    template<class UnaryPredicate>
+        -:   51:    T* find(UnaryPredicate, T* = NULL, T* = NULL);
+        -:   52:
+        -:   53:    // sterg prima aparitie a elementului dat din container
+        -:   54:    // arunc o exceptie daca nu exista in container
+        -:   55:    void remove(const T&);
+        -:   56:
+        -:   57:    // sterg primul element care respecta proprietatea
+        -:   58:    // returnez elementul sters
+        -:   59:    // arunc o exceptie daca nu exista in container
+        -:   60:    template<class UnaryPredicate>
+        -:   61:    T remove(UnaryPredicate);
+        -:   62:
+        -:   63:    // sortez repository-ul dupa operatorul < sau dupa functie
+        -:   64:    template<class Compare=std::less<T>>
+        -:   65:    void sort(Compare compare = Compare{});
+        -:   66:
+        -:   67:    // implementez iteratorii de begin si end pentru a putea intera
+        -:   68:    T* begin();
+        -:   69:    const T* cbegin() const;
+        -:   70:    T* end();
+        -:   71:    const T* cend() const;
+        -:   72:};
+        -:   73:
+        -:   74:#endif //LAB6_REPOSITORY_H
+        -:   75:
+        -:   76:// static_assert(std::is_convertible_v<Callable&&, std::function<Signature>>, "Wrong Signature!");

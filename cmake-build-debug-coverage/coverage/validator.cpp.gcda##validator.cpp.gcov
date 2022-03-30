@@ -1,0 +1,44 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/validator.cpp
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\validator.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\validator.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 26.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "validator.h"
+        -:    6:
+       39:    7:void ValidatorLocatar::validApartament(const TypeApartament & apartament) {
+       39:    8:    if(apartament > 0 && apartament < 1000);
+        3:    9:    else throw InvalidFieldException("Apartamentul "+std::to_string(apartament)+" este invalid!\n");
+       36:   10:}
+        -:   11:
+       35:   12:void ValidatorLocatar::validNume(const TypeNume & nume) {
+      212:   13:    for(int i=0;i<nume.size();++i)
+      179:   14:        if(!std::isalpha(nume[i]) && !std::isblank(nume[i]))
+        2:   15:            throw InvalidFieldException("Numele proprietarului "+nume+" nu este valid!\n");
+       33:   16:}
+        -:   17:
+       36:   18:void ValidatorLocatar::validSuprafata(const TypeSuprafata & suprafata) {
+       36:   19:    if(suprafata > 0 && suprafata < 10000);
+        3:   20:    else throw InvalidFieldException("Suprafata "+std::to_string(suprafata)+" nu este valida!\n");
+       33:   21:}
+        -:   22:
+       37:   23:void ValidatorLocatar::validTip(const TypeTip & tip) {
+      404:   24:    for(int i=0;i<tip.size();++i)
+      369:   25:        if(!std::isalnum(tip[i]) && !std::isblank(tip[i]))
+        2:   26:            throw InvalidFieldException("Tipul "+tip+" nu este valid!\n");
+       35:   27:}
+        -:   28:
+       34:   29:void ValidatorLocatar::validLocatar(const Locatar & locatar) {
+       34:   30:    ValidatorException v;
+       34:   31:    try{ validApartament(locatar.getApartament()); }
+        2:   32:    catch(InvalidFieldException& ie) {v += ie;}
+       35:   33:    try{ validNume(locatar.getNumeProprietar()); }
+        1:   34:    catch(InvalidFieldException& ie) {v += ie;}
+       34:   35:    try{ validSuprafata(locatar.getSuprafata());}
+        2:   36:    catch(InvalidFieldException& ie) {v += ie;}
+       35:   37:    try { validTip(locatar.getTip()); }
+        1:   38:    catch(InvalidFieldException& ie) {v += ie;}
+       34:   39:    if((int)v != 0) throw v;
+       34:   40:}

@@ -1,0 +1,67 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/domain.h
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\tests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#ifndef LAB6_DOMAIN_H
+        -:    2:#define LAB6_DOMAIN_H
+        -:    3:
+        -:    4:#include <string>
+        -:    5:#include <iostream>
+        -:    6:
+        -:    7:using std::string;
+        -:    8:using std::istream;
+        -:    9:using std::ostream;
+        -:   10:
+        -:   11:typedef int TypeApartament;
+        -:   12:typedef string TypeNume;
+        -:   13:typedef int TypeSuprafata;
+        -:   14:typedef string TypeTip;
+        -:   15:
+        -:   16:class Locatar{
+        -:   17:private: // campuri
+        -:   18:    TypeApartament apartament = 0;
+        -:   19:    TypeNume nume_proprietar;
+        -:   20:    TypeSuprafata suprafata = 0;
+        -:   21:    TypeTip tip;
+        -:   22:public:
+        -:   23:    // constructori
+        -:   24:    // constructor fara parametrii
+       17:   25:    Locatar() = default;
+        -:   26:    // constructor cu parametrii
+       55:   27:    Locatar(const TypeApartament& Apartament, const TypeNume& NumeProprietar, const TypeSuprafata& Suprafata, const TypeTip& Tip) :
+       55:   28:            apartament(Apartament), nume_proprietar(NumeProprietar), suprafata(Suprafata), tip(Tip) {}
+        -:   29:    // constructor de copiere
+        -:   30:    Locatar(const Locatar&);
+        -:   31:
+        -:   32:    // operator de atribuire
+        -:   33:    Locatar& operator=(const Locatar&);
+        -:   34:
+        -:   35:    // getteri
+        -:   36:    TypeApartament getApartament() const;
+        -:   37:    TypeNume getNumeProprietar() const;
+        -:   38:    TypeSuprafata getSuprafata() const;
+        -:   39:    TypeTip getTip() const;
+        -:   40:
+        -:   41:    // setteri
+        -:   42:    void setApartament(const TypeApartament&);
+        -:   43:    void setNumeProprietar(const TypeNume &);
+        -:   44:    void setSuprafata(const TypeSuprafata &);
+        -:   45:    void setTip(const TypeTip &);
+        -:   46:
+        -:   47:    // operatori de egalitate
+        -:   48:    bool operator==(const Locatar&) const;
+        -:   49:    bool operator!=(const Locatar&) const;
+        -:   50:
+        -:   51:    // operatori relationali
+        -:   52:    bool operator<(const Locatar&) const;
+        -:   53:    bool operator<=(const Locatar&) const;
+        -:   54:    bool operator>(const Locatar&) const;
+        -:   55:    bool operator>=(const Locatar&) const;
+        -:   56:
+        -:   57:
+        -:   58:    // operatori de intrare/iesire
+        -:   59:    friend istream& operator>>(istream&, Locatar&);
+        -:   60:    friend ostream& operator<<(ostream&, const Locatar&);
+        -:   61:};
+        -:   62:
+        -:   63:#endif //LAB6_DOMAIN_H

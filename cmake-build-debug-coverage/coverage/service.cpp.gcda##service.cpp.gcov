@@ -1,0 +1,97 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/service.cpp
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\service.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\service.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 26.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#include "service.h"
+        -:    6:
+       19:    7:void Service::add(const TypeApartament & apartament, const TypeNume & numeproprietar, const TypeSuprafata & suprafata, const TypeTip & tip) {
+       19:    8:    Locatar locatar{apartament, numeproprietar, suprafata, tip};
+       19:    9:    ValidatorLocatar::validLocatar(locatar);
+       19:   10:    repository.add(locatar);
+       19:   11:}
+        -:   12:
+        6:   13:void Service::remove(const TypeApartament & apartament, const TypeNume & numeproprietar, const TypeSuprafata & suprafata, const TypeTip & tip) {
+        6:   14:    Locatar locatar{apartament, numeproprietar, suprafata, tip};
+        6:   15:    ValidatorLocatar::validLocatar(locatar);
+        6:   16:    repository.remove(locatar);
+        6:   17:}
+        -:   18:
+        4:   19:void Service::modify(const TypeApartament & apartament1, const TypeNume & nume1, const TypeSuprafata & suprafata1, const TypeTip & tip1,
+        -:   20:                     const TypeApartament & apartament2, const TypeNume & nume2, const TypeSuprafata & suprafata2, const TypeTip & tip2) {
+        4:   21:    Locatar locatar1{apartament1, nume1, suprafata1, tip1};
+        4:   22:    Locatar locatar2{apartament2, nume2, suprafata2, tip2};
+        4:   23:    ValidatorLocatar::validLocatar(locatar1);
+        3:   24:    ValidatorLocatar::validLocatar(locatar2);
+        2:   25:    auto it = repository.find(locatar1);
+        2:   26:    if(it == NULL) throw RepoException("Elementul nu a fost gasit!\n");
+        1:   27:    *it = locatar2;
+        7:   28:}
+        -:   29:
+        4:   30:Locatar Service::findApartament(const TypeApartament & apartament) {
+        4:   31:    ValidatorLocatar::validApartament(apartament);
+       12:   32:    auto it = repository.find([&apartament](const Locatar& l){return l.getApartament() == apartament; });
+        4:   33:    if(it == nullptr) throw ServiceException("Apartamentul dat nu exista!\n");
+        3:   34:    return *it;
+        -:   35:}
+        -:   36:
+        2:   37:Repository<Locatar> Service::filterTip(const TypeTip & tip) {
+        2:   38:    ValidatorLocatar::validTip(tip);
+        2:   39:    Repository<Locatar> rez;
+        6:   40:    auto pred = [&tip](const Locatar &l)
+        6:   41:            { return l.getTip() == tip; };
+        2:   42:    auto it = repository.find(pred);
+        5:   43:    while(it != nullptr)
+        -:   44:    {
+        3:   45:        rez.add(*it);
+        3:   46:        it = repository.find(pred, it+1);
+        -:   47:    }
+        4:   48:    return rez;
+    =====:   49:}
+        -:   50:
+        1:   51:Repository<Locatar> Service::filterSuprafata(const TypeSuprafata & suprafata) {
+        1:   52:    ValidatorLocatar::validSuprafata(suprafata);
+        1:   53:    Repository<Locatar> rez;
+        6:   54:    auto pred = [&suprafata](const Locatar &l)
+        3:   55:            { return l.getSuprafata() == suprafata; };
+        1:   56:    auto it = repository.find(pred);
+        2:   57:    while(it != nullptr)
+        -:   58:    {
+        1:   59:        rez.add(*it);
+        1:   60:        it = repository.find(pred, it+1);
+        -:   61:    }
+        2:   62:    return rez;
+    =====:   63:}
+        -:   64:
+        1:   65:void Service::sortNume() {
+        4:   66:    auto cmp = [](const Locatar& l1, const Locatar& l2)
+        -:   67:    {
+        4:   68:        return l1.getNumeProprietar() < l2.getNumeProprietar();
+        -:   69:    };
+        1:   70:    repository.sort(cmp);
+        1:   71:}
+        -:   72:
+        1:   73:void Service::sortSuprafata() {
+        2:   74:    auto cmp = [](const Locatar& l1, const Locatar& l2)
+        -:   75:    {
+        2:   76:        return l1.getSuprafata() < l2.getSuprafata();
+        -:   77:    };
+        1:   78:    repository.sort(cmp);
+        1:   79:}
+        -:   80:
+        1:   81:void Service::sortTipSuprafata() {
+        4:   82:    auto cmp = [](const Locatar& l1, const Locatar& l2)
+        -:   83:    {
+      16*:   84:        return  l1.getTip() < l2.getTip() ||
+       16:   85:            l1.getTip() == l2.getTip() && l1.getSuprafata() < l2.getSuprafata();
+        -:   86:    };
+        1:   87:    repository.sort(cmp);
+        1:   88:}
+        -:   89:
+        9:   90:Locatar* Service::begin() { return repository.begin(); }
+        8:   91:Locatar* Service::end() { return repository.end(); }
+       14:   92:const Locatar* Service::cbegin() const { return repository.cbegin(); }
+        5:   93:const Locatar* Service::cend() const { return repository.cend(); }

@@ -1,0 +1,61 @@
+        -:    0:Source:C:/Desktop/OOP/lab6/uiconsole.h
+        -:    0:Graph:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\main.cpp.gcno
+        -:    0:Data:C:\Desktop\OOP\lab6\cmake-build-debug-coverage\CMakeFiles\lab6.dir\main.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by Daniel on 26.03.2022.
+        -:    3://
+        -:    4:
+        -:    5:#ifndef LAB6_UICONSOLE_H
+        -:    6:#define LAB6_UICONSOLE_H
+        -:    7:
+        -:    8:#include "service.h"
+        -:    9:#include <windows.h>
+        -:   10:#include <iostream>
+        -:   11:
+        -:   12:using std::cin;
+        -:   13:using std::cout;
+        -:   14:
+        -:   15:class ConsoleUI
+        -:   16:{
+        -:   17:private:
+        -:   18:    Service service;
+        -:   19:
+        -:   20:    // afisarea meniului
+        -:   21:    void printMenu(ostream&);
+        -:   22:
+        -:   23:    // citeste datele unui locatar
+        -:   24:    // le atribui parametrilor de tip out
+        -:   25:    void readLocatar(istream&, ostream&, TypeApartament&, TypeNume&, TypeSuprafata&, TypeTip&);
+        -:   26:
+        -:   27:    // afisez locatarul
+        -:   28:    void writeLocatar(ostream&, const Locatar&);
+        -:   29:
+        -:   30:    // adauga
+        -:   31:    void adauga(istream&, ostream&);
+        -:   32:
+        -:   33:    // sterge
+        -:   34:    void sterge(istream&, ostream&);
+        -:   35:
+        -:   36:    // modifica
+        -:   37:    void modifica(istream&, ostream&);
+        -:   38:
+        -:   39:    // listare
+        -:   40:    void afisare(ostream&);
+        -:   41:
+        -:   42:    // cauta apartament
+        -:   43:    void cautaApartament(istream&, ostream&);
+        -:   44:
+        -:   45:    // filtrare
+        -:   46:    void filtrare(istream&, ostream&);
+        -:   47:
+        -:   48:    // sortare
+        -:   49:    void sortare(istream&, ostream&);
+        -:   50:
+        -:   51:public:
+        1:   52:    ConsoleUI()=default;
+        -:   53:    // rulez meniul
+        -:   54:    void run(istream& = cin, ostream& = cout);
+        -:   55:};
+        -:   56:
+        -:   57:#endif //LAB6_UICONSOLE_H
