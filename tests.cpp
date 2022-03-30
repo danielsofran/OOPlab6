@@ -37,6 +37,15 @@ protected:
         Locatar l2(10, "Ion", 200, "apartament");
         Locatar l3(l2);
         assert( l3 != l1);
+        l1.setApartament(5);
+        assert(l1 < l2);
+        assert(l1 <= l2);
+        assert(l2 > l1);
+        assert(l2 >= l1);
+        std::strstream sout;
+        sout<<l2;
+        sout>>l2;
+        assert(l3 == l2);
     }
 };
 
@@ -116,8 +125,8 @@ protected:
 
 class TestService : public ITest{
 private:
-    int lg(const Service& s) { return s.cend() - s.cbegin(); }
-    void init(Service& s, Locatar& l1, Locatar& l2, Locatar& l3)
+    static int lg(const Service& s) { return s.cend() - s.cbegin(); }
+    static void init(Service& s, Locatar& l1, Locatar& l2, Locatar& l3)
     {
         l1 = Locatar {32, "Andi", 200, "apartament"};
         l2 = Locatar {13, "Ioana", 130, "apartament"};
@@ -126,7 +135,7 @@ private:
         s.add(13, "Ioana", 130, "apartament");
         s.add(13, "Ioana", 7, "apartament");
     }
-    bool equals(const Service& s, const Locatar& l1, const Locatar& l2, const Locatar& l3)
+    static bool equals(const Service& s, const Locatar& l1, const Locatar& l2, const Locatar& l3)
     {
         return  *(s.cbegin()) == l1 &&
                 *(s.cbegin()+1) == l2 &&
@@ -265,14 +274,17 @@ protected:
     void methods() override{
         Locatar l(12, "Andrei Mirun", 25, "apartament");
         ValidatorLocatar::validLocatar(l);
-        try {ValidatorLocatar::validApartament(-12);}
+        try {ValidatorLocatar::validApartament(-12);assert(false);}
         catch(InvalidFieldException&){}
-        try {ValidatorLocatar::validSuprafata(-23);}
+        try {ValidatorLocatar::validSuprafata(-23);assert(false);}
         catch(InvalidFieldException&){}
-        try {ValidatorLocatar::validNume("Dac @");}
+        try {ValidatorLocatar::validNume("Dac @"); assert(false);}
         catch(InvalidFieldException&){}
-        try {ValidatorLocatar::validTip("tip2#");}
+        try {ValidatorLocatar::validTip("tip2#");assert(false);}
         catch(InvalidFieldException&){}
+        Locatar l2(-12, "324324v3 #$#@$", -5, "2783682737sf%R%^");
+        try{ValidatorLocatar::validLocatar(l2);assert(false);}
+        catch(ValidatorException& ve) { assert((int)ve == 4); }
     }
 };
 

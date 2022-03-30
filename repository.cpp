@@ -35,8 +35,7 @@ template<typename T>
 void Repository<T>::add(const T & element) {
     const T* it = find(element);
     if(it != NULL) throw RepoException("Element duplicat!\n");
-    try{elements.push_back(element);}
-    catch(...){ throw RepoException("Eroare la stocarea elementului!\n");}
+    elements.push_back(element);
 }
 
 template<typename T>

@@ -32,7 +32,6 @@ public:
     int size() const;
 
     // adaug un element la finalul containerului
-    // arunc RepoException daca operatia esueaza
     // arunc RepoException daca elementul se afla in container
     void add(const T&);
 
