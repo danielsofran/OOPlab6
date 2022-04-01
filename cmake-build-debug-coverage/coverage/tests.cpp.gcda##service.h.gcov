@@ -21,8 +21,8 @@
         -:   17:    // doar constructor fara parametrii
     #####:   18:    Service()=default;
         -:   19:    Service(const Service&) = delete;
-        -:   20:    template<class T>
-        -:   21:    Service(const Repository<T>&) = delete;
+        -:   20:    //template<class T>
+        -:   21:    //Service(const Repository<T>&) = delete;
         -:   22:
         -:   23:    // adauga elementul in repository
         -:   24:    // arunca ServiceException daca nu a putut fi creat
@@ -43,7 +43,7 @@
         -:   39:    // cauta apartamentul cu numarul dat
         -:   40:    // arunca ServiceException daca nu exista un astfel de apartament
         -:   41:    // arunca InvalidFieldException daca nu este valid
-        -:   42:    Locatar findApartament(const TypeApartament&);
+        -:   42:    const Locatar& findApartament(const TypeApartament&);
         -:   43:
         -:   44:    // returnez toate elementele care au tipul dat
         -:   45:    // arunca InvalidFieldException daca nu este valid

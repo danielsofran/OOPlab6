@@ -23,7 +23,7 @@
         -:   19:    string msg;
         -:   20:public:
         -:   21:    MyException() { msg = "MyException!\n"; } ;
-        -:   22:    MyException (const string& msg) : msg(msg) {}
+        -:   22:    explicit MyException (const string& msg) : msg(msg) {}
         -:   23:    const char * what() const noexcept override { return msg.c_str(); }
     #####:   24:    friend ostream& operator<<(ostream& out, const MyException& ex) {out<<ex.msg; return out;}
         -:   25:};
@@ -39,7 +39,7 @@
         -:   35:public:
         -:   36:    //using MyException::MyException;
         -:   37:    explicit ValidatorException()=default;
-        -:   38:    ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
+        -:   38:    explicit ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
         -:   39:        msg = "";
         -:   40:        for(const InvalidFieldException& ie : errors_)
         -:   41:            msg += ie.what() + sep;

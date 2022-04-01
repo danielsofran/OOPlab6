@@ -23,11 +23,11 @@ void Service::modify(const TypeApartament & apartament1, const TypeNume & nume1,
     ValidatorLocatar::validLocatar(locatar1);
     ValidatorLocatar::validLocatar(locatar2);
     auto it = repository.find(locatar1);
-    if(it == NULL) throw RepoException("Elementul nu a fost gasit!\n");
+    if(it == nullptr) throw RepoException("Elementul nu a fost gasit!\n");
     *it = locatar2;
 }
 
-Locatar Service::findApartament(const TypeApartament & apartament) {
+const Locatar& Service::findApartament(const TypeApartament & apartament) {
     ValidatorLocatar::validApartament(apartament);
     auto it = repository.find([&apartament](const Locatar& l){return l.getApartament() == apartament; });
     if(it == nullptr) throw ServiceException("Apartamentul dat nu exista!\n");

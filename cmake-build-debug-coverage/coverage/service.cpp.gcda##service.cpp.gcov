@@ -27,11 +27,11 @@
         4:   23:    ValidatorLocatar::validLocatar(locatar1);
         3:   24:    ValidatorLocatar::validLocatar(locatar2);
         2:   25:    auto it = repository.find(locatar1);
-        2:   26:    if(it == NULL) throw RepoException("Elementul nu a fost gasit!\n");
+        2:   26:    if(it == nullptr) throw RepoException("Elementul nu a fost gasit!\n");
         1:   27:    *it = locatar2;
         7:   28:}
         -:   29:
-        4:   30:Locatar Service::findApartament(const TypeApartament & apartament) {
+        4:   30:const Locatar& Service::findApartament(const TypeApartament & apartament) {
         4:   31:    ValidatorLocatar::validApartament(apartament);
        12:   32:    auto it = repository.find([&apartament](const Locatar& l){return l.getApartament() == apartament; });
         4:   33:    if(it == nullptr) throw ServiceException("Apartamentul dat nu exista!\n");

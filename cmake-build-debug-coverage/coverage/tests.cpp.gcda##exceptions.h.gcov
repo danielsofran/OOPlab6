@@ -23,13 +23,13 @@
         -:   19:    string msg;
         -:   20:public:
        62:   21:    MyException() { msg = "MyException!\n"; } ;
-       27:   22:    MyException (const string& msg) : msg(msg) {}
+       27:   22:    explicit MyException (const string& msg) : msg(msg) {}
 ------------------
 _ZN11MyExceptionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
-        1:   22:    MyException (const string& msg) : msg(msg) {}
+        1:   22:    explicit MyException (const string& msg) : msg(msg) {}
 ------------------
 _ZN11MyExceptionC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
-       26:   22:    MyException (const string& msg) : msg(msg) {}
+       26:   22:    explicit MyException (const string& msg) : msg(msg) {}
 ------------------
        53:   23:    const char * what() const noexcept override { return msg.c_str(); }
         1:   24:    friend ostream& operator<<(ostream& out, const MyException& ex) {out<<ex.msg; return out;}
@@ -46,7 +46,7 @@ _ZN11MyExceptionC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
         -:   35:public:
         -:   36:    //using MyException::MyException;
        49:   37:    explicit ValidatorException()=default;
-       13:   38:    ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
+       13:   38:    explicit ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
        13:   39:        msg = "";
        26:   40:        for(const InvalidFieldException& ie : errors_)
        13:   41:            msg += ie.what() + sep;

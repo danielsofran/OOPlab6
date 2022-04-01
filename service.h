@@ -17,8 +17,8 @@ public:
     // doar constructor fara parametrii
     Service()=default;
     Service(const Service&) = delete;
-    template<class T>
-    Service(const Repository<T>&) = delete;
+    //template<class T>
+    //Service(const Repository<T>&) = delete;
 
     // adauga elementul in repository
     // arunca ServiceException daca nu a putut fi creat
@@ -39,7 +39,7 @@ public:
     // cauta apartamentul cu numarul dat
     // arunca ServiceException daca nu exista un astfel de apartament
     // arunca InvalidFieldException daca nu este valid
-    Locatar findApartament(const TypeApartament&);
+    const Locatar& findApartament(const TypeApartament&);
 
     // returnez toate elementele care au tipul dat
     // arunca InvalidFieldException daca nu este valid

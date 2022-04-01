@@ -19,7 +19,7 @@ protected:
     string msg;
 public:
     MyException() { msg = "MyException!\n"; } ;
-    MyException (const string& msg) : msg(msg) {}
+    explicit MyException (const string& msg) : msg(msg) {}
     const char * what() const noexcept override { return msg.c_str(); }
     friend ostream& operator<<(ostream& out, const MyException& ex) {out<<ex.msg; return out;}
 };
@@ -35,7 +35,7 @@ private:
 public:
     //using MyException::MyException;
     explicit ValidatorException()=default;
-    ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
+    explicit ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
         msg = "";
         for(const InvalidFieldException& ie : errors_)
             msg += ie.what() + sep;

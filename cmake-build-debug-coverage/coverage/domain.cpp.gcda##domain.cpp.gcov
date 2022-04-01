@@ -8,59 +8,60 @@
         -:    4:
         -:    5:#include "domain.h"
         -:    6:
-       63:    7:Locatar::Locatar(const Locatar & obj) {
-       63:    8:    apartament = obj.apartament;
-       63:    9:    nume_proprietar = obj.nume_proprietar;
-       63:   10:    suprafata = obj.suprafata;
-       63:   11:    tip = obj.tip;
-       63:   12:}
-        -:   13:
-       26:   14:Locatar& Locatar::operator=(const Locatar & obj) {
-       26:   15:    apartament = obj.apartament;
-       26:   16:    nume_proprietar = obj.nume_proprietar;
-       26:   17:    suprafata = obj.suprafata;
-       26:   18:    tip = obj.tip;
-       26:   19:    return *this;
-        -:   20:}
-        -:   21:
-       43:   22:TypeApartament Locatar::getApartament() const { return apartament; }
-       43:   23:TypeNume Locatar::getNumeProprietar() const { return nume_proprietar; }
-       50:   24:TypeSuprafata Locatar::getSuprafata() const { return suprafata; }
-       57:   25:TypeTip Locatar::getTip() const { return tip; }
-        -:   26:
-        2:   27:void Locatar::setApartament(const TypeApartament& value) { apartament = value; }
-        1:   28:void Locatar::setNumeProprietar(const TypeNume& value) { nume_proprietar = value; }
-        1:   29:void Locatar::setSuprafata(const TypeSuprafata& value) { suprafata = value; }
-        1:   30:void Locatar::setTip(const TypeTip& value) { tip = value; }
-        -:   31:
-       49:   32:bool Locatar::operator==(const Locatar & obj) const {
-       28:   33:    return  apartament == obj.apartament &&
-       28:   34:            nume_proprietar == obj.nume_proprietar &&
-      100:   35:            suprafata == obj.suprafata &&
-       72:   36:            tip == obj.tip;
-        -:   37:}
-        1:   38:bool Locatar::operator!=(const Locatar & obj) const { return !(*this == obj); }
-        -:   39:
-        4:   40:bool Locatar::operator<(const Locatar & obj) const { return this->apartament < obj.apartament; }
-        2:   41:bool Locatar::operator>(const Locatar & obj) const { return !(*this<obj) && !(*this == obj);}
-        1:   42:bool Locatar::operator<=(const Locatar & obj) const { return !(*this > obj); }
-        1:   43:bool Locatar::operator>=(const Locatar &obj) const { return !(*this < obj); }
-        -:   44:
-        1:   45:istream & operator>>(istream& in, Locatar& obj)
-        -:   46:{
-        -:   47:    //bool consoleMSG = false;
-        -:   48:    //if(consoleMSG) std::cout<<"Apartament: ";
-        1:   49:    in>>obj.apartament;
-        -:   50:    //if(consoleMSG) std::cout<<"Nume Proprietar: ";
-        1:   51:    in>>obj.nume_proprietar;
-        -:   52:    //if(consoleMSG) std::cout<<"Suprafata: ";
-        1:   53:    in>>obj.suprafata;
-        -:   54:    //if(consoleMSG) std::cout<<"Tip: ";
-        1:   55:    in>>obj.tip;
-        1:   56:    return in;
-        -:   57:}
-        -:   58:
-        1:   59:ostream& operator<<(ostream& out, const Locatar& obj){
-        1:   60:    out<<obj.apartament<<' '<<obj.nume_proprietar<<' '<<obj.suprafata<<' '<<obj.tip;
-        1:   61:    return out;
-        -:   62:}
+       61:    7:Locatar::Locatar(const Locatar & obj) {
+       61:    8:    apartament = obj.apartament;
+       61:    9:    nume_proprietar = obj.nume_proprietar;
+       61:   10:    suprafata = obj.suprafata;
+       61:   11:    tip = obj.tip;
+       61:   12:    std::cout<<"Obiectul "<<obj<<"\n a fost copiat!\n";
+       61:   13:}
+        -:   14:
+       26:   15:Locatar& Locatar::operator=(const Locatar & obj) {
+       26:   16:    apartament = obj.apartament;
+       26:   17:    nume_proprietar = obj.nume_proprietar;
+       26:   18:    suprafata = obj.suprafata;
+       26:   19:    tip = obj.tip;
+       26:   20:    return *this;
+        -:   21:}
+        -:   22:
+       43:   23:TypeApartament Locatar::getApartament() const { return apartament; }
+       43:   24:TypeNume Locatar::getNumeProprietar() const { return nume_proprietar; }
+       50:   25:TypeSuprafata Locatar::getSuprafata() const { return suprafata; }
+       57:   26:TypeTip Locatar::getTip() const { return tip; }
+        -:   27:
+        2:   28:void Locatar::setApartament(const TypeApartament& value) { apartament = value; }
+        1:   29:void Locatar::setNumeProprietar(const TypeNume& value) { nume_proprietar = value; }
+        1:   30:void Locatar::setSuprafata(const TypeSuprafata& value) { suprafata = value; }
+        1:   31:void Locatar::setTip(const TypeTip& value) { tip = value; }
+        -:   32:
+       49:   33:bool Locatar::operator==(const Locatar & obj) const {
+       28:   34:    return  apartament == obj.apartament &&
+       28:   35:            nume_proprietar == obj.nume_proprietar &&
+      100:   36:            suprafata == obj.suprafata &&
+       72:   37:            tip == obj.tip;
+        -:   38:}
+        1:   39:bool Locatar::operator!=(const Locatar & obj) const { return !(*this == obj); }
+        -:   40:
+        4:   41:bool Locatar::operator<(const Locatar & obj) const { return this->apartament < obj.apartament; }
+        2:   42:bool Locatar::operator>(const Locatar & obj) const { return !(*this<obj) && !(*this == obj);}
+        1:   43:bool Locatar::operator<=(const Locatar & obj) const { return !(*this > obj); }
+        1:   44:bool Locatar::operator>=(const Locatar &obj) const { return !(*this < obj); }
+        -:   45:
+        1:   46:istream & operator>>(istream& in, Locatar& obj)
+        -:   47:{
+        -:   48:    //bool consoleMSG = false;
+        -:   49:    //if(consoleMSG) std::cout<<"Apartament: ";
+        1:   50:    in>>obj.apartament;
+        -:   51:    //if(consoleMSG) std::cout<<"Nume Proprietar: ";
+        1:   52:    in>>obj.nume_proprietar;
+        -:   53:    //if(consoleMSG) std::cout<<"Suprafata: ";
+        1:   54:    in>>obj.suprafata;
+        -:   55:    //if(consoleMSG) std::cout<<"Tip: ";
+        1:   56:    in>>obj.tip;
+        1:   57:    return in;
+        -:   58:}
+        -:   59:
+       62:   60:ostream& operator<<(ostream& out, const Locatar& obj){
+       62:   61:    out<<obj.apartament<<' '<<obj.nume_proprietar<<' '<<obj.suprafata<<' '<<obj.tip;
+       62:   62:    return out;
+        -:   63:}

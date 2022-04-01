@@ -79,7 +79,7 @@ protected:
         assert(it == nullptr);
         it = repository.find([](const int& a){return !(a&1);});
         assert(*it == 2);
-        assert(repository.find([](const int& a){return !(a&1);}, NULL, it) == NULL);
+        assert(repository.find([](const int& a){return !(a&1);}, nullptr, it) == nullptr);
         it = repository.find([](const int& a){return a>10;});
         assert(it == nullptr);
     }
@@ -125,7 +125,7 @@ protected:
 
 class TestService : public ITest{
 private:
-    static int lg(const Service& s) { return s.cend() - s.cbegin(); }
+    static int lg(const Service& s) { return (int)(s.cend() - s.cbegin()); }
     static void init(Service& s, Locatar& l1, Locatar& l2, Locatar& l3)
     {
         l1 = Locatar {32, "Andi", 200, "apartament"};
@@ -248,7 +248,7 @@ protected:
         vector<InvalidFieldException> vct{ie};
         ValidatorException ve2(vct);
         ValidatorException ve3(ve2);
-        MyException me(ve);
+        MyException me(ve); // testez pofimorfism
         assert(strcmp(me.what(), ve.what()) == 0);
         assert(strcmp(ve3.what(), ve2.what()) == 0);
     }

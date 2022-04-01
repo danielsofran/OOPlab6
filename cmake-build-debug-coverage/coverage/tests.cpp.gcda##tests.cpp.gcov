@@ -83,7 +83,7 @@
        1*:   79:        assert(it == nullptr);
         3:   80:        it = repository.find([](const int& a){return !(a&1);});
        1*:   81:        assert(*it == 2);
-       2*:   82:        assert(repository.find([](const int& a){return !(a&1);}, NULL, it) == NULL);
+       2*:   82:        assert(repository.find([](const int& a){return !(a&1);}, nullptr, it) == nullptr);
         3:   83:        it = repository.find([](const int& a){return a>10;});
        1*:   84:        assert(it == nullptr);
         1:   85:    }
@@ -129,7 +129,7 @@
         -:  125:
         -:  126:class TestService : public ITest{
         -:  127:private:
-        5:  128:    static int lg(const Service& s) { return s.cend() - s.cbegin(); }
+        5:  128:    static int lg(const Service& s) { return (int)(s.cend() - s.cbegin()); }
         4:  129:    static void init(Service& s, Locatar& l1, Locatar& l2, Locatar& l3)
         -:  130:    {
         4:  131:        l1 = Locatar {32, "Andi", 200, "apartament"};
@@ -252,7 +252,7 @@
         3:  248:        vector<InvalidFieldException> vct{ie};
         1:  249:        ValidatorException ve2(vct);
         1:  250:        ValidatorException ve3(ve2);
-        1:  251:        MyException me(ve);
+        1:  251:        MyException me(ve); // testez pofimorfism
         1:  252:        assert(strcmp(me.what(), ve.what()) == 0);
         1:  253:        assert(strcmp(ve3.what(), ve2.what()) == 0);
         1:  254:    }

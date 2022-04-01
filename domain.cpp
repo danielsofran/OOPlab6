@@ -9,6 +9,7 @@ Locatar::Locatar(const Locatar & obj) {
     nume_proprietar = obj.nume_proprietar;
     suprafata = obj.suprafata;
     tip = obj.tip;
+    //std::cout<<"Obiectul "<<obj<<"\n a fost copiat!\n";
 }
 
 Locatar& Locatar::operator=(const Locatar & obj) {
