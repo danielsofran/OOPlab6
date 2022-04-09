@@ -386,8 +386,8 @@
         -:  382:    {
         -:  383:      _GLIBCXX14_CONSTEXPR
         -:  384:      bool
-        1:  385:      operator()(const _Tp& __x, const _Tp& __y) const
-        1:  386:      { return __x < __y; }
+        -:  385:      operator()(const _Tp& __x, const _Tp& __y) const
+        -:  386:      { return __x < __y; }
         -:  387:    };
         -:  388:
         -:  389:  /// One of the @link comparison_functors comparison functors@endlink.
@@ -583,12 +583,12 @@
         -:  579:    {
         -:  580:      template <typename _Tp, typename _Up>
         -:  581:	constexpr auto
-        -:  582:	operator()(_Tp&& __t, _Up&& __u) const
+        1:  582:	operator()(_Tp&& __t, _Up&& __u) const
         -:  583:	noexcept(noexcept(std::forward<_Tp>(__t) < std::forward<_Up>(__u)))
         -:  584:	-> decltype(std::forward<_Tp>(__t) < std::forward<_Up>(__u))
         -:  585:	{
-        -:  586:	  return _S_cmp(std::forward<_Tp>(__t), std::forward<_Up>(__u),
-        -:  587:			__ptr_cmp<_Tp, _Up>{});
+        2:  586:	  return _S_cmp(std::forward<_Tp>(__t), std::forward<_Up>(__u),
+        1:  587:			__ptr_cmp<_Tp, _Up>{});
         -:  588:	}
         -:  589:
         -:  590:      template<typename _Tp, typename _Up>
@@ -601,8 +601,8 @@
         -:  597:    private:
         -:  598:      template <typename _Tp, typename _Up>
         -:  599:	static constexpr decltype(auto)
-        -:  600:	_S_cmp(_Tp&& __t, _Up&& __u, false_type)
-        -:  601:	{ return std::forward<_Tp>(__t) < std::forward<_Up>(__u); }
+        1:  600:	_S_cmp(_Tp&& __t, _Up&& __u, false_type)
+        1:  601:	{ return std::forward<_Tp>(__t) < std::forward<_Up>(__u); }
         -:  602:
         -:  603:      template <typename _Tp, typename _Up>
         -:  604:	static constexpr bool

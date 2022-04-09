@@ -54,9 +54,10 @@ protected:
     void ctors() override {
         Repository<int> repository;
         assert(repository.size()==0);
-        Repository<int> r1{2};
-        assert(r1.size() == 1);
-        Repository<int> r2(r1);
+        repository.elements[0] = 2;
+        repository.dim = 1;
+        Repository<int> r2(repository);
+        assert(r2.capacity == repository.capacity);
         assert(r2.size() == 1);
     }
     void add() override{
@@ -253,14 +254,18 @@ protected:
         assert(strcmp(ve3.what(), ve2.what()) == 0);
     }
     void operators() override{
-        ValidatorException ve;
+        ValidatorException ve, data;
         InvalidFieldException ie("ex");
         vector<InvalidFieldException> vct{ie};
-        ValidatorException ve2(vct);
-        ValidatorException ve3(ve2);
-        ve2 + ve3;
-        ve2 + ie;
-        ve2 + "Eroare la afisare!";
+        ValidatorException ve2(vct); // 1
+        ValidatorException ve3(ve2); // 1
+        assert((int)data == 0);
+        data = ve2 + ve3;
+        assert((int)data == 2);
+        data = ve2 + ie;
+        assert((int)data == 2);
+        data = ve2 + "Eroare la afisare!";
+        assert((int)data == 2);
         ve2 += ve3;
         ve2 += ie;
         ve2 += "Eroare la afisare!";

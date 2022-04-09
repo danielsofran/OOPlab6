@@ -231,14 +231,14 @@
         -:  227:  template<typename _Tp>
         -:  228:    _GLIBCXX14_CONSTEXPR
         -:  229:    inline const _Tp&
-    #####:  230:    min(const _Tp& __a, const _Tp& __b)
+        -:  230:    min(const _Tp& __a, const _Tp& __b)
         -:  231:    {
         -:  232:      // concept requirements
         -:  233:      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
         -:  234:      //return __b < __a ? __b : __a;
-    #####:  235:      if (__b < __a)
-    #####:  236:	return __b;
-    #####:  237:      return __a;
+        -:  235:      if (__b < __a)
+        -:  236:	return __b;
+        -:  237:      return __a;
         -:  238:    }
         -:  239:
         -:  240:  /**
@@ -255,14 +255,14 @@
         -:  251:  template<typename _Tp>
         -:  252:    _GLIBCXX14_CONSTEXPR
         -:  253:    inline const _Tp&
-    #####:  254:    max(const _Tp& __a, const _Tp& __b)
+        -:  254:    max(const _Tp& __a, const _Tp& __b)
         -:  255:    {
         -:  256:      // concept requirements
         -:  257:      __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
         -:  258:      //return  __a < __b ? __b : __a;
-    #####:  259:      if (__a < __b)
-    #####:  260:	return __b;
-    #####:  261:      return __a;
+        -:  259:      if (__a < __b)
+        -:  260:	return __b;
+        -:  261:      return __a;
         -:  262:    }
         -:  263:
         -:  264:  /**
@@ -314,9 +314,9 @@
         -:  310:  template<typename _Iterator>
         -:  311:    _GLIBCXX20_CONSTEXPR
         -:  312:    inline _Iterator
-        -:  313:    __niter_base(_Iterator __it)
+        6:  313:    __niter_base(_Iterator __it)
         -:  314:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-        -:  315:    { return __it; }
+        6:  315:    { return __it; }
         -:  316:
         -:  317:  template<typename _Ite, typename _Seq>
         -:  318:    _Ite
@@ -329,15 +329,15 @@
         -:  325:  template<typename _From, typename _To>
         -:  326:    _GLIBCXX20_CONSTEXPR
         -:  327:    inline _From
-        4:  328:    __niter_wrap(_From __from, _To __res)
-        4:  329:    { return __from + (__res - std::__niter_base(__from)); }
+        -:  328:    __niter_wrap(_From __from, _To __res)
+        -:  329:    { return __from + (__res - std::__niter_base(__from)); }
         -:  330:
         -:  331:  // No need to wrap, iterator already has the right type.
         -:  332:  template<typename _Iterator>
         -:  333:    _GLIBCXX20_CONSTEXPR
         -:  334:    inline _Iterator
-        -:  335:    __niter_wrap(const _Iterator&, _Iterator __res)
-        -:  336:    { return __res; }
+        2:  335:    __niter_wrap(const _Iterator&, _Iterator __res)
+        2:  336:    { return __res; }
         -:  337:
         -:  338:  // All of these auxiliary structs serve two purposes.  (1) Replace
         -:  339:  // calls to copy with memmove whenever possible.  (Memmove, not memcpy,
@@ -401,16 +401,16 @@
         -:  397:      template<typename _II, typename _OI>
         -:  398:	_GLIBCXX20_CONSTEXPR
         -:  399:	static _OI
-        2:  400:	__copy_m(_II __first, _II __last, _OI __result)
+        -:  400:	__copy_m(_II __first, _II __last, _OI __result)
         -:  401:	{
         -:  402:	  typedef typename iterator_traits<_II>::difference_type _Distance;
-        4:  403:	  for(_Distance __n = __last - __first; __n > 0; --__n)
+        -:  403:	  for(_Distance __n = __last - __first; __n > 0; --__n)
         -:  404:	    {
-        2:  405:	      *__result = std::move(*__first);
-        2:  406:	      ++__first;
-        2:  407:	      ++__result;
+        -:  405:	      *__result = std::move(*__first);
+        -:  406:	      ++__first;
+        -:  407:	      ++__result;
         -:  408:	    }
-        2:  409:	  return __result;
+        -:  409:	  return __result;
         -:  410:	}
         -:  411:    };
         -:  412:#endif
@@ -487,7 +487,7 @@
         -:  483:  template<bool _IsMove, typename _II, typename _OI>
         -:  484:    _GLIBCXX20_CONSTEXPR
         -:  485:    inline _OI
-        2:  486:    __copy_move_a2(_II __first, _II __last, _OI __result)
+        -:  486:    __copy_move_a2(_II __first, _II __last, _OI __result)
         -:  487:    {
         -:  488:      typedef typename iterator_traits<_II>::iterator_category _Category;
         -:  489:#ifdef __cpp_lib_is_constant_evaluated
@@ -496,7 +496,7 @@
         -:  492:	  __copy_m(__first, __last, __result);
         -:  493:#endif
         -:  494:      return std::__copy_move<_IsMove, __memcpyable<_OI, _II>::__value,
-        2:  495:			      _Category>::__copy_m(__first, __last, __result);
+        -:  495:			      _Category>::__copy_m(__first, __last, __result);
         -:  496:    }
         -:  497:
         -:  498:  template<bool _IsMove,
@@ -522,18 +522,18 @@
         -:  518:  template<bool _IsMove, typename _II, typename _OI>
         -:  519:    _GLIBCXX20_CONSTEXPR
         -:  520:    inline _OI
-        2:  521:    __copy_move_a1(_II __first, _II __last, _OI __result)
-        2:  522:    { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+        -:  521:    __copy_move_a1(_II __first, _II __last, _OI __result)
+        -:  522:    { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
         -:  523:
         -:  524:  template<bool _IsMove, typename _II, typename _OI>
         -:  525:    _GLIBCXX20_CONSTEXPR
         -:  526:    inline _OI
-        2:  527:    __copy_move_a(_II __first, _II __last, _OI __result)
+        -:  527:    __copy_move_a(_II __first, _II __last, _OI __result)
         -:  528:    {
-        2:  529:      return std::__niter_wrap(__result,
+        -:  529:      return std::__niter_wrap(__result,
         -:  530:		std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
         -:  531:					     std::__niter_base(__last),
-        2:  532:					     std::__niter_base(__result)));
+        -:  532:					     std::__niter_base(__result)));
         -:  533:    }
         -:  534:
         -:  535:  template<bool _IsMove,
@@ -645,7 +645,7 @@
         -:  641:  template<typename _II, typename _OI>
         -:  642:    _GLIBCXX20_CONSTEXPR
         -:  643:    inline _OI
-        2:  644:    move(_II __first, _II __last, _OI __result)
+        -:  644:    move(_II __first, _II __last, _OI __result)
         -:  645:    {
         -:  646:      // concept requirements
         -:  647:      __glibcxx_function_requires(_InputIteratorConcept<_II>)
@@ -653,8 +653,8 @@
         -:  649:	    typename iterator_traits<_II>::value_type>)
         -:  650:      __glibcxx_requires_can_increment_range(__first, __last, __result);
         -:  651:
-        2:  652:      return std::__copy_move_a<true>(std::__miter_base(__first),
-        2:  653:				      std::__miter_base(__last), __result);
+        -:  652:      return std::__copy_move_a<true>(std::__miter_base(__first),
+        -:  653:				      std::__miter_base(__last), __result);
         -:  654:    }
         -:  655:
         -:  656:#define _GLIBCXX_MOVE3(_Tp, _Up, _Vp) std::move(_Tp, _Up, _Vp)

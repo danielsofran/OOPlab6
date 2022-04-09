@@ -109,8 +109,8 @@
         -:  105:#if __cplusplus >= 201103L
         -:  106:  template<typename _Tp, typename... _Args>
         -:  107:    inline void
-     106*:  108:    _Construct(_Tp* __p, _Args&&... __args)
-     106*:  109:    { ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...); }
+     108*:  108:    _Construct(_Tp* __p, _Args&&... __args)
+     108*:  109:    { ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt10_ConstructI21InvalidFieldExceptionJS0_EEvPT_DpOT0_:
        19:  108:    _Construct(_Tp* __p, _Args&&... __args)
@@ -121,8 +121,8 @@ _ZSt10_ConstructI21InvalidFieldExceptionJRS0_EEvPT_DpOT0_:
     #####:  109:    { ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...); }
 ------------------
 _ZSt10_ConstructI21InvalidFieldExceptionJRKS0_EEvPT_DpOT0_:
-       87:  108:    _Construct(_Tp* __p, _Args&&... __args)
-       87:  109:    { ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...); }
+       89:  108:    _Construct(_Tp* __p, _Args&&... __args)
+       89:  109:    { ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...); }
 ------------------
         -:  110:#else
         -:  111:  template<typename _T1, typename _T2>
@@ -149,67 +149,39 @@ _ZSt10_ConstructI21InvalidFieldExceptionJRKS0_EEvPT_DpOT0_:
         -:  132:   */
         -:  133:  template<typename _Tp>
         -:  134:    _GLIBCXX14_CONSTEXPR inline void
-     106*:  135:    _Destroy(_Tp* __pointer)
+      108:  135:    _Destroy(_Tp* __pointer)
         -:  136:    {
         -:  137:#if __cplusplus > 201703L
         -:  138:      std::destroy_at(__pointer);
         -:  139:#else
-     106*:  140:      __pointer->~_Tp();
+      108:  140:      __pointer->~_Tp();
         -:  141:#endif
-     106*:  142:    }
-------------------
-_ZSt8_DestroyI7LocatarEvPT_:
-    #####:  135:    _Destroy(_Tp* __pointer)
-        -:  136:    {
-        -:  137:#if __cplusplus > 201703L
-        -:  138:      std::destroy_at(__pointer);
-        -:  139:#else
-    #####:  140:      __pointer->~_Tp();
-        -:  141:#endif
-    #####:  142:    }
-------------------
-_ZSt8_DestroyI21InvalidFieldExceptionEvPT_:
-      106:  135:    _Destroy(_Tp* __pointer)
-        -:  136:    {
-        -:  137:#if __cplusplus > 201703L
-        -:  138:      std::destroy_at(__pointer);
-        -:  139:#else
-      106:  140:      __pointer->~_Tp();
-        -:  141:#endif
-      106:  142:    }
-------------------
+      108:  142:    }
         -:  143:
         -:  144:  template<bool>
         -:  145:    struct _Destroy_aux
         -:  146:    {
         -:  147:      template<typename _ForwardIterator>
         -:  148:	static _GLIBCXX20_CONSTEXPR void
-     112*:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
+      116:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  150:	{
-     218*:  151:	  for (; __first != __last; ++__first)
-     106*:  152:	    std::_Destroy(std::__addressof(*__first));
-     112*:  153:	}
-------------------
-_ZNSt12_Destroy_auxILb0EE9__destroyIP7LocatarEEvT_S4_:
-    #####:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
-        -:  150:	{
-    #####:  151:	  for (; __first != __last; ++__first)
-    #####:  152:	    std::_Destroy(std::__addressof(*__first));
-    #####:  153:	}
+     224*:  151:	  for (; __first != __last; ++__first)
+     108*:  152:	    std::_Destroy(std::__addressof(*__first));
+      116:  153:	}
 ------------------
 _ZNSt12_Destroy_auxILb0EE9__destroyIN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS4_SaIS4_EEEEEEvT_SA_:
-    #####:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
+        2:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  150:	{
-    #####:  151:	  for (; __first != __last; ++__first)
+       2*:  151:	  for (; __first != __last; ++__first)
     #####:  152:	    std::_Destroy(std::__addressof(*__first));
-    #####:  153:	}
+        2:  153:	}
 ------------------
 _ZNSt12_Destroy_auxILb0EE9__destroyIP21InvalidFieldExceptionEEvT_S4_:
-      112:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
+      114:  149:	__destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  150:	{
-      218:  151:	  for (; __first != __last; ++__first)
-      106:  152:	    std::_Destroy(std::__addressof(*__first));
-      112:  153:	}
+      222:  151:	  for (; __first != __last; ++__first)
+      108:  152:	    std::_Destroy(std::__addressof(*__first));
+      114:  153:	}
 ------------------
         -:  154:    };
         -:  155:
@@ -218,14 +190,7 @@ _ZNSt12_Destroy_auxILb0EE9__destroyIP21InvalidFieldExceptionEEvT_S4_:
         -:  158:    {
         -:  159:      template<typename _ForwardIterator>
         -:  160:        static void
-       9*:  161:        __destroy(_ForwardIterator, _ForwardIterator) { }
-------------------
-_ZNSt12_Destroy_auxILb1EE9__destroyIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEEEEvT_S9_:
-    #####:  161:        __destroy(_ForwardIterator, _ForwardIterator) { }
-------------------
-_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_:
-        9:  161:        __destroy(_ForwardIterator, _ForwardIterator) { }
-------------------
+        -:  161:        __destroy(_ForwardIterator, _ForwardIterator) { }
         -:  162:    };
         -:  163:
         -:  164:  /**
@@ -235,7 +200,7 @@ _ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_:
         -:  168:   */
         -:  169:  template<typename _ForwardIterator>
         -:  170:    _GLIBCXX20_CONSTEXPR inline void
-     121*:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+      116:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  172:    {
         -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  174:                       _Value_type;
@@ -249,65 +214,11 @@ _ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_:
         -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
         -:  183:#endif
         -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-     121*:  185:	__destroy(__first, __last);
-     121*:  186:    }
-------------------
-_ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEEEvT_S7_:
-    #####:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
-        -:  172:    {
-        -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  174:                       _Value_type;
-        -:  175:#if __cplusplus >= 201103L
-        -:  176:      // A deleted destructor is trivial, this ensures we reject such types:
-        -:  177:      static_assert(is_destructible<_Value_type>::value,
-        -:  178:		    "value type is destructible");
-        -:  179:#endif
-        -:  180:#if __cplusplus > 201703L && defined __cpp_lib_is_constant_evaluated
-        -:  181:      if (std::is_constant_evaluated())
-        -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
-        -:  183:#endif
-        -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-    #####:  185:	__destroy(__first, __last);
-    #####:  186:    }
-------------------
-_ZSt8_DestroyIP7LocatarEvT_S2_:
-    #####:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
-        -:  172:    {
-        -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  174:                       _Value_type;
-        -:  175:#if __cplusplus >= 201103L
-        -:  176:      // A deleted destructor is trivial, this ensures we reject such types:
-        -:  177:      static_assert(is_destructible<_Value_type>::value,
-        -:  178:		    "value type is destructible");
-        -:  179:#endif
-        -:  180:#if __cplusplus > 201703L && defined __cpp_lib_is_constant_evaluated
-        -:  181:      if (std::is_constant_evaluated())
-        -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
-        -:  183:#endif
-        -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-    #####:  185:	__destroy(__first, __last);
-    #####:  186:    }
-------------------
-_ZSt8_DestroyIPiEvT_S1_:
-        9:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
-        -:  172:    {
-        -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  174:                       _Value_type;
-        -:  175:#if __cplusplus >= 201103L
-        -:  176:      // A deleted destructor is trivial, this ensures we reject such types:
-        -:  177:      static_assert(is_destructible<_Value_type>::value,
-        -:  178:		    "value type is destructible");
-        -:  179:#endif
-        -:  180:#if __cplusplus > 201703L && defined __cpp_lib_is_constant_evaluated
-        -:  181:      if (std::is_constant_evaluated())
-        -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
-        -:  183:#endif
-        -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-        9:  185:	__destroy(__first, __last);
-        9:  186:    }
+      116:  185:	__destroy(__first, __last);
+      116:  186:    }
 ------------------
 _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS2_SaIS2_EEEEEvT_S8_:
-    #####:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+        2:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  172:    {
         -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  174:                       _Value_type;
@@ -321,11 +232,11 @@ _ZSt8_DestroyIN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS
         -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
         -:  183:#endif
         -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-    #####:  185:	__destroy(__first, __last);
-    #####:  186:    }
+        2:  185:	__destroy(__first, __last);
+        2:  186:    }
 ------------------
 _ZSt8_DestroyIP21InvalidFieldExceptionEvT_S2_:
-      112:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
+      114:  171:    _Destroy(_ForwardIterator __first, _ForwardIterator __last)
         -:  172:    {
         -:  173:      typedef typename iterator_traits<_ForwardIterator>::value_type
         -:  174:                       _Value_type;
@@ -339,8 +250,8 @@ _ZSt8_DestroyIP21InvalidFieldExceptionEvT_S2_:
         -:  182:	return _Destroy_aux<false>::__destroy(__first, __last);
         -:  183:#endif
         -:  184:      std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
-      112:  185:	__destroy(__first, __last);
-      112:  186:    }
+      114:  185:	__destroy(__first, __last);
+      114:  186:    }
 ------------------
         -:  187:
         -:  188:  template<bool>

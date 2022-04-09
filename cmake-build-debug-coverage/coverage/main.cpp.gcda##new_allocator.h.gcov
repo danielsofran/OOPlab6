@@ -80,7 +80,7 @@
         -:   76:#endif
         -:   77:
         -:   78:      _GLIBCXX20_CONSTEXPR
-       11:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+    #####:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   80:
         -:   81:      _GLIBCXX20_CONSTEXPR
         -:   82:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
@@ -90,7 +90,7 @@
         -:   86:	new_allocator(const new_allocator<_Tp1>&) _GLIBCXX_USE_NOEXCEPT { }
         -:   87:
         -:   88:#if __cplusplus <= 201703L
-       11:   89:      ~new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+    #####:   89:      ~new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   90:
         -:   91:      pointer
         -:   92:      address(reference __x) const _GLIBCXX_NOEXCEPT
@@ -133,7 +133,7 @@
         -:  129:
         -:  130:      // __p is not permitted to be a null pointer.
         -:  131:      void
-       22:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
+        -:  132:      deallocate(_Tp* __p, size_type __t __attribute__ ((__unused__)))
         -:  133:      {
         -:  134:#if __cpp_aligned_new
         -:  135:	if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
@@ -146,12 +146,12 @@
         -:  142:	    return;
         -:  143:	  }
         -:  144:#endif
-       22:  145:	::operator delete(__p
+        -:  145:	::operator delete(__p
         -:  146:#if __cpp_sized_deallocation
         -:  147:			  , __t * sizeof(_Tp)
         -:  148:#endif
         -:  149:			 );
-       22:  150:      }
+        -:  150:      }
         -:  151:
         -:  152:#if __cplusplus <= 201703L
         -:  153:      size_type

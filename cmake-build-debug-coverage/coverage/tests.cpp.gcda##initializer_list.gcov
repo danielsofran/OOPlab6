@@ -72,36 +72,15 @@
         -:   68:
         -:   69:      // Number of elements.
         -:   70:      constexpr size_type
-       14:   71:      size() const noexcept { return _M_len; }
-------------------
-_ZNKSt16initializer_listIiE4sizeEv:
-        1:   71:      size() const noexcept { return _M_len; }
-------------------
-_ZNKSt16initializer_listI21InvalidFieldExceptionE4sizeEv:
        13:   71:      size() const noexcept { return _M_len; }
-------------------
         -:   72:
         -:   73:      // First element.
         -:   74:      constexpr const_iterator
-       28:   75:      begin() const noexcept { return _M_array; }
-------------------
-_ZNKSt16initializer_listIiE5beginEv:
-        2:   75:      begin() const noexcept { return _M_array; }
-------------------
-_ZNKSt16initializer_listI21InvalidFieldExceptionE5beginEv:
        26:   75:      begin() const noexcept { return _M_array; }
-------------------
         -:   76:
         -:   77:      // One past the last element.
         -:   78:      constexpr const_iterator
-       14:   79:      end() const noexcept { return begin() + size(); }
-------------------
-_ZNKSt16initializer_listIiE3endEv:
-        1:   79:      end() const noexcept { return begin() + size(); }
-------------------
-_ZNKSt16initializer_listI21InvalidFieldExceptionE3endEv:
        13:   79:      end() const noexcept { return begin() + size(); }
-------------------
         -:   80:    };
         -:   81:
         -:   82:  /**

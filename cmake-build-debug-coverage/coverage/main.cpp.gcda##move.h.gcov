@@ -50,8 +50,8 @@
         -:   46:   */
         -:   47:  template<typename _Tp>
         -:   48:    inline _GLIBCXX_CONSTEXPR _Tp*
-       55:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-       55:   50:    { return __builtin_addressof(__r); }
+        -:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+        -:   50:    { return __builtin_addressof(__r); }
         -:   51:
         -:   52:#if __cplusplus >= 201103L
         -:   53:
@@ -105,8 +105,8 @@
         -:  101:  template<typename _Tp>
         -:  102:    _GLIBCXX_NODISCARD
         -:  103:    constexpr typename std::remove_reference<_Tp>::type&&
-        -:  104:    move(_Tp&& __t) noexcept
-        -:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+    #####:  104:    move(_Tp&& __t) noexcept
+    #####:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
         -:  106:
         -:  107:
         -:  108:  template<typename _Tp>

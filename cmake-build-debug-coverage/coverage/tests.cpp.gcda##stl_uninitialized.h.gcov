@@ -86,15 +86,15 @@
         -:   82:    {
         -:   83:      template<typename _InputIterator, typename _ForwardIterator>
         -:   84:        static _ForwardIterator
-     109*:   85:        __uninit_copy(_InputIterator __first, _InputIterator __last,
+     110*:   85:        __uninit_copy(_InputIterator __first, _InputIterator __last,
         -:   86:		      _ForwardIterator __result)
         -:   87:        {
-     109*:   88:	  _ForwardIterator __cur = __result;
+     110*:   88:	  _ForwardIterator __cur = __result;
         -:   89:	  __try
         -:   90:	    {
-     215*:   91:	      for (; __first != __last; ++__first, (void)++__cur)
-     106*:   92:		std::_Construct(std::__addressof(*__cur), *__first);
-     109*:   93:	      return __cur;
+     218*:   91:	      for (; __first != __last; ++__first, (void)++__cur)
+     108*:   92:		std::_Construct(std::__addressof(*__cur), *__first);
+     110*:   93:	      return __cur;
         -:   94:	    }
     =====:   95:	  __catch(...)
         -:   96:	    {
@@ -158,15 +158,15 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIP21InvalidFieldExceptionS3_EET0
         -:  100:	}
 ------------------
 _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS4_SaIS4_EEEEPS4_EET0_T_SD_SC_:
-       50:   85:        __uninit_copy(_InputIterator __first, _InputIterator __last,
+       51:   85:        __uninit_copy(_InputIterator __first, _InputIterator __last,
         -:   86:		      _ForwardIterator __result)
         -:   87:        {
-       50:   88:	  _ForwardIterator __cur = __result;
+       51:   88:	  _ForwardIterator __cur = __result;
         -:   89:	  __try
         -:   90:	    {
-      124:   91:	      for (; __first != __last; ++__first, (void)++__cur)
-       74:   92:		std::_Construct(std::__addressof(*__cur), *__first);
-       50:   93:	      return __cur;
+      127:   91:	      for (; __first != __last; ++__first, (void)++__cur)
+       76:   92:		std::_Construct(std::__addressof(*__cur), *__first);
+       51:   93:	      return __cur;
         -:   94:	    }
     =====:   95:	  __catch(...)
         -:   96:	    {
@@ -182,25 +182,9 @@ _ZNSt20__uninitialized_copyILb0EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorI
         -:  105:    {
         -:  106:      template<typename _InputIterator, typename _ForwardIterator>
         -:  107:        static _ForwardIterator
-       1*:  108:        __uninit_copy(_InputIterator __first, _InputIterator __last,
+        -:  108:        __uninit_copy(_InputIterator __first, _InputIterator __last,
         -:  109:		      _ForwardIterator __result)
-       1*:  110:        { return std::copy(__first, __last, __result); }
-------------------
-_ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPiES3_EET0_T_S6_S5_:
-    #####:  108:        __uninit_copy(_InputIterator __first, _InputIterator __last,
-        -:  109:		      _ForwardIterator __result)
-    #####:  110:        { return std::copy(__first, __last, __result); }
-------------------
-_ZNSt20__uninitialized_copyILb1EE13__uninit_copyIN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEEPiEET0_T_SC_SB_:
-        1:  108:        __uninit_copy(_InputIterator __first, _InputIterator __last,
-        -:  109:		      _ForwardIterator __result)
-        1:  110:        { return std::copy(__first, __last, __result); }
-------------------
-_ZNSt20__uninitialized_copyILb1EE13__uninit_copyIPiS2_EET0_T_S4_S3_:
-    #####:  108:        __uninit_copy(_InputIterator __first, _InputIterator __last,
-        -:  109:		      _ForwardIterator __result)
-    #####:  110:        { return std::copy(__first, __last, __result); }
-------------------
+        -:  110:        { return std::copy(__first, __last, __result); }
         -:  111:    };
         -:  112:
         -:  113:  /// @endcond
@@ -244,35 +228,6 @@ _ZNSt20__uninitialized_copyILb1EE13__uninit_copyIPiS2_EET0_T_S4_S3_:
      110*:  151:	__uninit_copy(__first, __last, __result);
         -:  152:    }
 ------------------
-_ZSt18uninitialized_copyISt13move_iteratorIPiES1_ET0_T_S4_S3_:
-    #####:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
-        -:  127:		       _ForwardIterator __result)
-        -:  128:    {
-        -:  129:      typedef typename iterator_traits<_InputIterator>::value_type
-        -:  130:	_ValueType1;
-        -:  131:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  132:	_ValueType2;
-        -:  133:#if __cplusplus < 201103L
-        -:  134:      const bool __assignable = true;
-        -:  135:#else
-        -:  136:      // Trivial types can have deleted copy constructor, but the std::copy
-        -:  137:      // optimization that uses memmove would happily "copy" them anyway.
-        -:  138:      static_assert(is_constructible<_ValueType2, decltype(*__first)>::value,
-        -:  139:	  "result type must be constructible from value type of input range");
-        -:  140:
-        -:  141:      typedef typename iterator_traits<_InputIterator>::reference _RefType1;
-        -:  142:      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
-        -:  143:      // Trivial types can have deleted assignment, so using std::copy
-        -:  144:      // would be ill-formed. Require assignability before using std::copy:
-    #####:  145:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
-        -:  146:#endif
-        -:  147:
-        -:  148:      return std::__uninitialized_copy<__is_trivial(_ValueType1)
-        -:  149:				       && __is_trivial(_ValueType2)
-        -:  150:				       && __assignable>::
-    #####:  151:	__uninit_copy(__first, __last, __result);
-        -:  152:    }
-------------------
 _ZSt18uninitialized_copyISt13move_iteratorIP21InvalidFieldExceptionES2_ET0_T_S5_S4_:
        46:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
         -:  127:		       _ForwardIterator __result)
@@ -300,64 +255,6 @@ _ZSt18uninitialized_copyISt13move_iteratorIP21InvalidFieldExceptionES2_ET0_T_S5_
         -:  149:				       && __is_trivial(_ValueType2)
         -:  150:				       && __assignable>::
        46:  151:	__uninit_copy(__first, __last, __result);
-        -:  152:    }
-------------------
-_ZSt18uninitialized_copyIN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEEPiET0_T_SA_S9_:
-        1:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
-        -:  127:		       _ForwardIterator __result)
-        -:  128:    {
-        -:  129:      typedef typename iterator_traits<_InputIterator>::value_type
-        -:  130:	_ValueType1;
-        -:  131:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  132:	_ValueType2;
-        -:  133:#if __cplusplus < 201103L
-        -:  134:      const bool __assignable = true;
-        -:  135:#else
-        -:  136:      // Trivial types can have deleted copy constructor, but the std::copy
-        -:  137:      // optimization that uses memmove would happily "copy" them anyway.
-        -:  138:      static_assert(is_constructible<_ValueType2, decltype(*__first)>::value,
-        -:  139:	  "result type must be constructible from value type of input range");
-        -:  140:
-        -:  141:      typedef typename iterator_traits<_InputIterator>::reference _RefType1;
-        -:  142:      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
-        -:  143:      // Trivial types can have deleted assignment, so using std::copy
-        -:  144:      // would be ill-formed. Require assignability before using std::copy:
-        1:  145:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
-        -:  146:#endif
-        -:  147:
-        -:  148:      return std::__uninitialized_copy<__is_trivial(_ValueType1)
-        -:  149:				       && __is_trivial(_ValueType2)
-        -:  150:				       && __assignable>::
-        1:  151:	__uninit_copy(__first, __last, __result);
-        -:  152:    }
-------------------
-_ZSt18uninitialized_copyIPiS0_ET0_T_S2_S1_:
-    #####:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
-        -:  127:		       _ForwardIterator __result)
-        -:  128:    {
-        -:  129:      typedef typename iterator_traits<_InputIterator>::value_type
-        -:  130:	_ValueType1;
-        -:  131:      typedef typename iterator_traits<_ForwardIterator>::value_type
-        -:  132:	_ValueType2;
-        -:  133:#if __cplusplus < 201103L
-        -:  134:      const bool __assignable = true;
-        -:  135:#else
-        -:  136:      // Trivial types can have deleted copy constructor, but the std::copy
-        -:  137:      // optimization that uses memmove would happily "copy" them anyway.
-        -:  138:      static_assert(is_constructible<_ValueType2, decltype(*__first)>::value,
-        -:  139:	  "result type must be constructible from value type of input range");
-        -:  140:
-        -:  141:      typedef typename iterator_traits<_InputIterator>::reference _RefType1;
-        -:  142:      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
-        -:  143:      // Trivial types can have deleted assignment, so using std::copy
-        -:  144:      // would be ill-formed. Require assignability before using std::copy:
-    #####:  145:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
-        -:  146:#endif
-        -:  147:
-        -:  148:      return std::__uninitialized_copy<__is_trivial(_ValueType1)
-        -:  149:				       && __is_trivial(_ValueType2)
-        -:  150:				       && __assignable>::
-    #####:  151:	__uninit_copy(__first, __last, __result);
         -:  152:    }
 ------------------
 _ZSt18uninitialized_copyIPK21InvalidFieldExceptionPS0_ET0_T_S5_S4_:
@@ -419,7 +316,7 @@ _ZSt18uninitialized_copyIP21InvalidFieldExceptionS1_ET0_T_S3_S2_:
         -:  152:    }
 ------------------
 _ZSt18uninitialized_copyIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS2_SaIS2_EEEEPS2_ET0_T_SB_SA_:
-       50:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
+       51:  126:    uninitialized_copy(_InputIterator __first, _InputIterator __last,
         -:  127:		       _ForwardIterator __result)
         -:  128:    {
         -:  129:      typedef typename iterator_traits<_InputIterator>::value_type
@@ -438,13 +335,13 @@ _ZSt18uninitialized_copyIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptio
         -:  142:      typedef typename iterator_traits<_ForwardIterator>::reference _RefType2;
         -:  143:      // Trivial types can have deleted assignment, so using std::copy
         -:  144:      // would be ill-formed. Require assignability before using std::copy:
-       50:  145:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
+       51:  145:      const bool __assignable = is_assignable<_RefType2, _RefType1>::value;
         -:  146:#endif
         -:  147:
         -:  148:      return std::__uninitialized_copy<__is_trivial(_ValueType1)
         -:  149:				       && __is_trivial(_ValueType2)
         -:  150:				       && __assignable>::
-       50:  151:	__uninit_copy(__first, __last, __result);
+       51:  151:	__uninit_copy(__first, __last, __result);
         -:  152:    }
 ------------------
         -:  153:
@@ -629,25 +526,10 @@ _ZSt18uninitialized_copyIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptio
         -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
      110*:  333:    { return std::uninitialized_copy(__first, __last, __result); }
 ------------------
-_ZSt22__uninitialized_copy_aISt13move_iteratorIPiES1_iET0_T_S4_S3_RSaIT1_E:
-    #####:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
-        -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
-    #####:  333:    { return std::uninitialized_copy(__first, __last, __result); }
-------------------
 _ZSt22__uninitialized_copy_aISt13move_iteratorIP21InvalidFieldExceptionES2_S1_ET0_T_S5_S4_RSaIT1_E:
        46:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
         -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
        46:  333:    { return std::uninitialized_copy(__first, __last, __result); }
-------------------
-_ZSt22__uninitialized_copy_aIN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEEPiiET0_T_SA_S9_RSaIT1_E:
-        1:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
-        -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
-        1:  333:    { return std::uninitialized_copy(__first, __last, __result); }
-------------------
-_ZSt22__uninitialized_copy_aIPiS0_iET0_T_S2_S1_RSaIT1_E:
-    #####:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
-        -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
-    #####:  333:    { return std::uninitialized_copy(__first, __last, __result); }
 ------------------
 _ZSt22__uninitialized_copy_aIPK21InvalidFieldExceptionPS0_S0_ET0_T_S5_S4_RSaIT1_E:
        13:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
@@ -660,9 +542,9 @@ _ZSt22__uninitialized_copy_aIP21InvalidFieldExceptionS1_S0_ET0_T_S3_S2_RSaIT1_E:
     #####:  333:    { return std::uninitialized_copy(__first, __last, __result); }
 ------------------
 _ZSt22__uninitialized_copy_aIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS2_SaIS2_EEEEPS2_S2_ET0_T_SB_SA_RSaIT1_E:
-       50:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
+       51:  331:    __uninitialized_copy_a(_InputIterator __first, _InputIterator __last,
         -:  332:			   _ForwardIterator __result, allocator<_Tp>&)
-       50:  333:    { return std::uninitialized_copy(__first, __last, __result); }
+       51:  333:    { return std::uninitialized_copy(__first, __last, __result); }
 ------------------
         -:  334:
         -:  335:  template<typename _InputIterator, typename _ForwardIterator,
@@ -679,28 +561,6 @@ _ZSt22__uninitialized_copy_aIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExce
         -:  346:  template<typename _InputIterator, typename _ForwardIterator,
         -:  347:	   typename _Allocator>
         -:  348:    inline _ForwardIterator
-      46*:  349:    __uninitialized_move_if_noexcept_a(_InputIterator __first,
-        -:  350:				       _InputIterator __last,
-        -:  351:				       _ForwardIterator __result,
-        -:  352:				       _Allocator& __alloc)
-        -:  353:    {
-        -:  354:      return std::__uninitialized_copy_a
-      46*:  355:	(_GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__first),
-      46*:  356:	 _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__last), __result, __alloc);
-        -:  357:    }
-------------------
-_ZSt34__uninitialized_move_if_noexcept_aIPiS0_SaIiEET0_T_S3_S2_RT1_:
-    #####:  349:    __uninitialized_move_if_noexcept_a(_InputIterator __first,
-        -:  350:				       _InputIterator __last,
-        -:  351:				       _ForwardIterator __result,
-        -:  352:				       _Allocator& __alloc)
-        -:  353:    {
-        -:  354:      return std::__uninitialized_copy_a
-    #####:  355:	(_GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__first),
-    #####:  356:	 _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__last), __result, __alloc);
-        -:  357:    }
-------------------
-_ZSt34__uninitialized_move_if_noexcept_aIP21InvalidFieldExceptionS1_SaIS0_EET0_T_S4_S3_RT1_:
        46:  349:    __uninitialized_move_if_noexcept_a(_InputIterator __first,
         -:  350:				       _InputIterator __last,
         -:  351:				       _ForwardIterator __result,
@@ -710,7 +570,6 @@ _ZSt34__uninitialized_move_if_noexcept_aIP21InvalidFieldExceptionS1_SaIS0_EET0_T
        46:  355:	(_GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__first),
        46:  356:	 _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(__last), __result, __alloc);
         -:  357:    }
-------------------
         -:  358:
         -:  359:  template<typename _ForwardIterator, typename _Tp, typename _Allocator>
         -:  360:    void
@@ -1359,13 +1218,13 @@ _ZSt34__uninitialized_move_if_noexcept_aIP21InvalidFieldExceptionS1_SaIS0_EET0_T
         -: 1003:
         -: 1004:  template <typename _Tp, typename _Up>
         -: 1005:    inline __enable_if_t<std::__is_bitwise_relocatable<_Tp>::value, _Tp*>
-       22: 1006:    __relocate_a_1(_Tp* __first, _Tp* __last,
+        -: 1006:    __relocate_a_1(_Tp* __first, _Tp* __last,
         -: 1007:		   _Tp* __result, allocator<_Up>&) noexcept
         -: 1008:    {
-       22: 1009:      ptrdiff_t __count = __last - __first;
-       22: 1010:      if (__count > 0)
-        5: 1011:	__builtin_memmove(__result, __first, __count * sizeof(_Tp));
-       22: 1012:      return __result + __count;
+        -: 1009:      ptrdiff_t __count = __last - __first;
+        -: 1010:      if (__count > 0)
+        -: 1011:	__builtin_memmove(__result, __first, __count * sizeof(_Tp));
+        -: 1012:      return __result + __count;
         -: 1013:    }
         -: 1014:
         -: 1015:  template <typename _InputIterator, typename _ForwardIterator,
@@ -1393,15 +1252,15 @@ _ZSt34__uninitialized_move_if_noexcept_aIP21InvalidFieldExceptionS1_SaIS0_EET0_T
         -: 1037:  template <typename _InputIterator, typename _ForwardIterator,
         -: 1038:	    typename _Allocator>
         -: 1039:    inline _ForwardIterator
-       22: 1040:    __relocate_a(_InputIterator __first, _InputIterator __last,
+        -: 1040:    __relocate_a(_InputIterator __first, _InputIterator __last,
         -: 1041:		 _ForwardIterator __result, _Allocator& __alloc)
         -: 1042:    noexcept(noexcept(__relocate_a_1(std::__niter_base(__first),
         -: 1043:				     std::__niter_base(__last),
         -: 1044:				     std::__niter_base(__result), __alloc)))
         -: 1045:    {
-       22: 1046:      return __relocate_a_1(std::__niter_base(__first),
+        -: 1046:      return __relocate_a_1(std::__niter_base(__first),
         -: 1047:			    std::__niter_base(__last),
-       22: 1048:			    std::__niter_base(__result), __alloc);
+        -: 1048:			    std::__niter_base(__result), __alloc);
         -: 1049:    }
         -: 1050:
         -: 1051:  /// @endcond

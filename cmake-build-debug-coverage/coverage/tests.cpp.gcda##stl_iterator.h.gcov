@@ -1011,67 +1011,40 @@
         -: 1007:      : _M_current(_Iterator()) { }
         -: 1008:
         -: 1009:      explicit _GLIBCXX20_CONSTEXPR
-      416: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
-      416: 1011:      : _M_current(__i) { }
-------------------
-_ZN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEC1ERKS2_:
-        4: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
-        4: 1011:      : _M_current(__i) { }
-------------------
-_ZN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEC1ERKS1_:
-       98: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
-       98: 1011:      : _M_current(__i) { }
+      326: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+      326: 1011:      : _M_current(__i) { }
 ------------------
 _ZN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEC1ERKS2_:
-      156: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
-      156: 1011:      : _M_current(__i) { }
+      162: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+      162: 1011:      : _M_current(__i) { }
 ------------------
 _ZN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEC1ERKS3_:
-      158: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
-      158: 1011:      : _M_current(__i) { }
+      164: 1010:      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+      164: 1011:      : _M_current(__i) { }
 ------------------
         -: 1012:
         -: 1013:      // Allow iterator to const_iterator conversion
         -: 1014:      template<typename _Iter>
         -: 1015:        _GLIBCXX20_CONSTEXPR
-       28: 1016:        __normal_iterator(const __normal_iterator<_Iter,
-        -: 1017:			  typename __enable_if<
-        -: 1018:      	       (std::__are_same<_Iter, typename _Container::pointer>::__value),
-        -: 1019:		      _Container>::__type>& __i) _GLIBCXX_NOEXCEPT
-       28: 1020:        : _M_current(__i.base()) { }
-------------------
-_ZN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEC1IPiEERKNS0_IT_NS_11__enable_ifIXsrSt10__are_sameIS9_S8_E7__valueES5_E6__typeEEE:
-        2: 1016:        __normal_iterator(const __normal_iterator<_Iter,
-        -: 1017:			  typename __enable_if<
-        -: 1018:      	       (std::__are_same<_Iter, typename _Container::pointer>::__value),
-        -: 1019:		      _Container>::__type>& __i) _GLIBCXX_NOEXCEPT
-        2: 1020:        : _M_current(__i.base()) { }
-------------------
-_ZN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEC1IPS1_EERKNS0_IT_NS_11__enable_ifIXsrSt10__are_sameISA_S9_E7__valueES6_E6__typeEEE:
        26: 1016:        __normal_iterator(const __normal_iterator<_Iter,
         -: 1017:			  typename __enable_if<
         -: 1018:      	       (std::__are_same<_Iter, typename _Container::pointer>::__value),
         -: 1019:		      _Container>::__type>& __i) _GLIBCXX_NOEXCEPT
        26: 1020:        : _M_current(__i.base()) { }
-------------------
         -: 1021:
         -: 1022:      // Forward iterator requirements
         -: 1023:      _GLIBCXX20_CONSTEXPR
         -: 1024:      reference
-      127: 1025:      operator*() const _GLIBCXX_NOEXCEPT
-      127: 1026:      { return *_M_current; }
-------------------
-_ZNK9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEdeEv:
-        8: 1025:      operator*() const _GLIBCXX_NOEXCEPT
-        8: 1026:      { return *_M_current; }
+      121: 1025:      operator*() const _GLIBCXX_NOEXCEPT
+      121: 1026:      { return *_M_current; }
 ------------------
 _ZNK9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEdeEv:
        32: 1025:      operator*() const _GLIBCXX_NOEXCEPT
        32: 1026:      { return *_M_current; }
 ------------------
 _ZNK9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEdeEv:
-       87: 1025:      operator*() const _GLIBCXX_NOEXCEPT
-       87: 1026:      { return *_M_current; }
+       89: 1025:      operator*() const _GLIBCXX_NOEXCEPT
+       89: 1026:      { return *_M_current; }
 ------------------
         -: 1027:
         -: 1028:      _GLIBCXX20_CONSTEXPR
@@ -1087,13 +1060,6 @@ _ZNK9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EE
       121: 1038:	return *this;
         -: 1039:      }
 ------------------
-_ZN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEppEv:
-        2: 1035:      operator++() _GLIBCXX_NOEXCEPT
-        -: 1036:      {
-        2: 1037:	++_M_current;
-        2: 1038:	return *this;
-        -: 1039:      }
-------------------
 _ZN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEppEv:
        32: 1035:      operator++() _GLIBCXX_NOEXCEPT
         -: 1036:      {
@@ -1102,10 +1068,10 @@ _ZN9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEp
         -: 1039:      }
 ------------------
 _ZN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEppEv:
-       87: 1035:      operator++() _GLIBCXX_NOEXCEPT
+       89: 1035:      operator++() _GLIBCXX_NOEXCEPT
         -: 1036:      {
-       87: 1037:	++_M_current;
-       87: 1038:	return *this;
+       89: 1037:	++_M_current;
+       89: 1038:	return *this;
         -: 1039:      }
 ------------------
         -: 1040:
@@ -1117,10 +1083,10 @@ _ZN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEE
         -: 1046:      // Bidirectional iterator requirements
         -: 1047:      _GLIBCXX20_CONSTEXPR
         -: 1048:      __normal_iterator&
-    #####: 1049:      operator--() _GLIBCXX_NOEXCEPT
+        -: 1049:      operator--() _GLIBCXX_NOEXCEPT
         -: 1050:      {
-    #####: 1051:	--_M_current;
-    #####: 1052:	return *this;
+        -: 1051:	--_M_current;
+        -: 1052:	return *this;
         -: 1053:      }
         -: 1054:
         -: 1055:      _GLIBCXX20_CONSTEXPR
@@ -1141,17 +1107,8 @@ _ZN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEE
         -: 1070:
         -: 1071:      _GLIBCXX20_CONSTEXPR
         -: 1072:      __normal_iterator
-       64: 1073:      operator+(difference_type __n) const _GLIBCXX_NOEXCEPT
-       64: 1074:      { return __normal_iterator(_M_current + __n); }
-------------------
-_ZNK9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEplEx:
-       12: 1073:      operator+(difference_type __n) const _GLIBCXX_NOEXCEPT
-       12: 1074:      { return __normal_iterator(_M_current + __n); }
-------------------
-_ZNK9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEplEx:
-       52: 1073:      operator+(difference_type __n) const _GLIBCXX_NOEXCEPT
-       52: 1074:      { return __normal_iterator(_M_current + __n); }
-------------------
+       54: 1073:      operator+(difference_type __n) const _GLIBCXX_NOEXCEPT
+       54: 1074:      { return __normal_iterator(_M_current + __n); }
         -: 1075:
         -: 1076:      _GLIBCXX20_CONSTEXPR
         -: 1077:      __normal_iterator&
@@ -1160,29 +1117,21 @@ _ZNK9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEE
         -: 1080:
         -: 1081:      _GLIBCXX20_CONSTEXPR
         -: 1082:      __normal_iterator
-    #####: 1083:      operator-(difference_type __n) const _GLIBCXX_NOEXCEPT
-    #####: 1084:      { return __normal_iterator(_M_current - __n); }
+        -: 1083:      operator-(difference_type __n) const _GLIBCXX_NOEXCEPT
+        -: 1084:      { return __normal_iterator(_M_current - __n); }
         -: 1085:
         -: 1086:      _GLIBCXX20_CONSTEXPR
         -: 1087:      const _Iterator&
-      758: 1088:      base() const _GLIBCXX_NOEXCEPT
-      758: 1089:      { return _M_current; }
-------------------
-_ZNK9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEE4baseEv:
-        6: 1088:      base() const _GLIBCXX_NOEXCEPT
-        6: 1089:      { return _M_current; }
-------------------
-_ZNK9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEE4baseEv:
-      140: 1088:      base() const _GLIBCXX_NOEXCEPT
-      140: 1089:      { return _M_current; }
+      630: 1088:      base() const _GLIBCXX_NOEXCEPT
+      630: 1089:      { return _M_current; }
 ------------------
 _ZNK9__gnu_cxx17__normal_iteratorIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEE4baseEv:
-      162: 1088:      base() const _GLIBCXX_NOEXCEPT
-      162: 1089:      { return _M_current; }
+      170: 1088:      base() const _GLIBCXX_NOEXCEPT
+      170: 1089:      { return _M_current; }
 ------------------
 _ZNK9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEE4baseEv:
-      450: 1088:      base() const _GLIBCXX_NOEXCEPT
-      450: 1089:      { return _M_current; }
+      460: 1088:      base() const _GLIBCXX_NOEXCEPT
+      460: 1089:      { return _M_current; }
 ------------------
         -: 1090:    };
         -: 1091:
@@ -1223,10 +1172,10 @@ _ZNK9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EE
         -: 1126:  template<typename _Iterator, typename _Container>
         -: 1127:    _GLIBCXX20_CONSTEXPR
         -: 1128:    inline bool
-        2: 1129:    operator==(const __normal_iterator<_Iterator, _Container>& __lhs,
+        -: 1129:    operator==(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1130:	       const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1131:    _GLIBCXX_NOEXCEPT
-        2: 1132:    { return __lhs.base() == __rhs.base(); }
+        -: 1132:    { return __lhs.base() == __rhs.base(); }
         -: 1133:
         -: 1134:  template<typename _IteratorL, typename _IteratorR, typename _Container>
         -: 1135:    _GLIBCXX20_CONSTEXPR
@@ -1239,28 +1188,22 @@ _ZNK9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EE
         -: 1142:  template<typename _Iterator, typename _Container>
         -: 1143:    _GLIBCXX20_CONSTEXPR
         -: 1144:    inline bool
-      229: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+      226: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1146:	       const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1147:    _GLIBCXX_NOEXCEPT
-      229: 1148:    { return __lhs.base() != __rhs.base(); }
-------------------
-_ZN9__gnu_cxxneIPiSt6vectorIiSaIiEEEEbRKNS_17__normal_iteratorIT_T0_EESA_:
-        8: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
-        -: 1146:	       const __normal_iterator<_Iterator, _Container>& __rhs)
-        -: 1147:    _GLIBCXX_NOEXCEPT
-        8: 1148:    { return __lhs.base() != __rhs.base(); }
+      226: 1148:    { return __lhs.base() != __rhs.base(); }
 ------------------
 _ZN9__gnu_cxxneIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESB_:
-       45: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+       47: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1146:	       const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1147:    _GLIBCXX_NOEXCEPT
-       45: 1148:    { return __lhs.base() != __rhs.base(); }
+       47: 1148:    { return __lhs.base() != __rhs.base(); }
 ------------------
 _ZN9__gnu_cxxneIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal_iteratorIT_T0_EESC_:
-      176: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+      179: 1145:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1146:	       const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1147:    _GLIBCXX_NOEXCEPT
-      176: 1148:    { return __lhs.base() != __rhs.base(); }
+      179: 1148:    { return __lhs.base() != __rhs.base(); }
 ------------------
         -: 1149:
         -: 1150:  // Random access iterator requirements
@@ -1274,10 +1217,10 @@ _ZN9__gnu_cxxneIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal
         -: 1158:  template<typename _Iterator, typename _Container>
         -: 1159:    _GLIBCXX20_CONSTEXPR
         -: 1160:    inline bool
-    #####: 1161:    operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
+        -: 1161:    operator<(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1162:	      const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1163:    _GLIBCXX_NOEXCEPT
-    #####: 1164:    { return __lhs.base() < __rhs.base(); }
+        -: 1164:    { return __lhs.base() < __rhs.base(); }
         -: 1165:
         -: 1166:  template<typename _IteratorL, typename _IteratorR, typename _Container>
         -: 1167:    inline bool
@@ -1347,28 +1290,16 @@ _ZN9__gnu_cxxneIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEEbRKNS_17__normal
         -: 1231:  template<typename _Iterator, typename _Container>
         -: 1232:    _GLIBCXX20_CONSTEXPR
         -: 1233:    inline typename __normal_iterator<_Iterator, _Container>::difference_type
-      68*: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
+      49*: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1235:	      const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1236:    _GLIBCXX_NOEXCEPT
-      68*: 1237:    { return __lhs.base() - __rhs.base(); }
-------------------
-_ZN9__gnu_cxxmiIPiSt6vectorIiSaIiEEEENS_17__normal_iteratorIT_T0_E15difference_typeERKS8_SB_:
-       17: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
-        -: 1235:	      const __normal_iterator<_Iterator, _Container>& __rhs)
-        -: 1236:    _GLIBCXX_NOEXCEPT
-       17: 1237:    { return __lhs.base() - __rhs.base(); }
+      49*: 1237:    { return __lhs.base() - __rhs.base(); }
 ------------------
 _ZN9__gnu_cxxmiIP21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEENS_17__normal_iteratorIT_T0_E15difference_typeERKS9_SC_:
     #####: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
         -: 1235:	      const __normal_iterator<_Iterator, _Container>& __rhs)
         -: 1236:    _GLIBCXX_NOEXCEPT
     #####: 1237:    { return __lhs.base() - __rhs.base(); }
-------------------
-_ZN9__gnu_cxxmiIPKiSt6vectorIiSaIiEEEENS_17__normal_iteratorIT_T0_E15difference_typeERKS9_SC_:
-        2: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
-        -: 1235:	      const __normal_iterator<_Iterator, _Container>& __rhs)
-        -: 1236:    _GLIBCXX_NOEXCEPT
-        2: 1237:    { return __lhs.base() - __rhs.base(); }
 ------------------
 _ZN9__gnu_cxxmiIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEENS_17__normal_iteratorIT_T0_E15difference_typeERKSA_SD_:
        49: 1234:    operator-(const __normal_iterator<_Iterator, _Container>& __lhs,
@@ -1395,29 +1326,19 @@ _ZN9__gnu_cxxmiIPK21InvalidFieldExceptionSt6vectorIS1_SaIS1_EEEENS_17__normal_it
         -: 1254:  template<typename _Iterator, typename _Container>
         -: 1255:    _GLIBCXX20_CONSTEXPR
         -: 1256:    _Iterator
-      10*: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
-        -: 1258:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-      10*: 1259:    { return __it.base(); }
-------------------
-_ZSt12__niter_baseIPiSt6vectorIiSaIiEEET_N9__gnu_cxx17__normal_iteratorIS4_T0_EE:
         8: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
         -: 1258:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
         8: 1259:    { return __it.base(); }
 ------------------
-_ZSt12__niter_baseIPKiSt6vectorIiSaIiEEET_N9__gnu_cxx17__normal_iteratorIS5_T0_EE:
-        2: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
-        -: 1258:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-        2: 1259:    { return __it.base(); }
-------------------
 _ZSt12__niter_baseIP21InvalidFieldExceptionSt6vectorIS0_SaIS0_EEET_N9__gnu_cxx17__normal_iteratorIS5_T0_EE:
-    #####: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
+        4: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
         -: 1258:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-    #####: 1259:    { return __it.base(); }
+        4: 1259:    { return __it.base(); }
 ------------------
 _ZSt12__niter_baseIPK21InvalidFieldExceptionSt6vectorIS0_SaIS0_EEET_N9__gnu_cxx17__normal_iteratorIS6_T0_EE:
-    #####: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
+        4: 1257:    __niter_base(__gnu_cxx::__normal_iterator<_Iterator, _Container> __it)
         -: 1258:    _GLIBCXX_NOEXCEPT_IF(std::is_nothrow_copy_constructible<_Iterator>::value)
-    #####: 1259:    { return __it.base(); }
+        4: 1259:    { return __it.base(); }
 ------------------
         -: 1260:
         -: 1261:#if __cplusplus >= 201103L
@@ -1546,17 +1467,8 @@ _ZSt12__niter_baseIPK21InvalidFieldExceptionSt6vectorIS0_SaIS0_EEET_N9__gnu_cxx1
         -: 1384:      : _M_current() { }
         -: 1385:
         -: 1386:      explicit _GLIBCXX17_CONSTEXPR
-      92*: 1387:      move_iterator(iterator_type __i)
-      92*: 1388:      : _M_current(std::move(__i)) { }
-------------------
-_ZNSt13move_iteratorIPiEC1ES0_:
-    #####: 1387:      move_iterator(iterator_type __i)
-    #####: 1388:      : _M_current(std::move(__i)) { }
-------------------
-_ZNSt13move_iteratorIP21InvalidFieldExceptionEC1ES1_:
        92: 1387:      move_iterator(iterator_type __i)
        92: 1388:      : _M_current(std::move(__i)) { }
-------------------
         -: 1389:
         -: 1390:      template<typename _Iter>
         -: 1391:#if __cpp_lib_concepts
@@ -1580,17 +1492,8 @@ _ZNSt13move_iteratorIP21InvalidFieldExceptionEC1ES1_:
         -: 1409:
         -: 1410:#if __cplusplus <= 201703L
         -: 1411:      _GLIBCXX17_CONSTEXPR iterator_type
-     130*: 1412:      base() const
-     130*: 1413:      { return _M_current; }
-------------------
-_ZNKSt13move_iteratorIPiE4baseEv:
-    #####: 1412:      base() const
-    #####: 1413:      { return _M_current; }
-------------------
-_ZNKSt13move_iteratorIP21InvalidFieldExceptionE4baseEv:
       130: 1412:      base() const
       130: 1413:      { return _M_current; }
-------------------
         -: 1414:#else
         -: 1415:      constexpr const iterator_type&
         -: 1416:      base() const & noexcept
@@ -1846,17 +1749,8 @@ _ZNKSt13move_iteratorIP21InvalidFieldExceptionE4baseEv:
         -: 1666:    = typename conditional<__move_if_noexcept_cond<_Tp>::value,
         -: 1667:			   const _Tp*, move_iterator<_Tp*>>::type>
         -: 1668:    inline _GLIBCXX17_CONSTEXPR _ReturnType
-      92*: 1669:    __make_move_if_noexcept_iterator(_Tp* __i)
-      92*: 1670:    { return _ReturnType(__i); }
-------------------
-_ZSt32__make_move_if_noexcept_iteratorIiSt13move_iteratorIPiEET0_PT_:
-    #####: 1669:    __make_move_if_noexcept_iterator(_Tp* __i)
-    #####: 1670:    { return _ReturnType(__i); }
-------------------
-_ZSt32__make_move_if_noexcept_iteratorI21InvalidFieldExceptionSt13move_iteratorIPS0_EET0_PT_:
        92: 1669:    __make_move_if_noexcept_iterator(_Tp* __i)
        92: 1670:    { return _ReturnType(__i); }
-------------------
         -: 1671:
         -: 1672:#if __cplusplus > 201703L && __cpp_lib_concepts
         -: 1673:  // [iterators.common] Common iterators
@@ -2539,9 +2433,9 @@ _ZSt32__make_move_if_noexcept_iteratorI21InvalidFieldExceptionSt13move_iteratorI
         -: 2350:
         -: 2351:  template<typename _Iterator>
         -: 2352:    auto
-    #####: 2353:    __miter_base(move_iterator<_Iterator> __it)
+        -: 2353:    __miter_base(move_iterator<_Iterator> __it)
         -: 2354:    -> decltype(__miter_base(__it.base()))
-    #####: 2355:    { return __miter_base(__it.base()); }
+        -: 2355:    { return __miter_base(__it.base()); }
         -: 2356:
         -: 2357:#define _GLIBCXX_MAKE_MOVE_ITERATOR(_Iter) std::make_move_iterator(_Iter)
         -: 2358:#define _GLIBCXX_MAKE_MOVE_IF_NOEXCEPT_ITERATOR(_Iter) \

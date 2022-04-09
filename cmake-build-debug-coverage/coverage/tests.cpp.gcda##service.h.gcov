@@ -11,62 +11,59 @@
         -:    7:
         -:    8:#include "domain.h"
         -:    9:#include "repository.h"
-        -:   10:#include "repository.cpp"
-        -:   11:#include "validator.h"
-        -:   12:
-        -:   13:class Service{
-        -:   14:private:
-        -:   15:    Repository<Locatar> repository;
-        -:   16:public:
-        -:   17:    // doar constructor fara parametrii
-    #####:   18:    Service()=default;
-        -:   19:    Service(const Service&) = delete;
-        -:   20:    //template<class T>
-        -:   21:    //Service(const Repository<T>&) = delete;
-        -:   22:
-        -:   23:    // adauga elementul in repository
-        -:   24:    // arunca ServiceException daca nu a putut fi creat
-        -:   25:    // arunca RepoException daca exista in container
-        -:   26:    // arunca ValidatorException daca nu este valid
-        -:   27:    void add(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
-        -:   28:
-        -:   29:    // sterge elementul din repository
-        -:   30:    // arunca RepoException daca elementul nu exista
-        -:   31:    // arunca ValidatorException daca nu este valid
-        -:   32:    void remove(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
-        -:   33:
-        -:   34:    // modific primul elemet cu al doilea
-        -:   35:    // arunca RepoException daca elementul nu exista
-        -:   36:    // arunca ValidatorException daca unul din locatari nu este valid
-        -:   37:    void modify(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&, const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
-        -:   38:
-        -:   39:    // cauta apartamentul cu numarul dat
-        -:   40:    // arunca ServiceException daca nu exista un astfel de apartament
-        -:   41:    // arunca InvalidFieldException daca nu este valid
-        -:   42:    const Locatar& findApartament(const TypeApartament&);
-        -:   43:
-        -:   44:    // returnez toate elementele care au tipul dat
-        -:   45:    // arunca InvalidFieldException daca nu este valid
-        -:   46:    Repository<Locatar> filterTip(const TypeTip&);
-        -:   47:
-        -:   48:    // returnez toate elementele care au suprafata data?
-        -:   49:    // arunca InvalidFieldException daca nu este valid
-        -:   50:    Repository<Locatar> filterSuprafata(const TypeSuprafata&);
+        -:   10:#include "validator.h"
+        -:   11:
+        -:   12:class Service{
+        -:   13:private:
+        -:   14:    Repository<Locatar> repository;
+        -:   15:public:
+        -:   16:    // doar constructor fara parametrii
+    #####:   17:    Service()=default;
+        -:   18:    Service(const Service&) = delete;
+        -:   19:
+        -:   20:    // adauga elementul in repository
+        -:   21:    // arunca ServiceException daca nu a putut fi creat
+        -:   22:    // arunca RepoException daca exista in container
+        -:   23:    // arunca ValidatorException daca nu este valid
+        -:   24:    void add(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
+        -:   25:
+        -:   26:    // sterge elementul din repository
+        -:   27:    // arunca RepoException daca elementul nu exista
+        -:   28:    // arunca ValidatorException daca nu este valid
+        -:   29:    void remove(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
+        -:   30:
+        -:   31:    // modific primul elemet cu al doilea
+        -:   32:    // arunca RepoException daca elementul nu exista
+        -:   33:    // arunca ValidatorException daca unul din locatari nu este valid
+        -:   34:    void modify(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&, const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
+        -:   35:
+        -:   36:    // cauta apartamentul cu numarul dat
+        -:   37:    // arunca ServiceException daca nu exista un astfel de apartament
+        -:   38:    // arunca InvalidFieldException daca nu este valid
+        -:   39:    const Locatar& findApartament(const TypeApartament&);
+        -:   40:
+        -:   41:    // returnez toate elementele care au tipul dat
+        -:   42:    // arunca InvalidFieldException daca nu este valid
+        -:   43:    Repository<Locatar> filterTip(const TypeTip&);
+        -:   44:
+        -:   45:    // returnez toate elementele care au suprafata data?
+        -:   46:    // arunca InvalidFieldException daca nu este valid
+        -:   47:    Repository<Locatar> filterSuprafata(const TypeSuprafata&);
+        -:   48:
+        -:   49:    // sortez repository-ul dupa nume crescator
+        -:   50:    void sortNume();
         -:   51:
-        -:   52:    // sortez repository-ul dupa nume crescator
-        -:   53:    void sortNume();
+        -:   52:    // sortez repository-ul dupa suprafata crescator
+        -:   53:    void sortSuprafata();
         -:   54:
-        -:   55:    // sortez repository-ul dupa suprafata crescator
-        -:   56:    void sortSuprafata();
+        -:   55:    // sortez repository-ul dupa tip, iar la tipuri egale sortez dupa suprafata
+        -:   56:    void sortTipSuprafata();
         -:   57:
-        -:   58:    // sortez repository-ul dupa tip, iar la tipuri egale sortez dupa suprafata
-        -:   59:    void sortTipSuprafata();
-        -:   60:
-        -:   61:    // implementare iteratori de begin si end pentru a putea intera
-        -:   62:    Locatar* begin();
-        -:   63:    const Locatar* cbegin() const;
-        -:   64:    Locatar* end();
-        -:   65:    const Locatar* cend() const;
-        -:   66:};
-        -:   67:
-        -:   68:#endif //LAB6_SERVICE_H
+        -:   58:    // implementare iteratori de begin si end pentru a putea intera
+        -:   59:    Locatar* begin();
+        -:   60:    const Locatar* cbegin() const;
+        -:   61:    Locatar* end();
+        -:   62:    const Locatar* cend() const;
+        -:   63:};
+        -:   64:
+        -:   65:#endif //LAB6_SERVICE_H

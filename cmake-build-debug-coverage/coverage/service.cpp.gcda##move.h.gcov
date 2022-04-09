@@ -50,8 +50,8 @@
         -:   46:   */
         -:   47:  template<typename _Tp>
         -:   48:    inline _GLIBCXX_CONSTEXPR _Tp*
-    #####:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-    #####:   50:    { return __builtin_addressof(__r); }
+        -:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+        -:   50:    { return __builtin_addressof(__r); }
         -:   51:
         -:   52:#if __cplusplus >= 201103L
         -:   53:
@@ -78,8 +78,8 @@
         -:   74:  template<typename _Tp>
         -:   75:    _GLIBCXX_NODISCARD
         -:   76:    constexpr _Tp&&
-       84:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-       84:   78:    { return static_cast<_Tp&&>(__t); }
+        -:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+        -:   78:    { return static_cast<_Tp&&>(__t); }
         -:   79:
         -:   80:  /**
         -:   81:   *  @brief  Forward an rvalue.
@@ -105,8 +105,8 @@
         -:  101:  template<typename _Tp>
         -:  102:    _GLIBCXX_NODISCARD
         -:  103:    constexpr typename std::remove_reference<_Tp>::type&&
-      31*:  104:    move(_Tp&& __t) noexcept
-      31*:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+      29*:  104:    move(_Tp&& __t) noexcept
+      29*:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
 _ZSt4moveIRN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRK7LocatarS6_E_EEEONSt16remove_referenceIT_E4typeEOSB_:
         2:  104:    move(_Tp&& __t) noexcept
@@ -121,8 +121,8 @@ _ZSt4moveIRN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRK7Locatar
         2:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
 _ZSt4moveIR7LocatarEONSt16remove_referenceIT_E4typeEOS3_:
-       17:  104:    move(_Tp&& __t) noexcept
-       17:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+       15:  104:    move(_Tp&& __t) noexcept
+       15:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
 _ZSt4moveIRZN7Service16sortTipSuprafataEvEUlRK7LocatarS3_E_EONSt16remove_referenceIT_E4typeEOS7_:
         4:  104:    move(_Tp&& __t) noexcept

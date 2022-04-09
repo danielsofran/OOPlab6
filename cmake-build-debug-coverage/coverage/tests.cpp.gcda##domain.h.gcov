@@ -26,7 +26,7 @@
         -:   22:public:
         -:   23:    // constructori
         -:   24:    // constructor fara parametrii
-       17:   25:    Locatar() = default;
+    #####:   25:    Locatar() = default;
         -:   26:    // constructor cu parametrii
        55:   27:    Locatar(const TypeApartament& Apartament, const TypeNume& NumeProprietar, const TypeSuprafata& Suprafata, const TypeTip& Tip) :
        55:   28:            apartament(Apartament), nume_proprietar(NumeProprietar), suprafata(Suprafata), tip(Tip) {}

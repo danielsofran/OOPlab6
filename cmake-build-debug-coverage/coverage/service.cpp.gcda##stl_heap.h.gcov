@@ -149,7 +149,7 @@
     #####:  145:      *(__first + __holeIndex) = _GLIBCXX_MOVE(__value);
     #####:  146:    }
 ------------------
-_ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops14_Iter_comp_valIZN7Service16sortTipSuprafataEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_RT2_:
+_ZSt11__push_heapIP7LocatarxS0_N9__gnu_cxx5__ops14_Iter_comp_valIZN7Service16sortTipSuprafataEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_RT2_:
     #####:  134:    __push_heap(_RandomAccessIterator __first,
         -:  135:		_Distance __holeIndex, _Distance __topIndex, _Tp __value,
         -:  136:		_Compare& __comp)
@@ -164,7 +164,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
     #####:  145:      *(__first + __holeIndex) = _GLIBCXX_MOVE(__value);
     #####:  146:    }
 ------------------
-_ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops14_Iter_comp_valIZN7Service13sortSuprafataEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_RT2_:
+_ZSt11__push_heapIP7LocatarxS0_N9__gnu_cxx5__ops14_Iter_comp_valIZN7Service13sortSuprafataEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_RT2_:
     #####:  134:    __push_heap(_RandomAccessIterator __first,
         -:  135:		_Distance __holeIndex, _Distance __topIndex, _Tp __value,
         -:  136:		_Compare& __comp)
@@ -179,7 +179,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
     #####:  145:      *(__first + __holeIndex) = _GLIBCXX_MOVE(__value);
     #####:  146:    }
 ------------------
-_ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops14_Iter_comp_valIZN7Service8sortNumeEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_RT2_:
+_ZSt11__push_heapIP7LocatarxS0_N9__gnu_cxx5__ops14_Iter_comp_valIZN7Service8sortNumeEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_RT2_:
     #####:  134:    __push_heap(_RandomAccessIterator __first,
         -:  135:		_Distance __holeIndex, _Distance __topIndex, _Tp __value,
         -:  136:		_Compare& __comp)
@@ -279,7 +279,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -297,7 +297,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
     #####:  247:		       _GLIBCXX_MOVE(__value), __cmp);
     #####:  248:    }
 ------------------
-_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_T2_:
+_ZSt13__adjust_heapIP7LocatarxS0_N9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_T2_:
     #####:  223:    __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
         -:  224:		  _Distance __len, _Tp __value, _Compare __comp)
         -:  225:    {
@@ -307,7 +307,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -325,7 +325,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
     #####:  247:		       _GLIBCXX_MOVE(__value), __cmp);
     #####:  248:    }
 ------------------
-_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_T2_:
+_ZSt13__adjust_heapIP7LocatarxS0_N9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_T2_:
     #####:  223:    __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
         -:  224:		  _Distance __len, _Tp __value, _Compare __comp)
         -:  225:    {
@@ -335,7 +335,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -353,7 +353,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
     #####:  247:		       _GLIBCXX_MOVE(__value), __cmp);
     #####:  248:    }
 ------------------
-_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEExS2_NS0_5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS2_SC_E_EEEvT_T0_SG_T1_T2_:
+_ZSt13__adjust_heapIP7LocatarxS0_N9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS0_S7_E_EEEvT_T0_SB_T1_T2_:
     #####:  223:    __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
         -:  224:		  _Distance __len, _Tp __value, _Compare __comp)
         -:  225:    {
@@ -363,7 +363,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -400,7 +400,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_E
     #####:  265:			 _GLIBCXX_MOVE(__value), __comp);
     #####:  266:    }
 ------------------
-_ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS2_SC_E_EEEvT_SF_SF_RT0_:
+_ZSt10__pop_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS0_S7_E_EEEvT_SA_SA_RT0_:
     #####:  253:    __pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  254:	       _RandomAccessIterator __result, _Compare& __comp)
         -:  255:    {
@@ -416,7 +416,7 @@ _ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEE
     #####:  265:			 _GLIBCXX_MOVE(__value), __comp);
     #####:  266:    }
 ------------------
-_ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS2_SC_E_EEEvT_SF_SF_RT0_:
+_ZSt10__pop_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS0_S7_E_EEEvT_SA_SA_RT0_:
     #####:  253:    __pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  254:	       _RandomAccessIterator __result, _Compare& __comp)
         -:  255:    {
@@ -432,7 +432,7 @@ _ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEE
     #####:  265:			 _GLIBCXX_MOVE(__value), __comp);
     #####:  266:    }
 ------------------
-_ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS2_SC_E_EEEvT_SF_SF_RT0_:
+_ZSt10__pop_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS0_S7_E_EEEvT_SA_SA_RT0_:
     #####:  253:    __pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  254:	       _RandomAccessIterator __result, _Compare& __comp)
         -:  255:    {
@@ -544,7 +544,7 @@ _ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEE
         -:  360:	}
         -:  361:    }
 ------------------
-_ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__make_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  339:    __make_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  340:		_Compare& __comp)
         -:  341:    {
@@ -569,7 +569,7 @@ _ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  360:	}
         -:  361:    }
 ------------------
-_ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__make_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  339:    __make_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  340:		_Compare& __comp)
         -:  341:    {
@@ -594,7 +594,7 @@ _ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  360:	}
         -:  361:    }
 ------------------
-_ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__make_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  339:    __make_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  340:		_Compare& __comp)
         -:  341:    {
@@ -685,7 +685,7 @@ _ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  425:	}
     #####:  426:    }
 ------------------
-_ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__sort_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  418:    __sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  419:		_Compare& __comp)
         -:  420:    {
@@ -696,7 +696,7 @@ _ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  425:	}
     #####:  426:    }
 ------------------
-_ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__sort_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  418:    __sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  419:		_Compare& __comp)
         -:  420:    {
@@ -707,7 +707,7 @@ _ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEE
         -:  425:	}
     #####:  426:    }
 ------------------
-_ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIP7LocatarSt6vectorIS2_SaIS2_EEEENS0_5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS2_SC_E_EEEvT_SF_RT0_:
+_ZSt11__sort_heapIP7LocatarN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRKS0_S7_E_EEEvT_SA_RT0_:
     #####:  418:    __sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  419:		_Compare& __comp)
         -:  420:    {

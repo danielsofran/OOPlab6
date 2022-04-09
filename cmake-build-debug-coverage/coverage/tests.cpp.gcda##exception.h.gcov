@@ -64,11 +64,11 @@
         -:   60:  class exception
         -:   61:  {
         -:   62:  public:
-       89:   63:    exception() _GLIBCXX_NOTHROW { }
+       90:   63:    exception() _GLIBCXX_NOTHROW { }
         -:   64:    virtual ~exception() _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
         -:   65:#if __cplusplus >= 201103L
-      106:   66:    exception(const exception&) = default;
-        9:   67:    exception& operator=(const exception&) = default;
+      108:   66:    exception(const exception&) = default;
+       16:   67:    exception& operator=(const exception&) = default;
        19:   68:    exception(exception&&) = default;
     #####:   69:    exception& operator=(exception&&) = default;
         -:   70:#endif

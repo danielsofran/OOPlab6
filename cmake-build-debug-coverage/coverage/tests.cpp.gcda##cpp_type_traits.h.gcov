@@ -561,28 +561,20 @@
         -:  557:  template<typename _Iterator>
         -:  558:    _GLIBCXX20_CONSTEXPR
         -:  559:    inline _Iterator
-       6*:  560:    __miter_base(_Iterator __it)
-       6*:  561:    { return __it; }
-------------------
-_ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEEET_S7_:
-        4:  560:    __miter_base(_Iterator __it)
-        4:  561:    { return __it; }
+       8*:  560:    __miter_base(_Iterator __it)
+       8*:  561:    { return __it; }
 ------------------
 _ZSt12__miter_baseIPiET_S1_:
-    #####:  560:    __miter_base(_Iterator __it)
-    #####:  561:    { return __it; }
-------------------
-_ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEEET_S8_:
-        2:  560:    __miter_base(_Iterator __it)
-        2:  561:    { return __it; }
+        4:  560:    __miter_base(_Iterator __it)
+        4:  561:    { return __it; }
 ------------------
 _ZSt12__miter_baseIP21InvalidFieldExceptionET_S2_:
     #####:  560:    __miter_base(_Iterator __it)
     #####:  561:    { return __it; }
 ------------------
 _ZSt12__miter_baseIN9__gnu_cxx17__normal_iteratorIPK21InvalidFieldExceptionSt6vectorIS2_SaIS2_EEEEET_S9_:
-    #####:  560:    __miter_base(_Iterator __it)
-    #####:  561:    { return __it; }
+        4:  560:    __miter_base(_Iterator __it)
+        4:  561:    { return __it; }
 ------------------
         -:  562:
         -:  563:_GLIBCXX_END_NAMESPACE_VERSION

@@ -177,15 +177,15 @@ _ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EC2E
         6:  157:        operator()(_Iterator1 __it1, _Iterator2 __it2)
         6:  158:        { return bool(_M_comp(*__it1, *__it2)); }
 ------------------
-_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEESE_EEbT_T0_:
+_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclIPS3_S9_EEbT_T0_:
         2:  157:        operator()(_Iterator1 __it1, _Iterator2 __it2)
         2:  158:        { return bool(_M_comp(*__it1, *__it2)); }
 ------------------
-_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEESE_EEbT_T0_:
+_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclIPS3_S9_EEbT_T0_:
         2:  157:        operator()(_Iterator1 __it1, _Iterator2 __it2)
         2:  158:        { return bool(_M_comp(*__it1, *__it2)); }
 ------------------
-_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEESE_EEbT_T0_:
+_ZN9__gnu_cxx5__ops15_Iter_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclIPS3_S9_EEbT_T0_:
         2:  157:        operator()(_Iterator1 __it1, _Iterator2 __it2)
         2:  158:        { return bool(_M_comp(*__it1, *__it2)); }
 ------------------
@@ -257,15 +257,15 @@ _ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EC2EO
     #####:  195:	operator()(_Iterator __it, _Value& __val)
     #####:  196:	{ return bool(_M_comp(*__it, __val)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEES3_EEbT_RT0_:
+_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclIPS3_S3_EEbT_RT0_:
     #####:  195:	operator()(_Iterator __it, _Value& __val)
     #####:  196:	{ return bool(_M_comp(*__it, __val)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEES3_EEbT_RT0_:
+_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclIPS3_S3_EEbT_RT0_:
     #####:  195:	operator()(_Iterator __it, _Value& __val)
     #####:  196:	{ return bool(_M_comp(*__it, __val)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclINS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEES3_EEbT_RT0_:
+_ZN9__gnu_cxx5__ops14_Iter_comp_valIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclIPS3_S3_EEbT_RT0_:
     #####:  195:	operator()(_Iterator __it, _Value& __val)
     #####:  196:	{ return bool(_M_comp(*__it, __val)); }
 ------------------
@@ -330,15 +330,15 @@ _ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EC2EO
        4*:  239:	operator()(_Value& __val, _Iterator __it)
        4*:  240:	{ return bool(_M_comp(__val, *__it)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclIS3_NS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEEEEbRT_T0_:
+_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service16sortTipSuprafataEvEUlRK7LocatarS5_E_EclIS3_PS3_EEbRT_T0_:
         2:  239:	operator()(_Value& __val, _Iterator __it)
         2:  240:	{ return bool(_M_comp(__val, *__it)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclIS3_NS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEEEEbRT_T0_:
+_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service13sortSuprafataEvEUlRK7LocatarS5_E_EclIS3_PS3_EEbRT_T0_:
     #####:  239:	operator()(_Value& __val, _Iterator __it)
     #####:  240:	{ return bool(_M_comp(__val, *__it)); }
 ------------------
-_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclIS3_NS_17__normal_iteratorIPS3_St6vectorIS3_SaIS3_EEEEEEbRT_T0_:
+_ZN9__gnu_cxx5__ops14_Val_comp_iterIZN7Service8sortNumeEvEUlRK7LocatarS5_E_EclIS3_PS3_EEbRT_T0_:
         2:  239:	operator()(_Value& __val, _Iterator __it)
         2:  240:	{ return bool(_M_comp(__val, *__it)); }
 ------------------

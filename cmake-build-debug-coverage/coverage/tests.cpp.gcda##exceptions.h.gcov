@@ -22,7 +22,7 @@
         -:   18:protected:
         -:   19:    string msg;
         -:   20:public:
-       62:   21:    MyException() { msg = "MyException!\n"; } ;
+       63:   21:    MyException() { msg = "MyException!\n"; } ;
        27:   22:    explicit MyException (const string& msg) : msg(msg) {}
 ------------------
 _ZN11MyExceptionC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
@@ -45,14 +45,14 @@ _ZN11MyExceptionC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
         -:   34:    vector<InvalidFieldException> errors;
         -:   35:public:
         -:   36:    //using MyException::MyException;
-       49:   37:    explicit ValidatorException()=default;
+       50:   37:    explicit ValidatorException()=default;
        13:   38:    explicit ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
        13:   39:        msg = "";
        26:   40:        for(const InvalidFieldException& ie : errors_)
        13:   41:            msg += ie.what() + sep;
        13:   42:    }
         5:   43:    ValidatorException(const ValidatorException& ve)=default;
-        9:   44:    ValidatorException& operator=(const ValidatorException& ve) = default;
+       12:   44:    ValidatorException& operator=(const ValidatorException& ve) = default;
        13:   45:    friend ValidatorException operator+(const ValidatorException& ve1, const ValidatorException& ve2)
         -:   46:    {
        13:   47:        ValidatorException ve;
@@ -88,7 +88,7 @@ _ZN11MyExceptionC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE:
         1:   77:        ve = ve + InvalidFieldException(msg);
         1:   78:        return ve;
         -:   79:    }
-       35:   80:    explicit operator int() const {return (int)errors.size(); }
+       39:   80:    explicit operator int() const {return (int)errors.size(); }
         -:   81:};
         -:   82:
         -:   83:#endif //LAB6_EXCEPTIONS_H

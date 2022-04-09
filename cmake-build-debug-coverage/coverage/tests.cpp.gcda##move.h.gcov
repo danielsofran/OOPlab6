@@ -50,17 +50,8 @@
         -:   46:   */
         -:   47:  template<typename _Tp>
         -:   48:    inline _GLIBCXX_CONSTEXPR _Tp*
-     212*:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-     212*:   50:    { return __builtin_addressof(__r); }
-------------------
-_ZSt11__addressofI7LocatarEPT_RS1_:
-    #####:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-    #####:   50:    { return __builtin_addressof(__r); }
-------------------
-_ZSt11__addressofI21InvalidFieldExceptionEPT_RS1_:
-      212:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
-      212:   50:    { return __builtin_addressof(__r); }
-------------------
+      216:   49:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+      216:   50:    { return __builtin_addressof(__r); }
         -:   51:
         -:   52:#if __cplusplus >= 201103L
         -:   53:
@@ -87,24 +78,24 @@ _ZSt11__addressofI21InvalidFieldExceptionEPT_RS1_:
         -:   74:  template<typename _Tp>
         -:   75:    _GLIBCXX_NODISCARD
         -:   76:    constexpr _Tp&&
-     139*:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-     139*:   78:    { return static_cast<_Tp&&>(__t); }
+     112*:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+     112*:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
 _ZSt7forwardI21InvalidFieldExceptionEOT_RNSt16remove_referenceIS1_E4typeE:
        19:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
        19:   78:    { return static_cast<_Tp&&>(__t); }
+------------------
+_ZSt7forwardIRiEOT_RNSt16remove_referenceIS1_E4typeE:
+        4:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+        4:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
 _ZSt7forwardIR21InvalidFieldExceptionEOT_RNSt16remove_referenceIS2_E4typeE:
     #####:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
     #####:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
 _ZSt7forwardIRK21InvalidFieldExceptionEOT_RNSt16remove_referenceIS3_E4typeE:
-       87:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-       87:   78:    { return static_cast<_Tp&&>(__t); }
-------------------
-_ZSt7forwardIRKiEOT_RNSt16remove_referenceIS2_E4typeE:
-       33:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-       33:   78:    { return static_cast<_Tp&&>(__t); }
+       89:   77:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+       89:   78:    { return static_cast<_Tp&&>(__t); }
 ------------------
         -:   79:
         -:   80:  /**
@@ -142,11 +133,7 @@ _ZSt4moveIRN9__gnu_cxx5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKi
     #####:  104:    move(_Tp&& __t) noexcept
     #####:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
-_ZSt4moveIRN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIiEEEEONSt16remove_referenceIT_E4typeEOS8_:
-    #####:  104:    move(_Tp&& __t) noexcept
-    #####:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
-------------------
-_ZSt4moveIRPiEONSt16remove_referenceIT_E4typeEOS3_:
+_ZSt4moveIRN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIvEEEEONSt16remove_referenceIT_E4typeEOS8_:
     #####:  104:    move(_Tp&& __t) noexcept
     #####:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
@@ -162,7 +149,7 @@ _ZSt4moveIRZN14TestRepository7methodsEvEUlRKiS2_E_EONSt16remove_referenceIT_E4ty
         2:  104:    move(_Tp&& __t) noexcept
         2:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------
-_ZSt4moveIRSt4lessIiEEONSt16remove_referenceIT_E4typeEOS4_:
+_ZSt4moveIRSt4lessIvEEONSt16remove_referenceIT_E4typeEOS4_:
         2:  104:    move(_Tp&& __t) noexcept
         2:  105:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
 ------------------

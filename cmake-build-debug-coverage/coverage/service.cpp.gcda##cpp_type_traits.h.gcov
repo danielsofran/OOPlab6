@@ -561,8 +561,8 @@
         -:  557:  template<typename _Iterator>
         -:  558:    _GLIBCXX20_CONSTEXPR
         -:  559:    inline _Iterator
-        8:  560:    __miter_base(_Iterator __it)
-        8:  561:    { return __it; }
+        4:  560:    __miter_base(_Iterator __it)
+        4:  561:    { return __it; }
         -:  562:
         -:  563:_GLIBCXX_END_NAMESPACE_VERSION
         -:  564:} // namespace

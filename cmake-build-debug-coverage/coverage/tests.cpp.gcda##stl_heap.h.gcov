@@ -149,7 +149,7 @@
     #####:  145:      *(__first + __holeIndex) = _GLIBCXX_MOVE(__value);
     #####:  146:    }
 ------------------
-_ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__ops14_Iter_comp_valIZN14TestRepository7methodsEvEUlRKiSB_E_EEEvT_T0_SF_T1_RT2_:
+_ZSt11__push_heapIPixiN9__gnu_cxx5__ops14_Iter_comp_valIZN14TestRepository7methodsEvEUlRKiS6_E_EEEvT_T0_SA_T1_RT2_:
     #####:  134:    __push_heap(_RandomAccessIterator __first,
         -:  135:		_Distance __holeIndex, _Distance __topIndex, _Tp __value,
         -:  136:		_Compare& __comp)
@@ -164,7 +164,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__o
     #####:  145:      *(__first + __holeIndex) = _GLIBCXX_MOVE(__value);
     #####:  146:    }
 ------------------
-_ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__ops14_Iter_comp_valISt4lessIiEEEEvT_T0_SD_T1_RT2_:
+_ZSt11__push_heapIPixiN9__gnu_cxx5__ops14_Iter_comp_valISt4lessIvEEEEvT_T0_S8_T1_RT2_:
     #####:  134:    __push_heap(_RandomAccessIterator __first,
         -:  135:		_Distance __holeIndex, _Distance __topIndex, _Tp __value,
         -:  136:		_Compare& __comp)
@@ -264,7 +264,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__o
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -282,7 +282,7 @@ _ZSt11__push_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__o
     #####:  247:		       _GLIBCXX_MOVE(__value), __cmp);
     #####:  248:    }
 ------------------
-_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiSB_E_EEEvT_T0_SF_T1_T2_:
+_ZSt13__adjust_heapIPixiN9__gnu_cxx5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiS6_E_EEEvT_T0_SA_T1_T2_:
     #####:  223:    __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
         -:  224:		  _Distance __len, _Tp __value, _Compare __comp)
         -:  225:    {
@@ -292,7 +292,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5_
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -310,7 +310,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5_
     #####:  247:		       _GLIBCXX_MOVE(__value), __cmp);
     #####:  248:    }
 ------------------
-_ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5__ops15_Iter_comp_iterISt4lessIiEEEEvT_T0_SD_T1_T2_:
+_ZSt13__adjust_heapIPixiN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIvEEEEvT_T0_S8_T1_T2_:
     #####:  223:    __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
         -:  224:		  _Distance __len, _Tp __value, _Compare __comp)
         -:  225:    {
@@ -320,7 +320,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5_
         -:  229:	{
     #####:  230:	  __secondChild = 2 * (__secondChild + 1);
     #####:  231:	  if (__comp(__first + __secondChild,
-        -:  232:		     __first + (__secondChild - 1)))
+    #####:  232:		     __first + (__secondChild - 1)))
     #####:  233:	    __secondChild--;
     #####:  234:	  *(__first + __holeIndex) = _GLIBCXX_MOVE(*(__first + __secondChild));
     #####:  235:	  __holeIndex = __secondChild;
@@ -357,7 +357,7 @@ _ZSt13__adjust_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEExiNS0_5_
     #####:  265:			 _GLIBCXX_MOVE(__value), __comp);
     #####:  266:    }
 ------------------
-_ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiSB_E_EEEvT_SE_SE_RT0_:
+_ZSt10__pop_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiS6_E_EEEvT_S9_S9_RT0_:
     #####:  253:    __pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  254:	       _RandomAccessIterator __result, _Compare& __comp)
         -:  255:    {
@@ -373,7 +373,7 @@ _ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops1
     #####:  265:			 _GLIBCXX_MOVE(__value), __comp);
     #####:  266:    }
 ------------------
-_ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterISt4lessIiEEEEvT_SC_SC_RT0_:
+_ZSt10__pop_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIvEEEEvT_S7_S7_RT0_:
     #####:  253:    __pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  254:	       _RandomAccessIterator __result, _Compare& __comp)
         -:  255:    {
@@ -485,7 +485,7 @@ _ZSt10__pop_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops1
         -:  360:	}
         -:  361:    }
 ------------------
-_ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiSB_E_EEEvT_SE_RT0_:
+_ZSt11__make_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiS6_E_EEEvT_S9_RT0_:
     #####:  339:    __make_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  340:		_Compare& __comp)
         -:  341:    {
@@ -510,7 +510,7 @@ _ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops
         -:  360:	}
         -:  361:    }
 ------------------
-_ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterISt4lessIiEEEEvT_SC_RT0_:
+_ZSt11__make_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIvEEEEvT_S7_RT0_:
     #####:  339:    __make_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  340:		_Compare& __comp)
         -:  341:    {
@@ -601,7 +601,7 @@ _ZSt11__make_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops
         -:  425:	}
     #####:  426:    }
 ------------------
-_ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiSB_E_EEEvT_SE_RT0_:
+_ZSt11__sort_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterIZN14TestRepository7methodsEvEUlRKiS6_E_EEEvT_S9_RT0_:
     #####:  418:    __sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  419:		_Compare& __comp)
         -:  420:    {
@@ -612,7 +612,7 @@ _ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops
         -:  425:	}
     #####:  426:    }
 ------------------
-_ZSt11__sort_heapIN9__gnu_cxx17__normal_iteratorIPiSt6vectorIiSaIiEEEENS0_5__ops15_Iter_comp_iterISt4lessIiEEEEvT_SC_RT0_:
+_ZSt11__sort_heapIPiN9__gnu_cxx5__ops15_Iter_comp_iterISt4lessIvEEEEvT_S7_RT0_:
     #####:  418:    __sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:  419:		_Compare& __comp)
         -:  420:    {

@@ -12,76 +12,222 @@
         -:    8:#include <type_traits>
         -:    9:#include <vector>
         -:   10:#include <algorithm>
-        -:   11:#include "exceptions.h"
-        -:   12:using std::vector;
-        -:   13:
-        -:   14:template<typename T>
-        -:   15:class Repository{
-        -:   16:private:
-        -:   17:    vector<T> elements;
-        -:   18:    typename vector<T>::iterator getIterator(T*);
-        -:   19:public:
-       6*:   20:    Repository() = default;
+        -:   11:#include <memory>
+        -:   12:
+        -:   13:#include "exceptions.h"
+        -:   14:using std::vector;
+        -:   15:using std::unique_ptr;
+        -:   16:
+        -:   17:template<typename T>
+        -:   18:class Repository{
+        -:   19:    friend class TestRepository;
+        -:   20:private:
+        -:   21:    T* elements;
+        -:   22:    int dim;
+        -:   23:    int capacity;
+        2:   24:    void delete_poz(int poz) {
+       2*:   25:        for(int i=poz;i<dim-1;++i)
+    #####:   26:            elements[i] = elements[i+1];
+        2:   27:        --dim;
+        2:   28:    }
+       10:   29:    void adaug(T elem) {
+       10:   30:        if(dim>=capacity) realoc();
+       10:   31:        elements[dim++] = elem;
+       10:   32:    }
+        5:   33:    void realoc(){
+       5*:   34:        T* newelements = new T[2*capacity];
+       10:   35:        for(int i=0;i<capacity;++i)
+        5:   36:            newelements[i] = elements[i];
+        5:   37:        delete[] elements;
+        5:   38:        elements = newelements;
+        5:   39:        capacity *= 2;
+        5:   40:    }
+        -:   41:public:
+        -:   42:    typedef T* iterator;
+        -:   43:    typedef const T* const_iterator;
+       6*:   44:    Repository(){
+       6*:   45:        dim = 0;
+       6*:   46:        capacity = 1;
+       6*:   47:        elements = new T[capacity];
+       6*:   48:    }
 ------------------
 _ZN10RepositoryI7LocatarEC1Ev:
-    #####:   20:    Repository() = default;
+    #####:   44:    Repository(){
+    #####:   45:        dim = 0;
+    #####:   46:        capacity = 1;
+    #####:   47:        elements = new T[capacity];
+    #####:   48:    }
 ------------------
 _ZN10RepositoryIiEC1Ev:
-        6:   20:    Repository() = default;
+        6:   44:    Repository(){
+        6:   45:        dim = 0;
+        6:   46:        capacity = 1;
+       6*:   47:        elements = new T[capacity];
+        6:   48:    }
 ------------------
-        -:   21:    Repository(const Repository&);
-        -:   22:    Repository(const std::initializer_list<T>&);
-        -:   23:
-        -:   24:    // operator de atribuire
-        -:   25:    // Repository& operator=(const Repository&);
-        -:   26:
-        -:   27:    // indexator, returnez o referinta la obiect
-        -:   28:    // arunc RepoException daca pozitia este invalida
-        -:   29:    T& operator[](const int&);
-        -:   30:
-        -:   31:    // returneaza numarul de elemente continute
-        -:   32:    int size() const;
-        -:   33:
-        -:   34:    // adaug un element la finalul containerului
-        -:   35:    // arunc RepoException daca elementul se afla in container
-        -:   36:    void add(const T&);
-        -:   37:
-        -:   38:    // returnez o referinta catre primul element egal cu cel dat
-        -:   39:    // sau NULL altfel
-        -:   40:    // primul iterator indica pozitia de inceput
-        -:   41:    // al doilea indica pozitia de final
-        -:   42:    // implicit, cautarea de face pe tot containerul
-        -:   43:    T* find(const T&, T* = NULL, T* = NULL);
-        -:   44:
-        -:   45:    // returnez un iterator catre primul element care respecta proprietatea data
-        -:   46:    // daca elementul nu este gasit, returnez NULL
-        -:   47:    // primul iterator indica pozitia de inceput
-        -:   48:    // al doilea indica pozitia de final
-        -:   49:    // implicit, cautarea de face pe tot containerul
-        -:   50:    template<class UnaryPredicate>
-        -:   51:    T* find(UnaryPredicate, T* = NULL, T* = NULL);
-        -:   52:
-        -:   53:    // sterg prima aparitie a elementului dat din container
-        -:   54:    // arunc o exceptie daca nu exista in container
-        -:   55:    void remove(const T&);
+        1:   49:    Repository(const Repository<T> & repository) {
+       1*:   50:        this->elements = new T[repository.capacity];
+        1:   51:        dim = repository.dim;
+        1:   52:        capacity = repository.capacity;
+        2:   53:        for(int i=0;i<capacity;++i)
+        1:   54:            elements[i] = repository.elements[i];
+        1:   55:    }
         -:   56:
-        -:   57:    // sterg primul element care respecta proprietatea
-        -:   58:    // returnez elementul sters
-        -:   59:    // arunc o exceptie daca nu exista in container
-        -:   60:    template<class UnaryPredicate>
-        -:   61:    T remove(UnaryPredicate);
-        -:   62:
-        -:   63:    // sortez repository-ul dupa operatorul < sau dupa functie
-        -:   64:    template<class Compare=std::less<T>>
-        -:   65:    void sort(Compare compare = Compare{});
-        -:   66:
-        -:   67:    // implementez iteratorii de begin si end pentru a putea intera
-        -:   68:    T* begin();
-        -:   69:    const T* cbegin() const;
-        -:   70:    T* end();
-        -:   71:    const T* cend() const;
-        -:   72:};
-        -:   73:
-        -:   74:#endif //LAB6_REPOSITORY_H
-        -:   75:
-        -:   76:// static_assert(std::is_convertible_v<Callable&&, std::function<Signature>>, "Wrong Signature!");
+       7*:   57:    ~Repository() { delete[] elements; }
+------------------
+_ZN10RepositoryI7LocatarED1Ev:
+    #####:   57:    ~Repository() { delete[] elements; }
+------------------
+_ZN10RepositoryIiED1Ev:
+        7:   57:    ~Repository() { delete[] elements; }
+------------------
+        -:   58:
+        -:   59:    // indexator, returnez o referinta la obiect
+        -:   60:    // arunc RepoException daca pozitia este invalida
+        6:   61:    T& operator[](const int& index){
+        6:   62:        try{ return elements[index]; }
+        -:   63:        catch(...) { throw RepoException("Indexul "+std::to_string(index)+" este invalid!\n");}
+        -:   64:    }
+------------------
+_ZN10RepositoryI7LocatarEixERKi:
+        1:   61:    T& operator[](const int& index){
+        1:   62:        try{ return elements[index]; }
+        -:   63:        catch(...) { throw RepoException("Indexul "+std::to_string(index)+" este invalid!\n");}
+        -:   64:    }
+------------------
+_ZN10RepositoryIiEixERKi:
+        5:   61:    T& operator[](const int& index){
+        5:   62:        try{ return elements[index]; }
+        -:   63:        catch(...) { throw RepoException("Indexul "+std::to_string(index)+" este invalid!\n");}
+        -:   64:    }
+------------------
+        -:   65:
+        -:   66:    // returneaza numarul de elemente continute
+        8:   67:    int size() const noexcept {return dim; };
+------------------
+_ZNK10RepositoryI7LocatarE4sizeEv:
+        2:   67:    int size() const noexcept {return dim; };
+------------------
+_ZNK10RepositoryIiE4sizeEv:
+        6:   67:    int size() const noexcept {return dim; };
+------------------
+        -:   68:
+        -:   69:    // adaug un element la finalul containerului
+        -:   70:    // arunc RepoException daca elementul se afla in container
+       11:   71:    void add(const T & element) {
+       11:   72:        Repository<T>::const_iterator it = find(element);
+       11:   73:        if(it != NULL) throw RepoException("Element duplicat!\n");
+       10:   74:        adaug(element);
+       10:   75:    }
+        -:   76:
+        -:   77:    // returnez o referinta catre primul element egal cu cel dat
+        -:   78:    // sau NULL altfel
+        -:   79:    // primul iterator indica pozitia de inceput
+        -:   80:    // al doilea indica pozitia de final
+        -:   81:    // implicit, cautarea de face pe tot containerul
+       16:   82:    iterator find(const T & element, T* begin=NULL, T* end=NULL) {
+       16:   83:        if(begin == NULL) begin = this->begin();
+       16:   84:        if(end == NULL) end = this->end();
+       26:   85:        for(auto it=begin; it != end; ++it)
+       13:   86:            if(*it == element)
+        3:   87:                return it;
+       13:   88:        return NULL;
+        -:   89:    }
+        -:   90:
+        -:   91:    // returnez un iterator catre primul element care respecta proprietatea data
+        -:   92:    // daca elementul nu este gasit, returnez NULL
+        -:   93:    // primul iterator indica pozitia de inceput
+        -:   94:    // al doilea indica pozitia de final
+        -:   95:    // implicit, cautarea de face pe tot containerul
+        -:   96:    template<class UnaryPredicate>
+        4:   97:    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+        4:   98:        if(begin == NULL) begin = this->begin();
+       4*:   99:        if(end == NULL) end = this->end();
+       8*:  100:        for(auto it=begin; it != end; ++it)
+        6:  101:            if(fct(*it))
+       2*:  102:                return it;
+       2*:  103:        return NULL;
+        -:  104:    }
+------------------
+_ZN10RepositoryIiE4findIZN14TestRepository6removeEvEUlRKiE_EEPiT_S6_S6_:
+        1:   97:    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+        1:   98:        if(begin == NULL) begin = this->begin();
+        1:   99:        if(end == NULL) end = this->end();
+       1*:  100:        for(auto it=begin; it != end; ++it)
+        1:  101:            if(fct(*it))
+        1:  102:                return it;
+    #####:  103:        return NULL;
+        -:  104:    }
+------------------
+_ZN10RepositoryIiE4findIZN14TestRepository4findEvEUlRKiE1_EEPiT_S6_S6_:
+        1:   97:    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+        1:   98:        if(begin == NULL) begin = this->begin();
+        1:   99:        if(end == NULL) end = this->end();
+        3:  100:        for(auto it=begin; it != end; ++it)
+        2:  101:            if(fct(*it))
+    #####:  102:                return it;
+        1:  103:        return NULL;
+        -:  104:    }
+------------------
+_ZN10RepositoryIiE4findIZN14TestRepository4findEvEUlRKiE0_EEPiT_S6_S6_:
+        1:   97:    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+        1:   98:        if(begin == NULL) begin = this->begin();
+       1*:   99:        if(end == NULL) end = this->end();
+        2:  100:        for(auto it=begin; it != end; ++it)
+        1:  101:            if(fct(*it))
+    #####:  102:                return it;
+        1:  103:        return NULL;
+        -:  104:    }
+------------------
+_ZN10RepositoryIiE4findIZN14TestRepository4findEvEUlRKiE_EEPiT_S6_S6_:
+        1:   97:    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+        1:   98:        if(begin == NULL) begin = this->begin();
+        1:   99:        if(end == NULL) end = this->end();
+        2:  100:        for(auto it=begin; it != end; ++it)
+        2:  101:            if(fct(*it))
+        1:  102:                return it;
+    #####:  103:        return NULL;
+        -:  104:    }
+------------------
+        -:  105:
+        2:  106:    void remove(const T& element) {
+        2:  107:        T* it = find(element);
+        2:  108:        if(it == NULL) throw RepoException("Elementul inexistent!\n");
+        -:  109:
+        1:  110:        delete_poz(it - elements);
+        1:  111:    }
+        -:  112:
+        -:  113:    template<class UnaryPredicate>
+        1:  114:    T remove(UnaryPredicate fct) {
+        1:  115:        T* it = find(fct);
+       1*:  116:        if(it == NULL) throw RepoException("Elementul inexistent!\n");
+        1:  117:        delete_poz(it - elements);
+        1:  118:        return *it;
+        -:  119:    }
+        -:  120:
+        -:  121:    template<class Compare = std::less<>>
+        2:  122:    void sort(Compare compare = Compare{}) {
+        2:  123:        std::sort(elements, elements+dim, compare);
+        2:  124:    }
+------------------
+_ZN10RepositoryIiE4sortIZN14TestRepository7methodsEvEUlRKiS4_E_EEvT_:
+        1:  122:    void sort(Compare compare = Compare{}) {
+        1:  123:        std::sort(elements, elements+dim, compare);
+        1:  124:    }
+------------------
+_ZN10RepositoryIiE4sortISt4lessIvEEEvT_:
+        1:  122:    void sort(Compare compare = Compare{}) {
+        1:  123:        std::sort(elements, elements+dim, compare);
+        1:  124:    }
+------------------
+        -:  125:
+        -:  126:    // implementez iteratorii de begin si end pentru a putea intera
+       27:  127:    iterator begin() { return elements;}
+        -:  128:    const_iterator cbegin() const {return elements; };
+       27:  129:    iterator end() {return elements+dim;}
+        -:  130:    const_iterator cend() const {return elements+dim;}
+        -:  131:};
+        -:  132:
+        -:  133:#endif //LAB6_REPOSITORY_H
+        -:  134:
+        -:  135:// static_assert(std::is_convertible_v<Callable&&, std::function<Signature>>, "Wrong Signature!");

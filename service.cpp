@@ -82,7 +82,7 @@ void Service::sortTipSuprafata() {
     auto cmp = [](const Locatar& l1, const Locatar& l2)
     {
         return  l1.getTip() < l2.getTip() ||
-            l1.getTip() == l2.getTip() && l1.getSuprafata() < l2.getSuprafata();
+            (l1.getTip() == l2.getTip() && l1.getSuprafata() < l2.getSuprafata());
     };
     repository.sort(cmp);
 }
