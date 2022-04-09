@@ -16,15 +16,14 @@ void Service::remove(const TypeApartament & apartament, const TypeNume & numepro
     repository.remove(locatar);
 }
 
-void Service::modify(const TypeApartament & apartament1, const TypeNume & nume1, const TypeSuprafata & suprafata1, const TypeTip & tip1,
+void Service::modify(const TypeApartament & apartament1,
                      const TypeApartament & apartament2, const TypeNume & nume2, const TypeSuprafata & suprafata2, const TypeTip & tip2) {
-    Locatar locatar1{apartament1, nume1, suprafata1, tip1};
-    Locatar locatar2{apartament2, nume2, suprafata2, tip2};
-    ValidatorLocatar::validLocatar(locatar1);
-    ValidatorLocatar::validLocatar(locatar2);
-    auto it = repository.find(locatar1);
+    Locatar locatar{apartament2, nume2, suprafata2, tip2};
+    ValidatorLocatar::validLocatar(locatar);
+    ValidatorLocatar::validApartament(apartament1);
+    auto it = repository.find([&apartament1](const Locatar& l) {return l.getApartament() == apartament1;});
     if(it == nullptr) throw RepoException("Elementul nu a fost gasit!\n");
-    *it = locatar2;
+    *it = locatar;
 }
 
 const Locatar& Service::findApartament(const TypeApartament & apartament) {

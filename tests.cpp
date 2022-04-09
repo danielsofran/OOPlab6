@@ -11,6 +11,7 @@ protected:
         Locatar l1;
         Locatar l2(10, "Ion", 200, "apartament");
         Locatar l3(l2);
+        l3 = Locatar();
     }
 
     void getters() override{
@@ -42,10 +43,7 @@ protected:
         assert(l1 <= l2);
         assert(l2 > l1);
         assert(l2 >= l1);
-        std::strstream sout;
-        sout<<l2;
-        sout>>l2;
-        assert(l3 == l2);
+        l3 = Locatar();
     }
 };
 
@@ -54,10 +52,8 @@ protected:
     void ctors() override {
         Repository<int> repository;
         assert(repository.size()==0);
-        repository.elements[0] = 2;
-        repository.dim = 1;
         Repository<int> r2(repository);
-        assert(r2.capacity == repository.capacity);
+        r2.add(2);
         assert(r2.size() == 1);
     }
     void add() override{
@@ -172,13 +168,13 @@ protected:
         Service s;
         s.add(32, "Andi", 200, "apartament");
         s.add(13, "Ioana", 130, "apartament");
-        s.modify(13, "Ioana", 130, "apartament", 13, "Ioana Pir", 130, "apartament");
+        s.modify(13, 13, "Ioana Pir", 130, "apartament");
         assert(*(s.begin()+1) == Locatar(13, "Ioana Pir", 130, "apartament"));
-        try{s.modify(1, "Ioana", 130, "apartament", 13, "Ioana Pir", 130, "apartament"); assert(false);}
+        try{s.modify(1, 13, "Ioana Pir", 130, "apartament"); assert(false);}
         catch(RepoException&){}
-        try{s.modify(-1, "Ioana", 130, "apartament", 13, "Ioana Pir", 130, "apartament"); assert(false);}
-        catch(ValidatorException&){}
-        try{s.modify(1, "Ioana", 130, "apartament", 13, "Ioana Pir", -130, "apartament"); assert(false);}
+        try{s.modify(-1, 13, "Ioana Pir", 130, "apartament"); assert(false);}
+        catch(InvalidFieldException&){}
+        try{s.modify(1, 13, "Ioana Pir", -130, "apartament"); assert(false);}
         catch(ValidatorException&){}
     }
     void find() override{
@@ -223,11 +219,9 @@ protected:
         init(s, l1, l2, l3);
         for(Locatar x : s){}
         for(Locatar& x : s){}
-        for(const Locatar x: s){}
         for(const Locatar& x: s){}
         for(auto x : s){}
         for(auto& x : s){}
-        for(const auto x: s){}
         for(const auto& x: s){}
     }
 };
@@ -249,9 +243,11 @@ protected:
         vector<InvalidFieldException> vct{ie};
         ValidatorException ve2(vct);
         ValidatorException ve3(ve2);
-        MyException me(ve); // testez pofimorfism
+        MyException& me(ve); // testez pofimorfism
         assert(strcmp(me.what(), ve.what()) == 0);
         assert(strcmp(ve3.what(), ve2.what()) == 0);
+        ve3 = ve2;
+        me = MyException();
     }
     void operators() override{
         ValidatorException ve, data;

@@ -12,13 +12,7 @@ Locatar::Locatar(const Locatar & obj) {
     //std::cout<<"Obiectul "<<obj<<"\n a fost copiat!\n";
 }
 
-Locatar& Locatar::operator=(const Locatar & obj) {
-    apartament = obj.apartament;
-    nume_proprietar = obj.nume_proprietar;
-    suprafata = obj.suprafata;
-    tip = obj.tip;
-    return *this;
-}
+Locatar& Locatar::operator=(const Locatar & obj) = default;
 
 TypeApartament Locatar::getApartament() const { return apartament; }
 TypeNume Locatar::getNumeProprietar() const { return nume_proprietar; }
@@ -42,22 +36,3 @@ bool Locatar::operator<(const Locatar & obj) const { return this->apartament < o
 bool Locatar::operator>(const Locatar & obj) const { return !(*this<obj) && !(*this == obj);}
 bool Locatar::operator<=(const Locatar & obj) const { return !(*this > obj); }
 bool Locatar::operator>=(const Locatar &obj) const { return !(*this < obj); }
-
-istream & operator>>(istream& in, Locatar& obj)
-{
-    //bool consoleMSG = false;
-    //if(consoleMSG) std::cout<<"Apartament: ";
-    in>>obj.apartament;
-    //if(consoleMSG) std::cout<<"Nume Proprietar: ";
-    in>>obj.nume_proprietar;
-    //if(consoleMSG) std::cout<<"Suprafata: ";
-    in>>obj.suprafata;
-    //if(consoleMSG) std::cout<<"Tip: ";
-    in>>obj.tip;
-    return in;
-}
-
-ostream& operator<<(ostream& out, const Locatar& obj){
-    out<<obj.apartament<<' '<<obj.nume_proprietar<<' '<<obj.suprafata<<' '<<obj.tip;
-    return out;
-}

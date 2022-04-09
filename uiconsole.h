@@ -18,14 +18,14 @@ private:
     Service service;
 
     // afisarea meniului
-    void printMenu(ostream&);
+    static void printMenu(ostream&);
 
     // citeste datele unui locatar
     // le atribui parametrilor de tip out
-    void readLocatar(istream&, ostream&, TypeApartament&, TypeNume&, TypeSuprafata&, TypeTip&);
+    static void readLocatar(istream&, ostream&, TypeApartament&, TypeNume&, TypeSuprafata&, TypeTip&);
 
     // afisez locatarul
-    void writeLocatar(ostream&, const Locatar&);
+    static void writeLocatar(ostream&, const Locatar&);
 
     // adauga
     void adauga(istream&, ostream&);

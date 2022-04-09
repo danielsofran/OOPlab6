@@ -1,17 +1,9 @@
 # ninja log v5
-27	401	6711008521721472	CMakeFiles/lab6.dir/repository.cpp.obj	c9d98cb83ec767f8
-15	3769	6711008553412853	CMakeFiles/lab6.dir/domain.cpp.obj	81b68bfe1a6284ee
-5988	6355	6711009759118458	lab6.exe	201be7a13269cd5d
-20	4495	6711008559323622	CMakeFiles/lab6.dir/validator.cpp.obj	a47488fa87547b07
-30	5874	6711009754328494	CMakeFiles/lab6.dir/uiconsole.cpp.obj	c902555a972e3bb5
-24	5134	6711009745266983	CMakeFiles/lab6.dir/service.cpp.obj	8cf5c345faa0587b
-9	5952	6711009755118467	CMakeFiles/lab6.dir/main.cpp.obj	7e574ad924da5e7b
-17	5988	6711009755468470	CMakeFiles/lab6.dir/tests.cpp.obj	cbb56772cb411e6f
 32	203	6711014268325682	CMakeFiles/lab6.dir/repository.cpp.obj	c9d98cb83ec767f8
 6	1012	6711014276275682	CMakeFiles/lab6.dir/domain.cpp.obj	81b68bfe1a6284ee
-26	1460	6711014280905664	CMakeFiles/lab6.dir/validator.cpp.obj	a47488fa87547b07
-18	1632	6711014282645659	CMakeFiles/lab6.dir/service.cpp.obj	8cf5c345faa0587b
-39	2239	6711014288695651	CMakeFiles/lab6.dir/tests.cpp.obj	cbb56772cb411e6f
-12	3035	6711014296681443	CMakeFiles/lab6.dir/main.cpp.obj	7e574ad924da5e7b
-45	3135	6711014297691443	CMakeFiles/lab6.dir/uiconsole.cpp.obj	c902555a972e3bb5
 3135	3534	6711014301621480	lab6.exe	201be7a13269cd5d
+26	1460	6711014280905664	CMakeFiles/lab6.dir/validator.cpp.obj	a47488fa87547b07
+45	3135	6711014297691443	CMakeFiles/lab6.dir/uiconsole.cpp.obj	c902555a972e3bb5
+18	1632	6711014282645659	CMakeFiles/lab6.dir/service.cpp.obj	8cf5c345faa0587b
+12	3035	6711014296681443	CMakeFiles/lab6.dir/main.cpp.obj	7e574ad924da5e7b
+39	2239	6711014288695651	CMakeFiles/lab6.dir/tests.cpp.obj	cbb56772cb411e6f

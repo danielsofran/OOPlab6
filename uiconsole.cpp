@@ -65,12 +65,18 @@ void ConsoleUI::sterge(istream &in, ostream &out) {
 
 void ConsoleUI::modifica(istream & in, ostream & out) {
     TypeApartament apartament1, apartament2;
-    TypeNume nume1, nume2;
-    TypeTip tip1, tip2;
-    TypeSuprafata suprafata1, suprafata2;
-    readLocatar(in, out, apartament1, nume1, suprafata1, tip1);
+    TypeNume nume2;
+    TypeTip tip2;
+    TypeSuprafata suprafata2;
+    // citesc nr apartamentului
+    string strap;
+    out<<"Introduceti apartamentul: ";
+    in>>strap;
+    try{ apartament1 = std::stoi(strap); }
+    catch(...) { out<<"Apartament invalid!\n";  apartament1=0;}
+    cout<<"Introduceti noul locatar:\n";
     readLocatar(in, out, apartament2, nume2, suprafata2, tip2);
-    try{ service.modify(apartament1, nume1, suprafata1, tip1,
+    try{ service.modify(apartament1,
                         apartament2, nume2, suprafata2, tip2);}
     catch(MyException& me) { out<<me; return;}
     out<<"Operatie efectuata cu succes!\n";

@@ -7,6 +7,7 @@
 
 #include <exception>
 #include <string>
+#include <utility>
 #include <vector>
 using std::exception;
 using std::string;
@@ -19,7 +20,7 @@ protected:
     string msg;
 public:
     MyException() { msg = "MyException!\n"; } ;
-    explicit MyException (const string& msg) : msg(msg) {}
+    explicit MyException (string  msg) : msg(std::move(msg)) {}
     const char * what() const noexcept override { return msg.c_str(); }
     friend ostream& operator<<(ostream& out, const MyException& ex) {out<<ex.msg; return out;}
 };
@@ -35,7 +36,8 @@ private:
 public:
     //using MyException::MyException;
     explicit ValidatorException()=default;
-    explicit ValidatorException(const vector<InvalidFieldException> &errors_) : errors{errors_} {
+    explicit ValidatorException (const vector<InvalidFieldException> &errors_) noexcept{
+        errors = errors_;
         msg = "";
         for(const InvalidFieldException& ie : errors_)
             msg += ie.what() + sep;

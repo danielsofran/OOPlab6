@@ -1,86 +1,44 @@
-//
-// Created by Daniel on 25.03.2022.
-//
-
 #ifndef LAB6_REPOSITORY_H
 #define LAB6_REPOSITORY_H
 
 #include <type_traits>
 #include <vector>
 #include <algorithm>
-#include <memory>
-
 #include "exceptions.h"
 using std::vector;
-using std::unique_ptr;
 
 template<typename T>
 class Repository{
-    friend class TestRepository;
 private:
-    T* elements;
-    int dim;
-    int capacity;
-    void delete_poz(int poz) {
-        for(int i=poz;i<dim-1;++i)
-            elements[i] = elements[i+1];
-        --dim;
-    }
-    void adaug(T elem) {
-        if(dim>=capacity) realoc();
-        elements[dim++] = elem;
-    }
-    void realoc(){
-        T* newelements = new T[2*capacity];
-        for(int i=0;i<capacity;++i)
-            newelements[i] = elements[i];
-        delete[] elements;
-        elements = newelements;
-        capacity *= 2;
-    }
+    vector<T> elements;
+    typename vector<T>::iterator getIterator(T* pointer) { return elements.begin() + (pointer - elements.data()); }
 public:
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    Repository(){
-        dim = 0;
-        capacity = 1;
-        elements = new T[capacity];
-    }
+    Repository() = default;
     Repository(const Repository<T> & repository) {
-        this->elements = new T[repository.capacity];
-        dim = repository.dim;
-        capacity = repository.capacity;
-        for(int i=0;i<capacity;++i)
-            elements[i] = repository.elements[i];
+        this->elements = repository.elements;
     }
-    ~Repository() { delete[] elements; }
 
-    Repository& operator=(const Repository& repository)
-    {
-        this->elements = new T[repository.capacity];
-        dim = repository.dim;
-        capacity = repository.capacity;
-        for(int i=0;i<capacity;++i)
-            elements[i] = repository.elements[i];
-        return *this;
-    }
+    // operator de atribuire
+    // Repository& operator=(const Repository&);
 
     // indexator, returnez o referinta la obiect
     // arunc RepoException daca pozitia este invalida
-    T& operator[](const int& index){
+    T& operator[](const int& index)
+    {
         try{ return elements[index]; }
         catch(...) { throw RepoException("Indexul "+std::to_string(index)+" este invalid!\n");}
     }
 
+
     // returneaza numarul de elemente continute
-    int size() const noexcept {return dim; };
+    int size() const {return elements.size(); }
 
     // adaug un element la finalul containerului
     // arunc RepoException daca elementul se afla in container
     void add(const T & element) {
-        Repository<T>::const_iterator it = find(element);
+        const T* it = find(element);
         if(it != NULL) throw RepoException("Element duplicat!\n");
-        adaug(element);
+        elements.push_back(element);
     }
 
     // returnez o referinta catre primul element egal cu cel dat
@@ -88,7 +46,7 @@ public:
     // primul iterator indica pozitia de inceput
     // al doilea indica pozitia de final
     // implicit, cautarea de face pe tot containerul
-    iterator find(const T & element, T* begin=NULL, T* end=NULL) {
+    T* find(const T & element, T* begin = NULL, T* end = NULL) {
         if(begin == NULL) begin = this->begin();
         if(end == NULL) end = this->end();
         for(auto it=begin; it != end; ++it)
@@ -103,7 +61,7 @@ public:
     // al doilea indica pozitia de final
     // implicit, cautarea de face pe tot containerul
     template<class UnaryPredicate>
-    iterator find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
+    T* find(UnaryPredicate fct, T* begin = NULL, T* end = NULL) {
         if(begin == NULL) begin = this->begin();
         if(end == NULL) end = this->end();
         for(auto it=begin; it != end; ++it)
@@ -112,33 +70,37 @@ public:
         return NULL;
     }
 
+    // sterg prima aparitie a elementului dat din container
+    // arunc o exceptie daca nu exista in container
     void remove(const T& element) {
         T* it = find(element);
         if(it == NULL) throw RepoException("Elementul inexistent!\n");
 
-        delete_poz(it - elements);
+        elements.erase(getIterator(it));
     }
 
+    // sterg primul element care respecta proprietatea
+    // returnez elementul sters
+    // arunc o exceptie daca nu exista in container
     template<class UnaryPredicate>
     T remove(UnaryPredicate fct) {
         T* it = find(fct);
         if(it == NULL) throw RepoException("Elementul inexistent!\n");
-        delete_poz(it - elements);
+        elements.erase(getIterator(it));
         return *it;
     }
 
-    template<class Compare = std::less<>>
-    void sort(Compare compare = Compare{}) {
-        std::sort(elements, elements+dim, compare);
+    // sortez repository-ul dupa operatorul < sau dupa functie
+    template<class Compare=std::less<T>>
+    void sort(Compare compare = Compare{}){
+        std::sort(elements.begin(), elements.end(), compare);
     }
 
     // implementez iteratorii de begin si end pentru a putea intera
-    iterator begin() { return elements;}
-    const_iterator cbegin() const {return elements; };
-    iterator end() {return elements+dim;}
-    const_iterator cend() const {return elements+dim;}
+    T* begin() { return elements.begin().base();}
+    const T* cbegin() const {return elements.cbegin().base(); }
+    T* end() {return elements.end().base(); }
+    const T* cend() const {return elements.cend().base(); }
 };
 
 #endif //LAB6_REPOSITORY_H
-
-// static_assert(std::is_convertible_v<Callable&&, std::function<Signature>>, "Wrong Signature!");

@@ -36,5 +36,5 @@ void ValidatorLocatar::validLocatar(const Locatar & locatar) {
     catch(InvalidFieldException& ie) {v += ie;}
     try { validTip(locatar.getTip()); }
     catch(InvalidFieldException& ie) {v += ie;}
-    if((int)v != 0) throw v;
+    if((int)v != 0) throw ValidatorException(v);
 }

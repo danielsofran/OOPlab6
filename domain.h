@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <utility>
 
 using std::string;
 using std::istream;
@@ -24,8 +26,8 @@ public:
     // constructor fara parametrii
     Locatar() = default;
     // constructor cu parametrii
-    Locatar(const TypeApartament& Apartament, const TypeNume& NumeProprietar, const TypeSuprafata& Suprafata, const TypeTip& Tip) :
-            apartament(Apartament), nume_proprietar(NumeProprietar), suprafata(Suprafata), tip(Tip) {}
+    Locatar(const TypeApartament& Apartament, TypeNume  NumeProprietar, const TypeSuprafata& Suprafata, TypeTip  Tip) :
+            apartament(Apartament), nume_proprietar(std::move(NumeProprietar)), suprafata(Suprafata), tip(std::move(Tip)) {}
     // constructor de copiere
     Locatar(const Locatar&);
 
@@ -53,11 +55,6 @@ public:
     bool operator<=(const Locatar&) const;
     bool operator>(const Locatar&) const;
     bool operator>=(const Locatar&) const;
-
-
-    // operatori de intrare/iesire
-    friend istream& operator>>(istream&, Locatar&);
-    friend ostream& operator<<(ostream&, const Locatar&);
 };
 
 #endif //LAB6_DOMAIN_H

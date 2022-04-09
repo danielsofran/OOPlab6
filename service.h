@@ -31,7 +31,7 @@ public:
     // modific primul elemet cu al doilea
     // arunca RepoException daca elementul nu exista
     // arunca ValidatorException daca unul din locatari nu este valid
-    void modify(const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&, const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
+    void modify(const TypeApartament&, const TypeApartament&, const TypeNume&, const TypeSuprafata&, const TypeTip&);
 
     // cauta apartamentul cu numarul dat
     // arunca ServiceException daca nu exista un astfel de apartament
