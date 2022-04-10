@@ -5,13 +5,24 @@
 #ifndef LAB6_SERVICE_H
 #define LAB6_SERVICE_H
 
+#include <fstream>
+#include <regex>
+#include <random>
+#include <algorithm>
+#include <chrono>
+#include <set>
+
 #include "domain.h"
 #include "repository.h"
 #include "validator.h"
 
+using std::vector;
+
 class Service{
+    friend class TestService;
 private:
-    Repository<Locatar> repository;
+    vector<Locatar> repository;
+    vector<Locatar> listanotificare;
 public:
     // doar constructor fara parametrii
     Service()=default;
@@ -40,11 +51,11 @@ public:
 
     // returnez toate elementele care au tipul dat
     // arunca InvalidFieldException daca nu este valid
-    Repository<Locatar> filterTip(const TypeTip&);
+    vector<Locatar> filterTip(const TypeTip&);
 
     // returnez toate elementele care au suprafata data?
     // arunca InvalidFieldException daca nu este valid
-    Repository<Locatar> filterSuprafata(const TypeSuprafata&);
+    vector<Locatar> filterSuprafata(const TypeSuprafata&);
 
     // sortez repository-ul dupa nume crescator
     void sortNume();
@@ -55,11 +66,27 @@ public:
     // sortez repository-ul dupa tip, iar la tipuri egale sortez dupa suprafata
     void sortTipSuprafata();
 
+    // adaug apartamentul cu nr dat in lista de notificare
+    // arunc ServiceException daca nu exista
+    void addNotificare(const int&);
+
+    // sterg lista de notificari
+    void clearNotificari();
+
+    // adaug n apartamente alese aleator
+    void generateNotificari(const int&);
+
+    // export ca fisier HTML
+    void exportNotificariHTML(const string&);
+
+    // export ca fisier CSV
+    void exportNotificariCSV(const string&);
+
     // implementare iteratori de begin si end pentru a putea intera
-    Locatar* begin();
-    const Locatar* cbegin() const;
-    Locatar* end();
-    const Locatar* cend() const;
+    vector<Locatar>::iterator begin();
+    vector<Locatar>::const_iterator cbegin() const;
+    vector<Locatar>::iterator end();
+    vector<Locatar>::const_iterator cend() const;
 };
 
 #endif //LAB6_SERVICE_H

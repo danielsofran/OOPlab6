@@ -13,7 +13,13 @@ void ConsoleUI::printMenu(ostream & out) {
          "5. Cauta apartament\n"
          "6. Filtrare\n"
          "7. Sortare\n"
-         "8. Iesire\n";
+         "\n"
+         "8. Adauga apartament in lista de notificari\n"
+         "9. Sterge toate apartamentele din lista de notificari\n"
+         "10. Adauga un numar dat de apartamente aleatoare in lista de notificari\n"
+         "11. Exporta lista de notificari ca pagina HTML\n"
+         "12. Exporta lista de notificari ca fisier CSV\n"
+         "e Iesire\n";
 }
 
 void ConsoleUI::readLocatar(istream & in, ostream& out, TypeApartament& apartament, TypeNume& nume, TypeSuprafata& suprafata, TypeTip& tip) {
@@ -105,20 +111,20 @@ void ConsoleUI::filtrare(istream & in, ostream & out) {
     if(cmd == "tip"){
         TypeTip tip;
         out<<"Introduceti tipul: "; in >> tip;
-        Repository<Locatar> rez;
+        vector<Locatar> rez;
         try{rez = service.filterTip(tip); }
         catch(MyException& me) { out<<me; return;}
-        if(rez.size() == 0) out<<"Nu exista astfel de elenmente!\n";
+        if(rez.empty()) out<<"Nu exista astfel de elenmente!\n";
         for(const auto& elem : rez)
             writeLocatar(out, elem);
     }
     else if(cmd == "suprafata"){
         TypeSuprafata suprafata;
         out<<"Introduceti suprafata: "; in >>suprafata;
-        Repository<Locatar> rez;
+        vector<Locatar> rez;
         try{rez = service.filterSuprafata(suprafata); }
         catch(MyException& me) { out<<me; return;}
-        if(rez.size() == 0) out<<"Nu exista astfel de elenmente!\n";
+        if(rez.empty()) out<<"Nu exista astfel de elenmente!\n";
         for(const auto& elem : rez)
             writeLocatar(out, elem);
     }
@@ -148,6 +154,9 @@ void ConsoleUI::sortare(istream & in, ostream & out) {
 }
 
 void ConsoleUI::run(istream & in, ostream & out) {
+    service.add(23, "Daniel", 200, "apartament");
+    service.add(24, "Andra", 300, "apartament");
+    service.add(25, "Ion", 100, "garsoniera");
     while (true){
         system("cls");
         printMenu(out);
@@ -161,11 +170,66 @@ void ConsoleUI::run(istream & in, ostream & out) {
         else if(cmd=="5") cautaApartament(in, out);
         else if(cmd=="6") filtrare(in, out);
         else if(cmd=="7") sortare(in, out);
-        else if(cmd=="8") break;
+        else if(cmd=="8") adaugaNotificare(in, out);
+        else if(cmd=="9") stergereNotificari(out);
+        else if(cmd=="10") genereazaNofificari(in, out);
+        else if(cmd=="11") exportHTML(in, out);
+        else if(cmd=="12") exportCSV(in, out);
+        else if(cmd=="e") break;
         else out<<"Comanda invalida!\n";
         system("pause");
     }
 }
+
+void ConsoleUI::adaugaNotificare(istream & in, ostream & out) {
+    int nrap;
+    out<<"Introduceti numarul apatramentului: ";
+    in>>nrap;
+    try{service.addNotificare(nrap); return;}
+    catch(MyException& me) {out<<me; }
+    out<<"Operatie efectuata cu succes!\n";
+}
+
+void ConsoleUI::stergereNotificari(ostream & out) {
+    service.clearNotificari();
+    out<<"Operatie efectuata cu succes!\n";
+}
+
+void ConsoleUI::genereazaNofificari(istream & in, ostream & out) {
+    int nr;
+    out<<"Introduceti numarul de apartamente: "; out.flush();
+    in>>nr;
+    try{ service.generateNotificari(nr);}
+    catch(MyException& me) {out<<me; return;}
+    out<<"Operatie efectuata cu succes!\n";
+}
+
+void ConsoleUI::exportHTML(istream & in, ostream & out) {
+    string filename;
+    out<<"Introduceti numele fisierului: "; out.flush();
+    in>>filename;
+    service.exportNotificariHTML(filename);
+    out<<"Operatie efectuata cu succes!\n";
+    string command = R"(C:\Desktop\OOP\lab6\cmake-build-debug\OwnFiles\)"+filename+".html";
+    LPCTSTR helpFile = command.c_str();
+    ShellExecute(nullptr, "open", helpFile, nullptr, nullptr, SW_SHOWNORMAL);
+}
+
+void ConsoleUI::exportCSV(istream & in, ostream & out) {
+    string filename;
+    out<<"Introduceti numele fisierului: "; out.flush();
+    in>>filename;
+    service.exportNotificariCSV(filename);
+    out<<"Operatie efectuata cu succes!\n";
+}
+
+
+
+
+
+
+
+
 
 
 

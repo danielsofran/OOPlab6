@@ -43,7 +43,11 @@ protected:
         assert(l1 <= l2);
         assert(l2 > l1);
         assert(l2 >= l1);
-        l3 = Locatar();
+        std::strstream sop;
+        l3 = l2;
+        sop>>l2;
+        sop<<l2;
+        assert(l3 == l2);
     }
 };
 
@@ -138,6 +142,16 @@ private:
                 *(s.cbegin()+1) == l2 &&
                 *(s.cbegin()+2) == l3;
     }
+    static int countLines(const string& filename)
+    {
+        std::ifstream fin(filename);
+        string line;
+        int count = 0;
+        while(std::getline(fin, line))
+            ++count;
+        fin.close();
+        return count;
+    }
 protected:
     void add() override{
         Service s;
@@ -165,6 +179,18 @@ protected:
         catch(RepoException& re){}
     }
     void methods() override{
+        modify();
+        find();
+        filter();
+        sort();
+        notificareAdd();
+        notificareRemove();
+        notificareGenereaza();
+        notificareExportHTML();
+        notificareExportCSV();
+    }
+    void modify()
+    {
         Service s;
         s.add(32, "Andi", 200, "apartament");
         s.add(13, "Ioana", 130, "apartament");
@@ -177,32 +203,32 @@ protected:
         try{s.modify(1, 13, "Ioana Pir", -130, "apartament"); assert(false);}
         catch(ValidatorException&){}
     }
-    void find() override{
+    void find() {
         Service s;
         Locatar l1, l2, l3;
         init(s, l1, l2, l3);
         Locatar l = s.findApartament(32);
         assert(l == Locatar(32, "Andi", 200, "apartament"));
         try{ s.findApartament(23); assert(false);}
-        catch (ServiceException& se) {}
+        catch (MyException& se) {}
         l = s.findApartament(13);
         assert(l == Locatar(13, "Ioana", 130, "apartament"));
         s.remove(13, "Ioana", 130, "apartament");
         l = s.findApartament(13);
         assert(l == Locatar(13, "Ioana", 7, "apartament"));
     }
-    void filter() override{
+    void filter() {
         Service s;
         Locatar l1, l2, l3;
         init(s, l1, l2, l3);
-        Repository<Locatar> filtrutip{s.filterTip("apartament")};
+        vector<Locatar> filtrutip = s.filterTip("apartament");
         assert(filtrutip.size() == 3);
-        Repository<Locatar> filtrusupr{s.filterSuprafata(130)};
+        vector<Locatar> filtrusupr = s.filterSuprafata(130);
         assert(filtrusupr[0] == l2);
-        Repository<Locatar> filtrutip2{s.filterTip("garsoniera1")};
-        assert(filtrutip2.size() == 0);
+        vector<Locatar> filtrutip2 = s.filterTip("garsoniera1");
+        assert(filtrutip2.empty());
     }
-    void sort() override{
+    void sort() {
         Service s;
         Locatar l1, l2, l3;
         init(s, l1, l2, l3);
@@ -223,6 +249,66 @@ protected:
         for(auto x : s){}
         for(auto& x : s){}
         for(const auto& x: s){}
+    }
+
+    void notificareAdd(){
+        Service s;
+        Locatar l1, l2, l3;
+        init(s, l1, l2, l3);
+        s.addNotificare(32);
+        assert(s.listanotificare[0] == l1);
+        try{s.addNotificare(10603); assert(false);}
+        catch(ServiceException&){}
+        s.addNotificare(13);
+        assert(s.listanotificare.size()==2);
+        assert(s.listanotificare[1]==l2);
+    }
+    void notificareRemove(){
+        Service s;
+        Locatar l1, l2, l3;
+        init(s, l1, l2, l3);
+        s.addNotificare(32);
+        s.addNotificare(13);
+        s.clearNotificari();
+        assert(s.listanotificare.empty());
+        s.clearNotificari();
+        assert(s.listanotificare.empty());
+    }
+    void notificareGenereaza(){
+        Service s;
+        Locatar l1, l2, l3;
+        init(s, l1, l2, l3);
+        for(int i=0;i<10;++i) {
+            s.generateNotificari(i);
+            assert(s.listanotificare.size() == i);
+        }
+    }
+    void notificareExportHTML(){
+        int tl = countLines("OwnFiles/LocatariTemplate.html"), cl = 0;
+        Service s;
+        Locatar l1, l2, l3;
+        init(s, l1, l2, l3);
+        s.generateNotificari(3);
+        s.exportNotificariHTML(".test");
+        cl = countLines("OwnFiles/.test.html");
+        assert(tl+3+1 == cl);
+        s.generateNotificari(10);
+        s.exportNotificariHTML(".test");
+        assert(tl+10+1 == countLines("OwnFiles/.test.html"));
+        ::remove("OwnFiles/.test.html");
+    }
+    void notificareExportCSV(){
+        Service s;
+        Locatar l1, l2, l3;
+        init(s, l1, l2, l3);
+        s.generateNotificari(3);
+        s.exportNotificariCSV(".test");
+        int cl = countLines("OwnFiles/.test.csv");
+        assert(3 == cl);
+        s.generateNotificari(10);
+        s.exportNotificariCSV(".test");
+        assert(10 == countLines("OwnFiles/.test.csv"));
+        ::remove("OwnFiles/.test.csv");
     }
 };
 

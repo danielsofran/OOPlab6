@@ -7,13 +7,17 @@
 void Service::add(const TypeApartament & apartament, const TypeNume & numeproprietar, const TypeSuprafata & suprafata, const TypeTip & tip) {
     Locatar locatar{apartament, numeproprietar, suprafata, tip};
     ValidatorLocatar::validLocatar(locatar);
-    repository.add(locatar);
+    auto it = std::find(repository.begin(), repository.end(), locatar);
+    if(it != end()) throw RepoException("Element duplicat!\n");
+    repository.push_back(locatar);
 }
 
 void Service::remove(const TypeApartament & apartament, const TypeNume & numeproprietar, const TypeSuprafata & suprafata, const TypeTip & tip) {
     Locatar locatar{apartament, numeproprietar, suprafata, tip};
     ValidatorLocatar::validLocatar(locatar);
-    repository.remove(locatar);
+    auto it = std::find(repository.begin(), repository.end(), locatar);
+    if(it == end()) throw RepoException("Elementul nu exista!\n");
+    repository.erase(it);
 }
 
 void Service::modify(const TypeApartament & apartament1,
@@ -21,42 +25,42 @@ void Service::modify(const TypeApartament & apartament1,
     Locatar locatar{apartament2, nume2, suprafata2, tip2};
     ValidatorLocatar::validLocatar(locatar);
     ValidatorLocatar::validApartament(apartament1);
-    auto it = repository.find([&apartament1](const Locatar& l) {return l.getApartament() == apartament1;});
-    if(it == nullptr) throw RepoException("Elementul nu a fost gasit!\n");
+    auto it = std::find_if(begin(), end(), [&apartament1](const Locatar& l) {return l.getApartament() == apartament1;});
+    if(it == end()) throw RepoException("Elementul nu a fost gasit!\n");
     *it = locatar;
 }
 
 const Locatar& Service::findApartament(const TypeApartament & apartament) {
     ValidatorLocatar::validApartament(apartament);
-    auto it = repository.find([&apartament](const Locatar& l){return l.getApartament() == apartament; });
-    if(it == nullptr) throw ServiceException("Apartamentul dat nu exista!\n");
+    const auto& it = std::find_if(begin(), end(), [&apartament](const Locatar& l){return l.getApartament() == apartament; });
+    if(it == cend()) throw ServiceException("Apartamentul dat nu exista!\n");
     return *it;
 }
 
-Repository<Locatar> Service::filterTip(const TypeTip & tip) {
+vector<Locatar> Service::filterTip(const TypeTip & tip) {
     ValidatorLocatar::validTip(tip);
-    Repository<Locatar> rez;
+    vector<Locatar> rez;
     auto pred = [&tip](const Locatar &l)
             { return l.getTip() == tip; };
-    auto it = repository.find(pred);
-    while(it != nullptr)
+    auto it = std::find_if(begin(), end(), pred);
+    while(it != end())
     {
-        rez.add(*it);
-        it = repository.find(pred, it+1);
+        rez.push_back(*it);
+        it = std::find_if(it+1, end(), pred);
     }
     return rez;
 }
 
-Repository<Locatar> Service::filterSuprafata(const TypeSuprafata & suprafata) {
+vector<Locatar> Service::filterSuprafata(const TypeSuprafata & suprafata) {
     ValidatorLocatar::validSuprafata(suprafata);
-    Repository<Locatar> rez;
+    vector<Locatar> rez;
     auto pred = [&suprafata](const Locatar &l)
             { return l.getSuprafata() == suprafata; };
-    auto it = repository.find(pred);
-    while(it != nullptr)
+    auto it = std::find_if(begin(), end(), pred);
+    while(it != end())
     {
-        rez.add(*it);
-        it = repository.find(pred, it+1);
+        rez.push_back(*it);
+        it = std::find_if(it+1, end(), pred);
     }
     return rez;
 }
@@ -66,7 +70,7 @@ void Service::sortNume() {
     {
         return l1.getNumeProprietar() < l2.getNumeProprietar();
     };
-    repository.sort(cmp);
+    std::sort(begin(), end(), cmp);
 }
 
 void Service::sortSuprafata() {
@@ -74,7 +78,7 @@ void Service::sortSuprafata() {
     {
         return l1.getSuprafata() < l2.getSuprafata();
     };
-    repository.sort(cmp);
+    std::sort(begin(), end(), cmp);
 }
 
 void Service::sortTipSuprafata() {
@@ -83,10 +87,79 @@ void Service::sortTipSuprafata() {
         return  l1.getTip() < l2.getTip() ||
             (l1.getTip() == l2.getTip() && l1.getSuprafata() < l2.getSuprafata());
     };
-    repository.sort(cmp);
+    std::sort(begin(), end(), cmp);
 }
 
-Locatar* Service::begin() { return repository.begin(); }
-Locatar* Service::end() { return repository.end(); }
-const Locatar* Service::cbegin() const { return repository.cbegin(); }
-const Locatar* Service::cend() const { return repository.cend(); }
+vector<Locatar>::iterator Service::begin() {return repository.begin();}
+vector<Locatar>::const_iterator Service::cbegin() const {return repository.cbegin();}
+vector<Locatar>::iterator Service::end() {return repository.end();}
+vector<Locatar>::const_iterator Service::cend() const {return repository.cend();}
+
+void Service::addNotificare(const int & nrap) {
+    auto it = std::find_if(repository.begin(), repository.end(), [&nrap](const Locatar& l){return l.getApartament() == nrap; });
+    if(it == end()) throw ServiceException("Apartament inexistent!\n");
+    listanotificare.push_back(*it);
+}
+
+void Service::clearNotificari() {
+    listanotificare.clear();
+}
+
+void Service::generateNotificari(const int & nr) {
+    if(nr<0) throw ServiceException("Imposibil de generat un numar negativ de apartamente!\n");
+    listanotificare.clear();
+    std::mt19937 mt{ std::random_device{}() };
+    std::uniform_int_distribution<> dist(0, (int)repository.size()-1);
+    std::set<int> used;
+    //int rndNr = dist(mt);// numar aleator intre [0,size-1]
+    listanotificare = vector<Locatar>(nr);
+    for(int ind=0;ind<nr;++ind) {
+        int i;
+        while(used.find((i=dist(mt))) != used.end());
+        listanotificare[ind] = repository[i];
+        used.insert(i);
+        if(used.size() == repository.size())
+            used.clear();
+    }
+}
+
+void Service::exportNotificariHTML(const string& filename) {
+    std::ifstream fin("OwnFiles/LocatariTemplate.html");
+    string text, line;
+    while(fin){
+        getline(fin, line);
+        text += line + "\n";
+    }
+//    std::ostringstream out;
+//    string line;
+//    while(getline(fin>>std::noskipws, line))
+//        out<<line<<'\n';
+    string htmlcontent;
+    for(const auto& locatar : listanotificare)
+    {
+        std::ostringstream out2;
+        out2<<"<Locatar nrap={"<<locatar.getApartament()
+            <<"} nume=\""<<locatar.getNumeProprietar()
+            <<"\" suprafata={"<<locatar.getSuprafata()
+            <<"} tip=\""<<locatar.getTip()<<"\"/>\n";
+        htmlcontent += out2.str();
+    }
+    text = std::regex_replace(text, std::regex("!REPLACE_LOCATARI!"), htmlcontent);
+    std::ofstream fout("OwnFiles/"+filename+".html");
+    fout<<std::noskipws<<text;
+    fout.close();
+    fin.close();
+}
+
+void Service::exportNotificariCSV(const string& filename) {
+    std::ofstream fout("OwnFiles/"+filename+".csv");
+    char sep=';';
+    for(const auto& locatar : listanotificare)
+        fout<<locatar.getApartament()<<sep
+            <<locatar.getNumeProprietar()<<sep
+            <<locatar.getSuprafata()<<sep
+            <<locatar.getTip()<<"\n";
+    fout.close();
+}
+
+

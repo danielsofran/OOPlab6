@@ -30,9 +30,11 @@ public:
             apartament(Apartament), nume_proprietar(std::move(NumeProprietar)), suprafata(Suprafata), tip(std::move(Tip)) {}
     // constructor de copiere
     Locatar(const Locatar&);
+    Locatar(Locatar&&) noexcept = default;
 
     // operator de atribuire
     Locatar& operator=(const Locatar&);
+    Locatar& operator=(Locatar&&) noexcept = default;
 
     // getteri
     TypeApartament getApartament() const;
@@ -55,6 +57,10 @@ public:
     bool operator<=(const Locatar&) const;
     bool operator>(const Locatar&) const;
     bool operator>=(const Locatar&) const;
+
+    // operatori de intrare/iesire
+    friend istream& operator>>(istream&, Locatar&);
+    friend ostream& operator<<(ostream&, const Locatar&);
 };
 
 #endif //LAB6_DOMAIN_H

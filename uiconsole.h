@@ -48,6 +48,21 @@ private:
     // sortare
     void sortare(istream&, ostream&);
 
+    //adaugare notificare
+    void adaugaNotificare(istream&, ostream&);
+
+    // stergere notificari
+    void stergereNotificari(ostream&);
+
+    // genereaza notificari
+    void genereazaNofificari(istream&, ostream&);
+
+    // export HTML
+    void exportHTML(istream&, ostream&);
+
+    // export CSV
+    void exportCSV(istream&, ostream&);
+
 public:
     ConsoleUI()=default;
     // rulez meniul

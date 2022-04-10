@@ -7,3 +7,10 @@
 18	1632	6711014282645659	CMakeFiles/lab6.dir/service.cpp.obj	8cf5c345faa0587b
 12	3035	6711014296681443	CMakeFiles/lab6.dir/main.cpp.obj	7e574ad924da5e7b
 39	2239	6711014288695651	CMakeFiles/lab6.dir/tests.cpp.obj	cbb56772cb411e6f
+4	3524	6712802393267850	CMakeFiles/lab6.dir/domain.cpp.obj	81b68bfe1a6284ee
+26	5630	6712802415207845	CMakeFiles/lab6.dir/validator.cpp.obj	a47488fa87547b07
+10	9335	6712802450278145	CMakeFiles/lab6.dir/tests.cpp.obj	cbb56772cb411e6f
+14	10980	6712802468998168	CMakeFiles/lab6.dir/main.cpp.obj	7e574ad924da5e7b
+20	10997	6712802470088164	CMakeFiles/lab6.dir/uiconsole.cpp.obj	c902555a972e3bb5
+30	16945	6712802529498782	CMakeFiles/lab6.dir/service.cpp.obj	8cf5c345faa0587b
+16946	20306	6712802563219116	lab6.exe	b3cdcb0c854739b5

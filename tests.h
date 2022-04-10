@@ -34,11 +34,6 @@ public:
         setters();
         methods();
         operators();
-        add();
-        find();
-        remove();
-        filter();
-        sort();
     }
     ITest()=default;
 };
